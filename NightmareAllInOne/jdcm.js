@@ -112,7 +112,11 @@ myScrape
 
 
 
-myScrape.run();
+myScrape.run(function (error, nightmare) {
+    if (error) {
+        console.log(error);
+    }
+});
 //var datas = [];
 var j = 0;
 function gatherList(dataList) {
@@ -163,7 +167,7 @@ function gatherList(dataList) {
                         //var data = datas[j];
                     
                     db.exist(result.data.itemUrl, function () {
-                        db.insertJDCategory(result.data.channel, result.data.href, result.data.category, result.data.categoryUrl, result.data.item, result.data.itemUrl, result.pageInfo);
+                        //db.insertJDCategory(result.data.channel, result.data.href, result.data.category, result.data.categoryUrl, result.data.item, result.data.itemUrl, result.pageInfo);
                         //console.log(j);
                     });
                     
@@ -173,5 +177,9 @@ function gatherList(dataList) {
             );
         }
     }
-    myScrape.run();
+    myScrape.run(function(error,nightmare) {
+        if (error) {
+            console.log(error);
+        }
+    });
 }

@@ -1,0 +1,10 @@
+{
+  "name": "NodeFoundation",
+  "version": "0.0.0",
+  "description": "NodeFoundation",
+  "main": "app.js",
+  "author": {
+    "name": "pcher_000",
+    "email": ""
+  }
+}
