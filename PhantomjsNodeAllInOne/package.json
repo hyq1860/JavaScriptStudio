@@ -1,0 +1,10 @@
+{
+  "name": "InjectPhantomjs",
+  "version": "0.0.0",
+  "description": "InjectPhantomjs",
+  "main": "app.js",
+  "author": {
+    "name": "pcher_000",
+    "email": ""
+  }
+}

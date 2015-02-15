@@ -1,0 +1,10 @@
+{
+  "name": "NodeSpider",
+  "version": "0.0.0",
+  "description": "NodeSpider",
+  "main": "app.js",
+  "author": {
+    "name": "pcher_000",
+    "email": ""
+  }
+}

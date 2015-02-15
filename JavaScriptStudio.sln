@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "NightmareAllInOne", "NightmareAllInOne\NightmareAllInOne.njsproj", "{505F1567-3092-4DBA-BEBD-8880128E289C}"
+EndProject
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "NodeSpider", "NodeSpider\NodeSpider.njsproj", "{B4CC95E2-6D95-4444-B631-F7C8398CE9D8}"
+EndProject
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "PhantomjsNodeAllInOne", "PhantomjsNodeAllInOne\PhantomjsNodeAllInOne.njsproj", "{13623975-8263-4D31-96AF-53ED00692A74}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaScriptFoundation", "JavaScriptFoundation\JavaScriptFoundation.csproj", "{B26547D1-D7BB-4DD0-A21C-81B70D244B4D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{505F1567-3092-4DBA-BEBD-8880128E289C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{505F1567-3092-4DBA-BEBD-8880128E289C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{505F1567-3092-4DBA-BEBD-8880128E289C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{505F1567-3092-4DBA-BEBD-8880128E289C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4CC95E2-6D95-4444-B631-F7C8398CE9D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4CC95E2-6D95-4444-B631-F7C8398CE9D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4CC95E2-6D95-4444-B631-F7C8398CE9D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4CC95E2-6D95-4444-B631-F7C8398CE9D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13623975-8263-4D31-96AF-53ED00692A74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13623975-8263-4D31-96AF-53ED00692A74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13623975-8263-4D31-96AF-53ED00692A74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13623975-8263-4D31-96AF-53ED00692A74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B26547D1-D7BB-4DD0-A21C-81B70D244B4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B26547D1-D7BB-4DD0-A21C-81B70D244B4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B26547D1-D7BB-4DD0-A21C-81B70D244B4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B26547D1-D7BB-4DD0-A21C-81B70D244B4D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <script type="text/javascript">
+        /*
+        当把函数赋值给多个变量的时候，也会出现令人郁闷的问题：
+        调用栈显示的是foo调用了bar，但实际上并非如此，
+        之所以有这种问题，是因为baz和另外一个包含alert('spoofed')的函数做了引用交换所导致的。
+        */
+        function foo() {
+            return baz();
+        }
+        var bar = function () {
+            debugger;
+        };
+        var baz = bar;
+        bar = function () {
+            alert('spoofed');
+        };
+        foo();
+        //查看firebug的堆栈 很清晰
+    </script>
+</head>
+<body>
+
+</body>
+</html>

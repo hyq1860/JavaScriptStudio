@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <script type="text/javascript">
+        function bar0() { } // 声明，因为它是程序的一部分
+        var bar = function bar1() { }; // 表达式，因为它是赋值表达式的一部分
+
+        new function bar2() { }; // 表达式，因为它是new表达式
+
+        (function () {
+            function bar3() { } // 声明，因为它是函数体的一部分
+        })();
+
+        function bar4() { } // 函数声明
+        (function bar5() { }); // 函数表达式：包含在分组操作符内
+
+        console.log(fn());
+
+        function fn() {
+            return 'Hello world!';
+        }
+
+
+        var foo;
+        if (true) {
+            foo = function foo() { return 1; };
+        }
+        else {
+            foo = function foo() { return 2; };
+        }
+
+        /*命名函数表达式*/
+
+        /*
+        函数表达式在实际应用中还是很常见的，
+        在web开发中友个常用的模式是基于对某种特性的测试来伪装函数定义，
+        从而达到性能优化的目的，但由于这种方式都是在同一作用域内，
+        所以基本上一定要用函数表达式：
+        */
+
+        // 该代码来自Garrett Smith的APE Javascript library库(http://dhtmlkitchen.com/ape/) 
+        var contains = (function () {
+            var docEl = document.documentElement;
+
+            if (typeof docEl.compareDocumentPosition != 'undefined') {
+                return function (el, b) {
+                    return (el.compareDocumentPosition(b) & 16) !== 0;
+                };
+            }
+            else if (typeof docEl.contains != 'undefined') {
+                return function (el, b) {
+                    return el !== b && el.contains(b);
+                };
+            }
+            return function (el, b) {
+                if (el === b) return false;
+                while (el != b && (b = b.parentNode) != null);
+                return el === b;
+            };
+        })();
+
+
+        var f = function footest() {
+            console.log(typeof footest);
+            return typeof footest; // foo是在内部作用域内有效
+        };
+        // foo在外部用于是不可见的
+        console.log(typeof footest); // "undefined"
+        f(); // "function"
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

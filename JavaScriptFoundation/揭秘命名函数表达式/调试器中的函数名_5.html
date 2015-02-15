@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <script type="text/javascript">
+        /*
+        归根结底，只有给函数表达式取个名字，才是最委托的办法，
+        也就是使用命名函数表达式。
+        我们来使用带名字的表达式来重写上面的
+        例子（注意立即调用的表达式块里返回的2个函数的名字都是bar）：
+        */
+        function foo() {
+            return bar();
+        }
+        var bar = (function () {
+            if (window.addEventListener) {
+                return function bar() {
+                    return baz();
+                };
+            }
+            else if (window.attachEvent) {
+                return function bar() {
+                    return baz();
+                };
+            }
+        })();
+        function baz() {
+            debugger;
+        }
+        foo();
+        //查看firebug的堆栈 很清晰
+    </script>
+</head>
+<body>
+
+</body>
+</html>

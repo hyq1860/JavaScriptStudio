@@ -1,0 +1,25 @@
+var Nightmare = require('nightmare');
+new Nightmare()
+.goto('http://www.amazon.com')
+.wait()
+.screenshot("test.png")
+.evaluate(getJQueryVersion, printjQueryVersion)
+.run(function(err, nightmare) {
+if (err) return console.log(err);
+console.log('Done!');
+});
+ 
+function printjQueryVersion() {
+console.dir(arguments)
+}
+ 
+function getJQueryVersion()
+{
+ 
+console.log("This should be in phantomjs, unseen");
+ 
+var jqversion = jQuery.fn.jquery;
+ 
+return jqversion;
+ 
+} 

@@ -1,0 +1,31 @@
+{
+  "name": "DingDing",
+  "main": "spider/index.html",
+  "description": "钉钉桌面版",
+  "version": "0.3.3",
+  "node-remote": "http://localhost:7777,localhost,https://im.dingtalk.com,https://dingtalk.laiwang.com, http://page.com,http://10.101.111.31",
+  "user-agent": "Mozilla/5.0 (%osinfo) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/%webkit_ver Safari/537.36 nw",
+  "window": {
+    "toolbar": false,
+    "width": 850,
+    "height": 600,
+    "icon": "res/logo.png",
+    "resizable": false,
+    "fullscreen": false
+  },
+  "webkit": {
+    "plugin": true
+  },
+    "dependencies": {
+        "ncp": "~1.0.1",
+        "nightmare": "^1.7.0",
+        "node-webkit-updater": "~0.2.3",
+        "request": "~2.36.0",
+        "winreg": "0.0.12"
+    },
+    "scripts": {
+    "install": "node-gyp configure install"
+  },
+  "appUrl": "https://im.dingtalk.com",
+  "manifestUrl": "http://s.dingtalk.com/market/dingtalk/update_destop_beta.php"
+}

@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <script type="text/javascript">
+        function foo() {
+            return bar();
+        }
+        var bar = (function () {
+            if (window.addEventListener) {
+                return function () {
+                    return baz();
+                };
+            }
+            else if (window.attachEvent) {
+                return function () {
+                    return baz();
+                };
+            }
+        })();
+        function baz() {
+            debugger;
+        }
+        foo();
+        //查看firebug的堆栈 很清晰
+        //Firebug为匿名表达式取名的功能 这个太复杂 调试器蒙了
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,165 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <script type="text/javascript">
+        /*最小全局变量(Minimizing Globals)*/
+        myglobal = "hello"; // 不推荐写法
+        console.log(myglobal); // "hello"
+        console.log(window.myglobal); // "hello"
+        console.log(window["myglobal"]); // "hello"
+        console.log(this.myglobal); // "hello"
+
+
+
+        /*全局变量的问题*/
+        function sum(x, y) {
+            // 不推荐写法: 隐式全局变量 
+            result = x + y;
+            return result;
+        }
+
+        function goodsum(x, y) {
+            var result = x + y;
+            return result;
+        }
+
+        // 反例，勿使用 
+        function foo() {
+            var a = b = 0;
+            //a是本地变量但是b确实全局变量，这可能不是你希望发生的
+            //现象发生的原因在于这个从右到左的赋值，首先，是赋值表达式b = 0，此情况下b是未声明的。这个表达式的返回值是0，然后这个0就分配给了通过var定义的这个局部变量a。
+        }
+
+        function goodfoo() {
+            var a, b;
+            // ... a = b = 0; // 两个均局部变量
+        }
+
+        /*忘记var的副作用(Side Effects When Forgetting var)*/
+
+        // 定义三个全局变量
+        var global_var = 1;
+        global_novar = 2; // 反面教材
+        (function () {
+            global_fromfunc = 3; // 反面教材
+        }());
+
+        // 试图删除
+        console.log(delete global_var); // false
+        console.log(delete global_novar); // true
+        console.log(delete global_fromfunc); // true
+
+        // 测试该删除
+        console.log(typeof global_var); // "number"
+        console.log(typeof global_novar); // "undefined"
+        console.log(typeof global_fromfunc); // "undefined"
+
+        /*
+        隐式全局变量和明确定义的全局变量间有些小的差异，就是通过delete操作符让变量未定义的能力。
+
+            通过var创建的全局变量（任何函数之外的程序中创建）是不能被删除的。
+            无var创建的隐式全局变量（无视是否在函数中创建）是能被删除的。
+
+        这表明，在技术上，隐式全局变量并不是真正的全局变量，但它们是全局对象的属性。
+        属性是可以通过delete操作符删除的，而变量是不能的
+        */
+
+
+
+        /*访问全局对象(Access to the Global Object)*/
+
+        /*
+        在浏览器中，全局对象可以通过window属性在代码的任何位置访问（除非你做了些比较出格的事情，像是声明了一个名为window的局部变量）。
+        但是在其他环境下，这个方便的属性可能被叫做其他什么东西（甚至在程序中不可用）。
+        如果你需要在没有硬编码的window标识符下访问全局对象，你可以在任何层级的函数作用域中做如下操作：
+        */
+        var global = (function () {
+            return this;
+        }());
+        console.log(global.location.href);
+
+        /*预解析：var散布的问题(Hoisting: A Problem with Scattered vars)*/
+        /*
+        JavaScript中，你可以在函数的任何位置声明多个var语句，并且它们就好像是在函数顶部声明一样发挥作用，
+        这种行为称为 hoisting（悬置/置顶解析/预解析）。
+        当你使用了一个变量，然后不久在函数中又重新声明的话，就可能产生逻辑错误。
+        对于JavaScript，只要你的变量是在同一个作用域中（同一函数），它都被当做是声明的，即使是它在var声明前使用的时候。
+        */
+
+        // 反例
+        myname = "global"; // 全局变量
+        function func() {
+            console.log(myname); // "undefined"
+            var myname = "local";
+            console.log(myname); // "local"
+        }
+        func();
+
+        /*for-in循环(for-in Loops)*/
+
+
+
+        /*避免隐式类型转换(Avoiding Implied Typecasting )*/
+        /*
+        JavaScript的变量在比较的时候会隐式类型转换。
+        这就是为什么一些诸如：false == 0 或 “” == 0 返回的结果是true。
+        为避免引起混乱的隐含类型转换，在你比较值和表达式类型的时候始终使用===和!==操作符。
+        */
+
+        var zero = 0;
+        if (zero === false) {
+            // 不执行，因为zero为0, 而不是false
+            
+        }
+
+        // 反面示例
+        if (zero == false) {
+            // 执行了...
+            console.log(zero);
+            console.log("比较的时候进行了隐式转换");
+        }
+
+        /*避免(Avoiding) eval()*/
+        /*
+        // 反面示例
+        var property = "name";
+        console.log(eval("obj." + property));
+
+        // 更好的
+        var property = "name";
+        console.log(obj[property]);
+        */
+
+
+        /*parseInt()下的数值转换(Number Conversions with parseInt())*/
+        /*
+        使用parseInt()你可以从字符串中获取数值，该方法接受另一个基数参数，
+        */
+        var month = "06",year = "09",day="05";
+        month = parseInt(month, 10);
+        year = parseInt(year, 10);
+        day = parseInt(day);
+        console.log(month);
+        console.log(year);
+        console.log(day);
+        /**/
+        /**/
+        /**/
+        /**/
+        /**/
+        /**/
+        /**/
+        /**/
+        /**/
+        /**/
+        /**/
+        /**/
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

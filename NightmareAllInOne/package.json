@@ -1,0 +1,13 @@
+{
+  "name": "NightmareAllInOne",
+  "version": "0.0.0",
+  "description": "NightmareAllInOne",
+  "main": "app.js",
+  "author": {
+    "name": "pcher_000",
+    "email": ""
+  },
+  "dependencies": {
+    "nightmare": "^1.7.0"
+  }
+}

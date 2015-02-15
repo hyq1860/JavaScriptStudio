@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello World!</title>
+    <script src="http://common.cnblogs.com/script/jquery.js" type="text/javascript"></script> 
+</head>
+<body>
+    <h1>Hello World!</h1>
+    We are using node.js
+    <div><ul id="jdproduct"></ul></div>
+    <script>
+        //document.write(process.version);
+        var sqlite3 = require('sqlite3').verbose();
+        var db = new sqlite3.Database('../../ecsentry.sqlite');
+        var check;
+
+        var html = "";
+        db.all("SELECT id,value FROM user_info", function (err, rows) {
+            for (var i = 0; i < rows.length; i++) {
+                html += "<li>";
+                html += rows[i].id + ":" + rows[i].value;
+                html += "</li>";
+            }
+            $("#jdproduct").html(html);
+            //console.log(row.id + ": " + row.value);
+        });
+        
+
+        /*
+        var Nightmare = require('nightmare');
+        var myScrape = new Nightmare(
+            {
+                loadImages: false,
+                weak: false,
+                timeout: 100,
+                phantomPath: 'D:\\Sync\\Node\\phantomjs-1.9.8-windows\\'
+            }
+        );
+        var firedError = false;
+        myScrape
+            .on('error', function() {
+                firedError = true;
+            })
+            .goto('http://list.jd.com/list.html?cat=737,1277,3979')
+            .evaluate(function () {
+                //浏览器上下文
+                var flag = false;
+                var items = $('.gl-item');
+                if (items.length == 0) {
+                    items = $('.list-h > li'); //http://list.jd.com/list.html?cat=737,1277,3979 普通的
+                }
+                if (items.length == 0) {
+                    items = $('#plist > .item'); //http://list.jd.com/1713-3295-6954.html 书籍的
+
+                    flag = true;
+                }
+                var data = [];
+                items.each(function (index, object) {
+                    var imageUrl = "";
+                    var productName = "";
+                    var price = "";
+                    var remark = "";
+                    var sku = "";
+                    var self = $(object);
+                    //图片
+                    var ahref = self.find('.p-img').find('a');
+                    //名称
+                    var name = self.find('.p-name').find('a').find('em');
+                    //价格
+                    var priceDom = self.find('.p-price');
+                    //sku
+                    sku = priceDom.attr("data-sku");
+                    var url = ahref.attr('href');
+                    productName = name.text();
+
+                    price = priceDom.find('strong').text().replace('￥', '');
+                    //imageUrl = self.find('.p-img').find('a').find('img')[0].outerHTML;
+                    //严重注意 延迟加载 尽然没有获取到src
+                    imageUrl = self.find('.p-img').find('a').find('img').attr("data-lazy-img");
+                    if (flag) {
+                        remark = self.find('.summary-grade').find('a').text().replace('(已有', '').replace('评价)', '');
+                    } else {
+                        remark = self.find('.extra').find('a').text().replace('(已有', '').replace('评价)', '');
+                    }
+                    if (remark == "") {
+                        remark = self.find(".p-commit").find('a').text();
+                    }
+
+                    data.push({ name: productName, price: price, remark: remark, sku: sku, img: imageUrl, url: url });
+                });
+
+                return { data: data };
+            }, function (result) {
+                //node上下文
+                var html = "";
+                for (var i = 0; i < result.data.length; i++) {
+                    var item = result.data[i];
+                    html += "<li>";
+                    html += item.name+":"+item.price;
+                    html += "</li>";
+                    //console.log(item.pageIndex);
+                    //db.replaceIntoProductNew(db.guid(), item.sku, "jd", item.name, item.price, item.img, result.parent.Id, '', item.remark);
+                }
+                $("#jdproduct").html(html);
+            })
+            .run(false);
+        */
+    </script>.
+</body>
+</html>
