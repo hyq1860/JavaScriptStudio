@@ -1,0 +1,10 @@
+{
+  "name": "NodeRESTfulServer",
+  "version": "0.0.0",
+  "description": "NodeRESTfulServer",
+  "main": "app.js",
+  "author": {
+    "name": "pcher_000",
+    "email": ""
+  }
+}

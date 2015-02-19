@@ -3,16 +3,16 @@
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
-    <Name>NightmareAllInOne</Name>
-    <RootNamespace>NightmareAllInOne</RootNamespace>
+    <Name>NodeRESTfulServer</Name>
+    <RootNamespace>NodeRESTfulServer</RootNamespace>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>505f1567-3092-4dba-bebd-8880128e289c</ProjectGuid>
+    <ProjectGuid>2bbbf836-a9c0-4034-9092-8e3642ed42ab</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>loopparams.js</StartupFile>
+    <StartupFile>restserver.js</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
@@ -30,49 +30,17 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="app.js" />
-    <Compile Include="asyncdemo\async01.js" />
-    <Compile Include="asyncin.js" />
-    <Compile Include="AsyncRequest.js" />
-    <Compile Include="baidu.js" />
-    <Compile Include="caoliu.js" />
-    <Compile Include="caoliud.js" />
-    <Compile Include="db.js" />
-    <Compile Include="dbdemo.js" />
-    <Compile Include="demo01.js" />
-    <Compile Include="demo.js" />
-    <Compile Include="demo02.js" />
-    <Compile Include="demo03.js" />
-    <Compile Include="jdcm.js" />
-    <Compile Include="jdcookie.js" />
-    <Compile Include="jdd.js" />
-    <Compile Include="jdc.js" />
-    <Compile Include="app3.js" />
-    <Compile Include="jdlogin.js" />
-    <Compile Include="js_call_apply_bind.js" />
-    <Compile Include="loopparams.js" />
-    <Compile Include="nodehttp.js" />
-    <Compile Include="ps.js" />
-    <Compile Include="pserver.js" />
-    <Compile Include="requestdemo\r03.js" />
-    <Compile Include="requestdemo\request01.js" />
-    <Compile Include="requestdemo\request02.js" />
-    <Compile Include="RequestFile.js" />
-    <Compile Include="savehtml.js" />
-    <Compile Include="test.js" />
-    <Compile Include="web.js" />
-    <Content Include="config.json">
-      <Publish>True</Publish>
-    </Content>
-    <Content Include="ecsentry.sqlite" />
+    <Compile Include="model\group.js" />
+    <Compile Include="model\group_controller.js" />
+    <Compile Include="restparser.js" />
+    <Compile Include="restserver.js" />
+    <Compile Include="router.js" />
     <Content Include="npm.txt" />
     <Content Include="package.json" />
     <Content Include="README.md" />
-    <Content Include="startApp.cmd" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="asyncdemo\" />
-    <Folder Include="requestdemo\" />
+    <Folder Include="model\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
 </Project>
