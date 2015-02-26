@@ -1,1 +1,1 @@
-﻿node demo01.js
+node bootstarp.js -m loopparams.js

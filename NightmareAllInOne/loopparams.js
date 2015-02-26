@@ -5,6 +5,10 @@
 //https://github.com/segmentio/nightmare/issues/90
 //nodejs爬虫
 //http://git.oschina.net/dreamidea/neocrawler
+process.on('message', function (data) {
+    console.log('父进程发来消息:', data);
+});
+
 var debug = require('debug')('spider');
 var Nightmare = require('nightmare');
 var db = require('./db');
@@ -12,7 +16,7 @@ var myScrape = new Nightmare(
     {
         loadImages: false,
         weak: false,
-        timeout: 100,
+        timeout: 1000,
         //phantomPath: 'D:\\Sync\\Node\\phantomjs-1.9.7-windows\\'
     }
 );
@@ -86,11 +90,12 @@ var datas = db.getAllByCondition(function (err, all) {
             }, function (result) {
                 //console.log(result.parent);
                 console.log(result.pageIndex);
-                
+                //process.send({ Timestamp: new Date() });
                 for (var i = 0; i < result.data.length; i++) {
                     var item = result.data[i];
                     //console.log(item.pageIndex);
-                    db.replaceIntoProductNew(db.guid(),item.sku, "jd", item.name, item.price, item.img, result.parent.Id, '', item.remark);
+                    db.replaceIntoProductNew(db.guid(), item.sku, "jd", item.name, item.price, item.img, result.parent.Id, '', item.remark);
+                    //debug(item.sku+"\n"+ item.name);
                 }
                 db.updateJDCategoryNew(result.parent.Id, result.pageIndex);
                 

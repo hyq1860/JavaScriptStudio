@@ -23,6 +23,21 @@ npm install q
 //
 npm install moment
 
+//
+nodemailer
+
+//
+https://github.com/sylvinus/node-crawler
+
+http://www.infoq.com/cn/news/2015/02/is-js-micro-check-library
+https://github.com/arasatasaygin/is.js
+
+不错的博客
+http://lostjs.com
+
+//图片处理库
+https://github.com/zhangyuanwei/node-images
+
 http://www.css88.com/doc/underscore/
 npm install underscore
 
@@ -48,3 +63,10 @@ http://blog.manong.io/the-best-books-we-read-in-2013/
 
 npm install --build-from-source --runtime=node-webkit --target_arch=x64 --target=node-webkit-v0.12.0-win32-x64
 npm install sqlite3 --build-from-source --runtime=node-webkit --target_arch=x64 --target="v0.12.0"
+
+node的异常处理 非常好
+Node 出现 uncaughtException 之后的优雅退出方案 
+http://www.infoq.com/cn/articles/quit-scheme-of-node-uncaughtexception-emergence
+
+Node.js 异步异常的处理与domain模块解析 
+https://cnodejs.org/topic/516b64596d38277306407936

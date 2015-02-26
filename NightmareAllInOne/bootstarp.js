@@ -1,16 +1,18 @@
-﻿/**
- * @author wubocao
+﻿//http://haiyupeter.iteye.com/blog/1735686
+/**
  * node程序启动入口模块
  * 1：设置允许环境当前路径cwd为该文件目录
  * 2：启动守护进程，运行主服务
  * 3：监听关闭事件，关闭主服务并退出
+ * 示例：node bootstarp.js -m testapp.js
+ * node bootstarp.js -m loopparams.js
  */
 //日志
 var debug = require("debug")("bootstrap");
 console.log("start bootstrap");
 
 var path = require("path");
-//var addDeamon = require("./deamon.js").addDeamon;
+var addDeamon = require("./daemon.js").addDeamon;
 
 var file = require.main.filename, path = path.dirname(file);
 process.chdir(path);
@@ -41,7 +43,7 @@ if (modulesNames.length == 0) {
 }
 
 console.log(modulesNames);
-/*
+
 modulesNames.forEach(function (moduleName) {
     deamons.push(addDeamon(moduleName, args));
 });
@@ -60,4 +62,3 @@ process.on("SIGQUIT", function () {
     });
     process.exit(0);
 });
- * */

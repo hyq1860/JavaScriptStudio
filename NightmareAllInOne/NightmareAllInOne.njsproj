@@ -12,7 +12,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>505f1567-3092-4dba-bebd-8880128e289c</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>jicheng.js</StartupFile>
+    <StartupFile>loopparams.js</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
@@ -66,6 +66,7 @@
     <Compile Include="RequestFile.js" />
     <Compile Include="savehtml.js" />
     <Compile Include="test.js" />
+    <Compile Include="testapp.js" />
     <Compile Include="web.js" />
     <Content Include="config.json">
       <Publish>True</Publish>

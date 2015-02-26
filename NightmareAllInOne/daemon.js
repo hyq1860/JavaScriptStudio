@@ -1,5 +1,4 @@
 ﻿/** 
- * @author wubocao 
  * 守护进程模块 
  * 使用addDeamon(model,args,option)来添加一个守护进程 
  * 该函数返回一个守护进程对象，通过调用该对象的stop和init来停止和重新启动该进程 
@@ -9,9 +8,9 @@ var child_process = require("child_process");
 var util = require("util");
 var debug = require("debug")("daemon");
 //守护进程对象
-function Deamon(model, args, option) {
-    if (!model || typeof model != "string") {
-        throw new Error("illegal model argument");
+function Deamon(modulePath, args, options) {
+    if (!modulePath || typeof modulePath != "string") {
+        throw new Error("illegal modulePath argument");
     }
     
     //简单深拷贝
@@ -20,44 +19,45 @@ function Deamon(model, args, option) {
         _args= JSON.parse(JSON.stringify(args));
     }
 
-    var _option;
-    if (typeof option == "object") {
-        _option= JSON.parse(JSON.stringify(args));
+    var _options;
+    if (typeof options == "object") {
+        _options= JSON.parse(JSON.stringify(options));
     } else {
-        _option = {};
+        _options = {};
     }
 
-    this._model = model;
+    this._modulePath = modulePath;
     this._args = _args;
-    this._option = _option;
+    this._option = _options;
 
     this._cp = null;
     this._cpid = 0;
     
-    //心跳 用时间作为心跳处理依据
+    //心跳 用客户端传过来的时间作为心跳处理依据
     this._heartbeat = null;
+    
+    //子进程发送的时间戳
+    this._timestamp = null;
 
-    //检测心跳失败次数
-    this._fail = 0;
-
-
+    this.init();
 }
 
 //
 Deamon.prototype= {
-    init:function() {
-        if (this._cp) {
+    init: function () {
+        var self = this;
+        if (self._cp) {
             return;
         }
-        this._kill = false;
+        self._kill = false;
 
-        var timeout = this._option.timeout;
+        var timeout = self._option.timeout;
         var start = new Date().getTime;
-        var self = this;
+        
 
         (function run() {
             debug("进程准备启动");
-            self._cp = child_process.fork(self._model, self._args, self._option);
+            self._cp = child_process.fork(self._modulePath, self._args, self._option);
             self._cpid = self._cp.pid;
 
             self._cp.on("exit", function(code, signal) {
@@ -85,14 +85,25 @@ Deamon.prototype= {
                 debug("进程close");
             });
 
-            self._cp.on("message", function(message) {
+            self._cp.on("message", function (message) {
+                debug("message:"+message.Timestamp);
                 //心跳
-                if (message.Heartbeat) {
+                if (message.Timestamp) {
                     //self._heartbeat=
+                    debug("on message:" + message.Timestamp);
+                    console.log(message.Timestamp);
+                    debug("时间：" + new Date(message.Timestamp));
+                    
+                    self._timestamp = new Date(message.Timestamp);
+
+                    debug(self._timestamp == null);
                 }
             });
 
         })();
+        
+        //检查心跳
+        this.startHeartbeat();
     },
     
     stop:function() {
@@ -119,8 +130,17 @@ Deamon.prototype= {
         }
     },
     
-    _checkDeamon: function () {
+
+
+    //开始心跳
+    startHeartbeat:function() {
         var deamon = this;
+
+        //停掉之前的心跳
+        deamon.stopHeartbeat();
+        
+        function checkDeamon() {
+            /*
         var t = setTimeout(function() {
             deamon._fail++;
 
@@ -138,31 +158,30 @@ Deamon.prototype= {
 
         }, 2000);
 
-        //
-    },
-    
-    broadcast:function(callback, msg) {
-        if (this._cp) {
-            this._messageCall = callback;
-            try {
-                if (msg) {
-                    debug("try get child process info with message[" + msg + "]");
+        */
+        
+        debug("检查心跳:" + deamon._cpid);
+            var flag = deamon._timestamp != null && deamon._timestamp.dateDiff('s', new Date()) > 30;
+            if (flag) {
+                console.log("子程序心跳异常");
+                
+                deamon.stopHeartbeat();
+                deamon.forceStop();
+                setTimeout(function () {
+                    deamon.init();
+                }, 2000);
+                 
+            } else {
+                if (deamon._timestamp != null) {
+                    debug("时间间隔：" + deamon._timestamp.dateDiff('s', new Date()));
                 }
-            } catch (e) {
-
-            } 
+                
+                debug("检查心跳deamon._timestamp：" + deamon._timestamp);
+            }
         }
-    },
-
-    //开始心跳
-    startHeartbeat:function() {
-        var deamon = this;
-
-        //停掉之前的心跳
-        deamon.stopHeartbeat();
         
         //20秒检查一次
-        deamon._heartbeat = setInterval(_checkDeamon, 10000);
+        deamon._heartbeat = setInterval(checkDeamon, 10000);
     },
     //停止心跳
     stopHeartbeat:function() {
@@ -170,13 +189,27 @@ Deamon.prototype= {
     }
 }
 
-exports.addDeamon = function (model, args, option) {
+exports.addDeamon = function (modulePath, args, options) {
     args = args || [];
-    // 过滤掉ppid参数
+    // 过滤掉pid参数
     for (var i = 0, len = args.length; i < len; i++) {
         if (args[i] == '-pid') {
             i++;
         }
     }
-    return new Deamon(model, args.concat(['-pid', process.pid]), option);
+    return new Deamon(modulePath, args.concat(['-pid', process.pid]), options);
+}
+
+Date.prototype.dateDiff = function (interval, objDate2) {
+    var d = this, i = {}, t = d.getTime(), t2 = objDate2.getTime();
+    i['y'] = objDate2.getFullYear() - d.getFullYear();
+    i['q'] = i['y'] * 4 + Math.floor(objDate2.getMonth() / 4) - Math.floor(d.getMonth() / 4);
+    i['m'] = i['y'] * 12 + objDate2.getMonth() - d.getMonth();
+    i['ms'] = objDate2.getTime() - d.getTime();
+    i['w'] = Math.floor((t2 + 345600000) / (604800000)) - Math.floor((t + 345600000) / (604800000));
+    i['d'] = Math.floor(t2 / 86400000) - Math.floor(t / 86400000);
+    i['h'] = Math.floor(t2 / 3600000) - Math.floor(t / 3600000);
+    i['n'] = Math.floor(t2 / 60000) - Math.floor(t / 60000);
+    i['s'] = Math.floor(t2 / 1000) - Math.floor(t / 1000);
+    return i[interval];
 }

@@ -21,12 +21,34 @@ function insertJDCategory(channel,href,category,categoryUrl,item,itemUrl,pageInf
 }
 
 function replaceIntoProductNew(guid, thirdPartySku, source, name, price, listImage, category, images, remark) {
-    db.all("select * from productnew where ThirdPartySku='" + thirdPartySku + "'",function(err,rows) {
-        if (rows.length == 0) {
-            db.run("insert INTO productnew(Id,ThirdPartySku,Source,Name,Price,ListImage,Category,Images,Remark) VALUES (?,?,?,?,?,?,?,?,?)", guid, thirdPartySku, source, name, price, listImage, category, images, remark);
+    //date('now')
+    db.all("select count(1) as total from productnew where ThirdPartySku='" + thirdPartySku + "'",function(err,rows) {
+        if (rows.length == 1&& rows[0].total==0) {
+            db.run("insert INTO productnew(Id,ThirdPartySku,Source,Name,Price,InDate,ListImage,Category,Images,Remark) VALUES (?,?,?,?,?,datetime('now','+8 hour'),?,?,?,?)", guid, thirdPartySku, source, name, price, listImage, category, images, remark);
         }
     });
     
+    //db.run("insert or replace INTO productnew(Id,ThirdPartySku,Source,Name,Price,ListImage,Category,Images,Remark) VALUES (?,?,?,?,?,?,?,?,?)", guid,thirdPartySku, source, name, price, listImage, category, images, remark);
+    //db.run("insert or replace INTO productnew(Id,ThirdPartySku,Source,Name,Price,ListImage,Category,Images,Remark) VALUES (" + guid + ",+" + thirdPartySku + "+,+" + source + "+,+" + name + "+,+" + price + "+,+" + listImage + "+,+" + category + "+,+" + images + "+,+" + remark + "+)");
+}
+//http://stackoverflow.com/questions/3634984/insert-if-not-exists-else-update
+//http://blog.csdn.net/fer_ba/article/details/4582205 sqlite时间
+function insertOrReplaceProductNew(data) {
+    //guid, thirdPartySku, source, name, price, listImage, category, images, remark
+
+    //insert or replace into Book(ID, Name, TypeID, Level, Seen) values((select ID from Book where Name = "SearchName"), "SearchName", ...)
+
+    db.serialize(function () {
+        var stmt = db.prepare("insert or replace INTO productnew(Id,ThirdPartySku,Source,Name,Price,ListImage,Category,Images,Remark) VALUES ((select Id from productnew where productnew=),?,?,?,?,?,?,?,?)");
+        for (var i = 0; i < data.length; i++) {
+            stmt.run([i, i]);
+        }
+        stmt.finalize();
+        
+        db.each("SELECT id,value FROM user_info", function (err, row) {
+            console.log(row.id + ": " + row.value);
+        });
+    });
 }
 
 function updateJDCategoryNew(id,spiderPageIndex) {
@@ -128,7 +150,7 @@ function getAll(id,callback) {
 
 function getAllByCondition(callback) {
     
-    db.all("SELECT * FROM JDCategoryNew where pageInfo!='' and spiderflag=1 and pageinfo!=spiderpageindex", function (err, rows) {
+    db.all("SELECT * FROM JDCategoryNew where pageInfo!='' and SpiderFlag=1 and pageinfo!=spiderpageindex", function (err, rows) {
         //closeDb();
         callback(err, rows);
     });
