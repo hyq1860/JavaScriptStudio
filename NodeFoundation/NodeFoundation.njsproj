@@ -12,7 +12,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>4663690e-aa7e-46fb-a910-3df883da7db6</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>path_demo.js</StartupFile>
+    <StartupFile>test.js</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
@@ -39,6 +39,7 @@
     <Compile Include="path_demo.js" />
     <Compile Include="Promise.js" />
     <Compile Include="spawndemo.js" />
+    <Compile Include="test.js" />
     <Content Include="express\获取express的最新版本号.txt" />
     <Content Include="package.json" />
     <Content Include="README.md" />

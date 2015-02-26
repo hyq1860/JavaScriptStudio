@@ -12,7 +12,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>505f1567-3092-4dba-bebd-8880128e289c</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>loopparams.js</StartupFile>
+    <StartupFile>jicheng.js</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
@@ -35,8 +35,10 @@
     <Compile Include="asyncin.js" />
     <Compile Include="AsyncRequest.js" />
     <Compile Include="baidu.js" />
+    <Compile Include="bootstarp.js" />
     <Compile Include="caoliu.js" />
     <Compile Include="caoliud.js" />
+    <Compile Include="daemon.js" />
     <Compile Include="db.js" />
     <Compile Include="dbdemo.js" />
     <Compile Include="demo01.js" />
@@ -49,11 +51,15 @@
     <Compile Include="jdc.js" />
     <Compile Include="app3.js" />
     <Compile Include="jdlogin.js" />
+    <Compile Include="jicheng.js" />
     <Compile Include="js_call_apply_bind.js" />
+    <Compile Include="loop.js" />
     <Compile Include="loopparams.js" />
+    <Compile Include="nightmarepplus.js" />
     <Compile Include="nodehttp.js" />
     <Compile Include="ps.js" />
     <Compile Include="pserver.js" />
+    <Compile Include="qdemo.js" />
     <Compile Include="requestdemo\r03.js" />
     <Compile Include="requestdemo\request01.js" />
     <Compile Include="requestdemo\request02.js" />

@@ -35,3 +35,16 @@ https://gist.github.com/observerss/3798922
 https://www.npmjs.com/package/bloomfilter
 
 https://github.com/moment/moment/
+
+//
+http://raytaylorlin.com/Tech/web/Node.js/socket-io-advanced/
+
+http://raytaylorlin.com/index.html
+
+http://haiyupeter.iteye.com/blog/1735686
+
+优秀博客
+http://blog.manong.io/the-best-books-we-read-in-2013/
+
+npm install --build-from-source --runtime=node-webkit --target_arch=x64 --target=node-webkit-v0.12.0-win32-x64
+npm install sqlite3 --build-from-source --runtime=node-webkit --target_arch=x64 --target="v0.12.0"

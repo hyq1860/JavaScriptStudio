@@ -30,11 +30,13 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="common.js" />
     <Compile Include="model\group.js" />
     <Compile Include="model\group_controller.js" />
     <Compile Include="restparser.js" />
     <Compile Include="restserver.js" />
     <Compile Include="router.js" />
+    <Compile Include="sh.js" />
     <Content Include="npm.txt" />
     <Content Include="package.json" />
     <Content Include="README.md" />

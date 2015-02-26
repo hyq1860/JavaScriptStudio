@@ -9,7 +9,7 @@
     We are using node.js
     <div><ul id="jdproduct"></ul></div>
     <script>
-        //document.write(process.version);
+        document.write(process.version);
         var sqlite3 = require('sqlite3').verbose();
         var db = new sqlite3.Database('../../ecsentry.sqlite');
         var check;
@@ -21,7 +21,8 @@
                 html += rows[i].id + ":" + rows[i].value;
                 html += "</li>";
             }
-            $("#jdproduct").html(html);
+            alert(html);
+            //$("#jdproduct").html(html);
             //console.log(row.id + ": " + row.value);
         });
         
@@ -105,6 +106,10 @@
             })
             .run(false);
         */
-    </script>.
+    function alertNodeVersion() {
+        alert(process.version);
+    }
+    </script>
+    <a onclick="alertNodeVersion()">启动jd</a>
 </body>
 </html>

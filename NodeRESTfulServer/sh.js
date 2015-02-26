@@ -1,0 +1,1 @@
+﻿//node bootstrap.js -m main1.js -m main2.js

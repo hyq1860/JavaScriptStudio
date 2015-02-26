@@ -5,7 +5,7 @@
 //https://github.com/segmentio/nightmare/issues/90
 //nodejs爬虫
 //http://git.oschina.net/dreamidea/neocrawler
-
+var debug = require('debug')('spider');
 var Nightmare = require('nightmare');
 var db = require('./db');
 var myScrape = new Nightmare(
@@ -21,6 +21,10 @@ var underscore = require("underscore")._;
 
 var db = require('./db');
 var datas = db.getAllByCondition(function (err, all) {
+    if (err) {
+        debug('db.getAllByCondition:' + err);
+        return;
+    }
     underscore.each(all, function (item, index) {
         //console.log(index + ":" + item);
         //var total = parseInt(item.PageInfo);
@@ -93,7 +97,10 @@ var datas = db.getAllByCondition(function (err, all) {
             },item,i);
         }
     });
-    myScrape.run();
+    myScrape.run(function (err, nightmare) {
+        if (err) return console.log(err);
+        console.log('Done!');
+    });
 });
 
 
