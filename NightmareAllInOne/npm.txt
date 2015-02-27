@@ -23,6 +23,8 @@ npm install q
 //
 npm install moment
 
+npm install node-uuid
+
 //
 nodemailer
 
@@ -76,6 +78,15 @@ http://blog.manong.io/the-best-books-we-read-in-2013/
 
 npm install --build-from-source --runtime=node-webkit --target_arch=x64 --target=node-webkit-v0.12.0-win32-x64
 npm install sqlite3 --build-from-source --runtime=node-webkit --target_arch=x64 --target="v0.12.0"
+npm install --build-from-source --runtime=node-webkit --target_arch=x64 --target=node-webkit-v0.12.0-rc1-win32-x64
+
+npm install --build-from-source --runtime=node-webkit --target_arch=x64 --target='nwjs-v0.12.0-rc1-win-x64'
+
+nwjs_version=0.12.0-rc1, platform=x86
+
+http://node-webkit.s3.amazonaws.com/ 找版本号
+//靠谱
+nw-gyp rebuild --target=v0.12.0-rc1
 
 node的异常处理 非常好
 Node 出现 uncaughtException 之后的优雅退出方案 
@@ -83,3 +94,25 @@ http://www.infoq.com/cn/articles/quit-scheme-of-node-uncaughtexception-emergence
 
 Node.js 异步异常的处理与domain模块解析 
 https://cnodejs.org/topic/516b64596d38277306407936
+
+
+机器学习
+http://blog.jobbole.com/73806/
+
+生成uuid
+http://blog.tompawlak.org/generate-unique-identifier-nodejs-javascript
+
+
+ npm常用命令
+
+npm install xxx 安装模块
+
+npm install xxx -g 将模块安装到全局环境中 参考http://goddyzhao.tumblr.com/post/9835631010/no-direct-command-for-local-installed-command-line-modul
+
+npm ls 查看安装的模块及依赖
+
+npm ls -g 查看全局安装的模块及依赖
+
+npm uninstall xxx  (-g) 卸载模块
+
+npm cache clean 清理缓存

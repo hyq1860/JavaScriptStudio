@@ -12,7 +12,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>4663690e-aa7e-46fb-a910-3df883da7db6</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>logdemo.js</StartupFile>
+    <StartupFile>generate_random_value.js</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
@@ -33,8 +33,10 @@
     <Compile Include="app.js" />
     <Compile Include="debugdemo.js" />
     <Compile Include="forkdemo.js" />
+    <Compile Include="generate_random_value.js" />
     <Compile Include="log4js.js" />
     <Compile Include="logdemo.js" />
+    <Compile Include="measure.js" />
     <Compile Include="momentdemo.js" />
     <Compile Include="nodelater.js" />
     <Compile Include="nodeschedule.js" />
@@ -44,6 +46,7 @@
     <Compile Include="setTimeoutdemo.js" />
     <Compile Include="spawndemo.js" />
     <Compile Include="test.js" />
+    <Compile Include="uuiddemo.js" />
     <Content Include="express\获取express的最新版本号.txt" />
     <Content Include="package.json" />
     <Content Include="README.md" />

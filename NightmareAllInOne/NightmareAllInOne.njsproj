@@ -12,7 +12,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>505f1567-3092-4dba-bebd-8880128e289c</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>jdlogin.js</StartupFile>
+    <StartupFile>sqliteuuid.js</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
@@ -65,6 +65,7 @@
     <Compile Include="requestdemo\request02.js" />
     <Compile Include="RequestFile.js" />
     <Compile Include="savehtml.js" />
+    <Compile Include="sqliteuuid.js" />
     <Compile Include="test.js" />
     <Compile Include="testapp.js" />
     <Compile Include="web.js" />

@@ -157,6 +157,10 @@ function getAllByCondition(callback) {
    
 }
 
+function insertUUID(uuid,name) {
+    db.run("insert into t1(id,name) values(?,?)",uuid,name);
+}
+
 function getRowCount() {
     return rowCount;
 }
@@ -202,3 +206,4 @@ exports.closeDb = closeDb;
 exports.getId = getId;
 exports.getSku = getSku;
 exports.guid = guid;
+exports.insertUUID = insertUUID;
