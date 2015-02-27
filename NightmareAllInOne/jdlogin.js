@@ -1,4 +1,14 @@
 ﻿//https://passport.jd.com/uc/login?ltype=logout
+//click and wait() spend a lot of time
+//https://github.com/sgentle/phantomjs-node/issues/248
+//https://github.com/segmentio/nightmare/issues/123#issuecomment-75136899
+//https://github.com/segmentio/nightmare/issues/126#issuecomment-75928167
+//node_modules / phantom / shoe / index.js
+/*
+var server = sockjs.createServer({
+        heartbeat_delay : 200
+}); 
+*/
 
 var Nightmare = require('nightmare');
 var db = require('./db');
@@ -28,7 +38,6 @@ webdriver
     .type("#loginname", "hyq1860")
     .type("#nloginpwd", "1984107hyq")
     .click("#loginsubmit")
-    .wait(2000)
     .goto("http://order.jd.com/center/list.action")
     .evaluate(function () {
         //return document.title;

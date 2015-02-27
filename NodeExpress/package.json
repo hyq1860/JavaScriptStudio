@@ -1,0 +1,14 @@
+{
+  "name": "NodeExpress",
+  "version": "0.0.0",
+  "description": "NodeExpress",
+  "main": "server.js",
+  "author": {
+    "name": "pcher_000",
+    "email": ""
+  },
+  "dependencies": {
+    "body-parser": "^1.12.0",
+    "express": "^4.12.0"
+  }
+}

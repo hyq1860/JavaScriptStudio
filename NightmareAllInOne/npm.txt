@@ -27,6 +27,19 @@ npm install moment
 nodemailer
 
 //
+npm install later
+
+//REST
+npm install restify
+
+nodejs 日志组件
+npm install log4js
+https://github.com/baryon/tracer
+http://blog.fens.me/nodejs-log4js/
+https://github.com/nomiddlename/log4js-node
+
+
+//
 https://github.com/sylvinus/node-crawler
 
 http://www.infoq.com/cn/news/2015/02/is-js-micro-check-library

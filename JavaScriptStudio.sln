@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "NightmareAllInOne", "NightmareAllInOne\NightmareAllInOne.njsproj", "{505F1567-3092-4DBA-BEBD-8880128E289C}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "NodeFoundation", "NodeFoundation\NodeFoundation.njsproj", "{4663690E-AA7E-46FB-A910-3DF883DA7DB6}"
 EndProject
 Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "NodeRESTfulServer", "NodeRESTfulServer\NodeRESTfulServer.njsproj", "{2BBBF836-A9C0-4034-9092-8E3642ED42AB}"
+EndProject
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "NodeExpress", "NodeExpress\NodeExpress.njsproj", "{C8020A45-BA0C-46CA-978C-D9BB3C31B763}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{2BBBF836-A9C0-4034-9092-8E3642ED42AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2BBBF836-A9C0-4034-9092-8E3642ED42AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2BBBF836-A9C0-4034-9092-8E3642ED42AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8020A45-BA0C-46CA-978C-D9BB3C31B763}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8020A45-BA0C-46CA-978C-D9BB3C31B763}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8020A45-BA0C-46CA-978C-D9BB3C31B763}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8020A45-BA0C-46CA-978C-D9BB3C31B763}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
