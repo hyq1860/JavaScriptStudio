@@ -12,7 +12,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>4663690e-aa7e-46fb-a910-3df883da7db6</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>generate_random_value.js</StartupFile>
+    <StartupFile>child_process\main.js</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
@@ -31,9 +31,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.js" />
+    <Compile Include="child_process\child.js" />
+    <Compile Include="child_process\main.js" />
     <Compile Include="debugdemo.js" />
     <Compile Include="forkdemo.js" />
     <Compile Include="generate_random_value.js" />
+    <Compile Include="httpheader.js" />
     <Compile Include="log4js.js" />
     <Compile Include="logdemo.js" />
     <Compile Include="measure.js" />
@@ -44,6 +47,7 @@
     <Compile Include="path_demo.js" />
     <Compile Include="Promise.js" />
     <Compile Include="setTimeoutdemo.js" />
+    <Compile Include="singlethread.js" />
     <Compile Include="spawndemo.js" />
     <Compile Include="test.js" />
     <Compile Include="uuiddemo.js" />
@@ -53,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="express\" />
+    <Folder Include="child_process\" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />

@@ -40,6 +40,8 @@ https://github.com/baryon/tracer
 http://blog.fens.me/nodejs-log4js/
 https://github.com/nomiddlename/log4js-node
 
+nodemailer
+https://github.com/andris9/Nodemailer
 
 //
 https://github.com/sylvinus/node-crawler
@@ -88,6 +90,8 @@ http://node-webkit.s3.amazonaws.com/ 找版本号
 //靠谱
 nw-gyp rebuild --target=v0.12.0-rc1
 
+npm install sqlite3 --build-from-source --runtime=node-webkit --target_arch=x64 --target='v0.12.0-rc1' --python=C:\Python\27\python.exe --msvs_version=2013
+
 node的异常处理 非常好
 Node 出现 uncaughtException 之后的优雅退出方案 
 http://www.infoq.com/cn/articles/quit-scheme-of-node-uncaughtexception-emergence
@@ -102,6 +106,19 @@ http://blog.jobbole.com/73806/
 生成uuid
 http://blog.tompawlak.org/generate-unique-identifier-nodejs-javascript
 
+nodejs实战 作者的书籍 7 8 9章
+https://github.com/DoubleSpout/threadAndPackage
+
+nodejs实战 作者的博客
+http://snoopyxdy.blog.163.com
+
+socket.io作者大神Guillermo Rauch主编
+smashing node.js
+
+不错的书籍
+Node Cookbook
+
+http://www.infoq.com/cn/news/2011/09/nodejs-async-code
 
  npm常用命令
 

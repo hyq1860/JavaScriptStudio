@@ -28,6 +28,12 @@ router.get('/', function (req, res) {
 // all of our routes will be prefixed with /api
 app.use('/api', router);
 
+app.use('/book/:id', function(req, res, next) {
+    console.log('ID:', req.params.id);
+    res.end(req.params.id);
+    next();
+});
+
 // START THE SERVER
 // =============================================================================
 app.listen(port);
