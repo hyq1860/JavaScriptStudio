@@ -34,6 +34,9 @@ npm install later
 //REST
 npm install restify
 
+//模板引擎
+npm install ejs
+
 nodejs 日志组件
 npm install log4js
 https://github.com/baryon/tracer
