@@ -1,4 +1,11 @@
-﻿/*
+﻿for (var i = 0; i < 10; i++) {
+    console.log(i);
+    setTimeout(function() {
+        console.log(i);
+    },1000);
+}
+
+/*
 var i = 0;
 
 function recurse() {
@@ -45,7 +52,7 @@ for (var i = 0; i < 100; i++) {
     })(i);
 }
 */
-
+return;
 function eachCallback(arr, func, callback) {
     if (!arr || !arr.length) {
         callback.call(null, arr);
