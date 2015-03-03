@@ -26,6 +26,7 @@ var data = [];
 for (var i = 0; i < 100; i++) {
     data.push(i);
 }
+//http://stackoverflow.com/questions/5050265/javascript-node-js-is-array-foreach-asynchronous
 data.forEach(function (item) {
     setTimeout(function() {
         console.log(item);
@@ -79,3 +80,35 @@ eachCallback([1, 2, 3, 4,5,6], function(val, callback) {
 
 
 //参考eachSeries和applyEachSeries。 
+
+
+//https://blog.phoenixlzx.com/2014/05/19/for-loop-in-async-function-with-async-in-it/
+//http://jsbin.com/hiqilidiba/1/edit
+//而且这种情况， 用 promise 正适合啊
+//简单来说吧， 将 key 和 arr 的不同搭配转换成 prmoise 数组， 以promise.all 等待全部 promise 执行完成
+//demo http://jsbin.com/wuwiqe/1/edit
+var obj = { a: 123, b: 234, c: 12456 };
+var arr = ['one', 'two', 'three'];
+
+var promiseArr = [];
+function asyncMethod(key, n) {
+    return new Promise(function (resolve, reject) {
+        //do stuff
+        resolve([key, n]);
+    });
+}
+var key;
+for (key in obj) {
+    /*
+  if(isNotNeed(key)) //DOM解析获得obj，isNotNeed函数判断属性是否是需要的
+    continue;
+  */
+  for (var i = 0; i < arr.length; i++) {
+        promiseArr.push(asyncMethod(key, arr[i]));
+    }
+}
+
+Promise.all(promiseArr).then(function (results) {
+    console.log("all is done", results);
+    document.write("all is done");
+});
