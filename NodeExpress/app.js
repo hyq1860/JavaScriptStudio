@@ -63,6 +63,15 @@ router.get('/', function (req, res) {
         header: "Some users"
     });
 });
+//https://scotch.io/tutorials/build-a-restful-api-using-node-and-express-4
+router.route('/bears')
+    // create a bear (accessed at POST http://localhost:8080/api/bears)
+    .post(function (req, res) {
+    
+          // create a new instance of the Bear model
+    var name=req.body.name;  // set the bears name (comes from the request)
+    res.end(name);
+});
 
 // more routes for our API will happen here
 
