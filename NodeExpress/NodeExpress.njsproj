@@ -31,14 +31,34 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.js" />
+    <Compile Include="blog.js" />
+    <Compile Include="requestwithcookie.js" />
     <Content Include="package.json" />
     <Content Include="README.md" />
     <Content Include="readme.txt" />
-    <Content Include="views\index.html" />
+    <Content Include="views-hbs\item.html" />
+    <Content Include="views-hbs\index.html" />
+    <Content Include="views-hbs\layouts\main.html" />
+    <Content Include="views-hbs\layouts\master.html" />
+    <Content Include="views-hbs\list.html" />
+    <Content Include="views-ejs\item.html" />
+    <Content Include="views-ejs\index.html" />
+    <Content Include="views-ejs\layouts\main.html" />
+    <Content Include="views-ejs\list.html" />
+    <Content Include="views-ejs\share\footer.html" />
+    <Content Include="views-ejs\share\header.html" />
+    <Content Include="views-hbs\partials\page\t1.html" />
+    <Content Include="views-hbs\partials\t2.html" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="views-hbs\" />
     <Folder Include="public\" />
-    <Folder Include="views\" />
+    <Folder Include="views-hbs\layouts\" />
+    <Folder Include="views-hbs\partials\" />
+    <Folder Include="views-ejs\" />
+    <Folder Include="views-ejs\layouts\" />
+    <Folder Include="views-ejs\share\" />
+    <Folder Include="views-hbs\partials\page\" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />

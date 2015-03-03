@@ -1,0 +1,14 @@
+﻿{{> page/t1}}
+{{> t2}}
+<div>
+    <ul id="users">
+        {{{title}}}
+    </ul>
+    
+    {{#each entries}}
+    <p>
+        <a href="/item/{{id}}">{{title}}</a>
+        Published: {{published}}
+    </p>
+    {{/each}}
+</div>

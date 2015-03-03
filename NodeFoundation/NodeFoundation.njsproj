@@ -34,6 +34,7 @@
     <Compile Include="child_process\child.js" />
     <Compile Include="child_process\main.js" />
     <Compile Include="debugdemo.js" />
+    <Compile Include="digui.js" />
     <Compile Include="forkdemo.js" />
     <Compile Include="generate_random_value.js" />
     <Compile Include="httpheader.js" />

@@ -1,0 +1,8 @@
+﻿<% include share/header.html %>
+<h1>文章列表</h1>
+<ul id="users">
+    <% entries.forEach(function(item){ %>
+    <li><a href="item/<%= item.id %>"><%= item.title %> <%= item.published %></a></li>
+    <% }) %>
+</ul>
+<% include share/footer.html %>
