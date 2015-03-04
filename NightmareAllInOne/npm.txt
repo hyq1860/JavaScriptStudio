@@ -6,6 +6,9 @@ https://github.com/mikeal/request
 
 npm install request
 
+clone模块
+npm install clone
+
 //调试利器
 npm install debug
 
@@ -36,6 +39,9 @@ npm install restify
 
 //模板引擎
 npm install ejs
+
+npm install mongoose
+npm install mongoose
 
 nodejs 日志组件
 npm install log4js
@@ -153,5 +159,8 @@ npm install hbs
 http://jsperf.com/dom-vs-innerhtml-based-templating/143
 
 http://javascript.ruanyifeng.com/nodejs/express.html
+
+红豆志
+http://blog.rednode.cn/
 
 

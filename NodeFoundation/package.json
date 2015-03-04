@@ -8,6 +8,7 @@
     "email": ""
   },
   "dependencies": {
+    "mongodb": "^1.4.33",
     "node-uuid": "^1.4.2"
   }
 }

@@ -12,7 +12,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>4663690e-aa7e-46fb-a910-3df883da7db6</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>child_process\main.js</StartupFile>
+    <StartupFile>mongodb\mongoose.js</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.js" />
+    <Compile Include="arguments.js" />
     <Compile Include="child_process\child.js" />
     <Compile Include="child_process\main.js" />
     <Compile Include="debugdemo.js" />
@@ -38,10 +39,13 @@
     <Compile Include="forkdemo.js" />
     <Compile Include="generate_random_value.js" />
     <Compile Include="httpheader.js" />
+    <Compile Include="js_call_apply_bind.js" />
     <Compile Include="log4js.js" />
     <Compile Include="logdemo.js" />
     <Compile Include="measure.js" />
     <Compile Include="momentdemo.js" />
+    <Compile Include="mongodb\mongodb.js" />
+    <Compile Include="mongodb\mongoose.js" />
     <Compile Include="nodelater.js" />
     <Compile Include="nodeschedule.js" />
     <Compile Include="node_promise_async.js" />
@@ -55,10 +59,12 @@
     <Content Include="express\获取express的最新版本号.txt" />
     <Content Include="package.json" />
     <Content Include="README.md" />
+    <Content Include="vsmd.md" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="express\" />
     <Folder Include="child_process\" />
+    <Folder Include="mongodb\" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />

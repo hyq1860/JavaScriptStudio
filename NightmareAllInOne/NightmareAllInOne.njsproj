@@ -52,7 +52,6 @@
     <Compile Include="app3.js" />
     <Compile Include="jdlogin.js" />
     <Compile Include="jicheng.js" />
-    <Compile Include="js_call_apply_bind.js" />
     <Compile Include="loop.js" />
     <Compile Include="loopparams.js" />
     <Compile Include="nightmarepplus.js" />
