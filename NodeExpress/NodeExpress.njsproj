@@ -32,10 +32,14 @@
   <ItemGroup>
     <Compile Include="app.js" />
     <Compile Include="blog.js" />
+    <Compile Include="middlewares\uselessMiddleware.js" />
     <Compile Include="requestwithcookie.js" />
+    <Compile Include="routes\about.js" />
+    <Compile Include="routes\spider.js" />
     <Content Include="package.json" />
     <Content Include="README.md" />
     <Content Include="readme.txt" />
+    <Content Include="views-hbs\about.html" />
     <Content Include="views-hbs\item.html" />
     <Content Include="views-hbs\index.html" />
     <Content Include="views-hbs\layouts\main.html" />
@@ -51,6 +55,8 @@
     <Content Include="views-hbs\partials\t2.html" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="middlewares\" />
+    <Folder Include="routes\" />
     <Folder Include="views-hbs\" />
     <Folder Include="public\" />
     <Folder Include="views-hbs\layouts\" />

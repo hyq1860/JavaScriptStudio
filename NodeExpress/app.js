@@ -9,9 +9,9 @@ process.env.NODE_ENV = "production";
 // call the packages we need
 var express = require('express');        // call express
 var app = express();                 // define our app using express
+
 var bodyParser = require('body-parser');
 var path = require('path');
-
 var request = require('request');
 
 //template engine
@@ -42,7 +42,9 @@ app.set('view engine', '.html');
 app.set('views', __dirname + '\\views-hbs');
 
 //静态文件
-app.use(express.static('public/'));
+app.use(express.static(path.join(__dirname, 'public')));
+//统一加上前缀
+//app.use("/static", express.static(path.join(__dirname, 'public')));  
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
@@ -79,10 +81,19 @@ router.route('/bears')
 // all of our routes will be prefixed with /api
 app.use('/', router);
 
+//自定义路由 外部
+require('./routes/spider')(app);
+require('./routes/about')(app);
+
+//测试中间件
+var uselessMiddleware = require('./middlewares/uselessMiddleware');
+//all方法表示，所有请求都必须通过该中间件，参数中的“*”表示对所有路径有效
+app.all("*", uselessMiddleware.useless);
+
 app.use('/book/:id', function(req, res, next) {
     console.log('ID:', req.params.id);
     res.end(req.params.id);
-    next();
+    //next();
 });
 
 // 加载数据模块
