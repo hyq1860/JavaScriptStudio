@@ -8,6 +8,8 @@
     "email": ""
   },
   "dependencies": {
-    "nightmare": "^1.7.0"
+    "mysql": "^2.5.5",
+    "nightmare": "^1.7.0",
+    "node-uuid": "^1.4.3"
   }
 }

@@ -1,0 +1,31 @@
+﻿
+主播表
+anchorId 主播id
+sex 性别
+name
+rate
+speciality
+type 主播类型 游戏 娱乐
+platform
+platformId(平台内部编号)
+recommend（推荐理由）
+orderId 顺序id
+
+
+图片表
+anchorId 主播id
+picId 图片id
+picUrl  图片url
+picType 图片类型
+
+
+评论表
+anchorId 主播id
+commentId 
+referenceId 引用评论id（无引用为0 有引用为commentId）
+userId（用户id）
+userName（用户名 或者匿名气的名字）
+support 支持
+oppose 反对
+content 评论内容
+indate 发布时间

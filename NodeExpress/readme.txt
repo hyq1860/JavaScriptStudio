@@ -18,6 +18,10 @@ npm install body-parser --save
 
 npm install handlebars --save
 
+npm install multer -save
+
+npm install mysql -save
+
 //考虑自动根据webapi生成nodejs代码
 
 
@@ -50,6 +54,9 @@ https://github.com/nswbmw/N-blog/wiki/_pages
 
 https://github.com/nswbmw/N-blog/
 https://github.com/nswbmw/N-blog/wiki/%E7%95%AA%E5%A4%96%E7%AF%87%E4%B9%8B%E2%80%94%E2%80%94%E4%BD%BF%E7%94%A8-Handlebars
+
+express参数解释
+http://www.cnblogs.com/wteam-xq/p/4316832.html
 
 lru-cache
 

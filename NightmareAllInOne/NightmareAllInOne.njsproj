@@ -12,7 +12,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>505f1567-3092-4dba-bebd-8880128e289c</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>sqliteuuid.js</StartupFile>
+    <StartupFile>jdcm.js</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
@@ -54,6 +54,8 @@
     <Compile Include="jicheng.js" />
     <Compile Include="loop.js" />
     <Compile Include="loopparams.js" />
+    <Compile Include="mysqldao.js" />
+    <Compile Include="mysqldb.js" />
     <Compile Include="nightmarepplus.js" />
     <Compile Include="nodehttp.js" />
     <Compile Include="ps.js" />

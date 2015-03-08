@@ -12,6 +12,8 @@
     "debug": "^2.1.2",
     "express": "^4.12.2",
     "express-handlebars": "^1.2.1",
+    "multer": "^0.1.8",
+    "mysql": "^2.5.5",
     "request": "^2.53.0"
   }
 }

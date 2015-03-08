@@ -4,13 +4,16 @@
 //nodejs请求后端服务器的webapi
 //var request = require('request');
 //设置为生产环境
-process.env.NODE_ENV = "production";
+process.env.NODE_ENV = "development";//"production";
 
 // call the packages we need
 var express = require('express');        // call express
+// set our port
+var port = process.env.PORT || 8080;   
 var app = express();                 // define our app using express
 
 var bodyParser = require('body-parser');
+var multer = require('multer');
 var path = require('path');
 var request = require('request');
 
@@ -48,10 +51,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
+
+//for parsing application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
+
+//for parsing application/json
 app.use(bodyParser.json());
 
-var port = process.env.PORT || 8080;        // set our port
+//multipart/form-data
+app.use(multer);
+     
 
 // ROUTES FOR OUR API
 // =============================================================================
@@ -86,11 +95,11 @@ require('./routes/spider')(app);
 require('./routes/about')(app);
 
 //测试中间件
-var uselessMiddleware = require('./middlewares/uselessMiddleware');
+//var uselessMiddleware = require('./middlewares/uselessMiddleware');
 //all方法表示，所有请求都必须通过该中间件，参数中的“*”表示对所有路径有效
-app.all("*", uselessMiddleware.useless);
+//app.all("*", uselessMiddleware.useless);
 
-app.use('/book/:id', function(req, res, next) {
+app.use('/book/:id', function(req, res) {
     console.log('ID:', req.params.id);
     res.end(req.params.id);
     //next();
@@ -123,12 +132,19 @@ app.get('/api/',function(req,res) {
     });
 });
 
-// 写法二
+//异常错误信息友好提示
 if ('development' === app.get('env')) {
-    //
+    app.use(function(err,req,res,next) {
+        res.status(err.status || 500);
+        res.render('error', {
+            message: err.message,
+            error:err
+        });
+    });
 }
 
 // START THE SERVER
 // =============================================================================
-app.listen(port);
-console.log('express listen on port ' + port);
+app.listen(port,function() {
+    console.log('express listen on port ' + port);
+});

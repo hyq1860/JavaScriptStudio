@@ -1,11 +1,13 @@
 ﻿var Nightmare = require('nightmare');
+var uuid = require('node-uuid');
+var mysql = require('./mysqldb');
 var fs = require('fs');
 var db = require('./db');
 var myScrape = new Nightmare(
     {
         loadImages: false,
         weak: false,
-        timeout: 10,
+        timeout: 1000,
         //phantomPath: 'D:\\Sync\\Node\\phantomjs-1.9.8-windows\\'
     }
 );
@@ -135,7 +137,7 @@ function gatherList(dataList) {
                     }
                 })*/
                 .goto(url)
-                .wait(2000)
+                .wait(200)
                 .evaluate(
                 function (params) {
                     //总页数
@@ -150,11 +152,12 @@ function gatherList(dataList) {
                             tempPageInfo = $('.fp-text').eq(0).text();
                         }
                         
-                        tempPageInfo = jQuery('.p-skip').find('b').text();
+                        tempPageInfo = $('.p-skip').find('b').text();
 
                         return {pageInfo: tempPageInfo,data: params }
                     } catch (e) {
-
+                        
+                        return { pageInfo: tempPageInfo, data: params,err:"错误" }
                     } 
                     return { pageInfo: tempPageInfo, data: params };
                 },
@@ -166,11 +169,25 @@ function gatherList(dataList) {
                         //console.log(datas[j] + "::::" + j);
                         //var data = datas[j];
                     
-                    db.exist(result.data.itemUrl, function () {
+                    //db.exist(result.data.itemUrl, function () {
                         //db.insertJDCategory(result.data.channel, result.data.href, result.data.category, result.data.categoryUrl, result.data.item, result.data.itemUrl, result.pageInfo);
                         //console.log(j);
-                    });
+                    //});
                     
+                    
+                    mysql.exec("SELECT count(1) as Total FROM JDCategory where ItemUrl=?", [result.data.itemUrl], function (err, r) {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            if (r.length == 0||r[0].Total==0) {
+                                mysql.exec("insert into JDCategory(LogicId,Channel, Href, Category, CategoryUrl, Item, ItemUrl, PageInfo) VALUES(?,?,?,?,?,?,?,?)", [uuid.v1(),result.data.channel, result.data.href, result.data.category, result.data.categoryUrl, result.data.item, result.data.itemUrl, result.pageInfo], function (err1, r1) {
+                                    if (err1) {
+                                        console.log(err1);
+                                    }
+                                });
+                            }
+                        }
+                    });
                         //console.log(urls[i] == null);
                         //console.log(data.item + "::::" + data.itemUrl + ":" + result1) ;
                     }, dataList[i]
