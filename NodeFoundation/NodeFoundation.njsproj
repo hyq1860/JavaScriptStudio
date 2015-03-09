@@ -12,7 +12,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>4663690e-aa7e-46fb-a910-3df883da7db6</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>mongodb\mongoose.js</StartupFile>
+    <StartupFile>jicheng.js</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
@@ -39,6 +39,7 @@
     <Compile Include="forkdemo.js" />
     <Compile Include="generate_random_value.js" />
     <Compile Include="httpheader.js" />
+    <Compile Include="jicheng.js" />
     <Compile Include="js_call_apply_bind.js" />
     <Compile Include="log4js.js" />
     <Compile Include="logdemo.js" />
@@ -51,6 +52,8 @@
     <Compile Include="node_promise_async.js" />
     <Compile Include="path_demo.js" />
     <Compile Include="Promise.js" />
+    <Compile Include="setImmediate与process.nextTick\nexttick.js" />
+    <Compile Include="setImmediate与process.nextTick\setImmediate.js" />
     <Compile Include="setTimeoutdemo.js" />
     <Compile Include="singlethread.js" />
     <Compile Include="spawndemo.js" />
@@ -65,6 +68,7 @@
     <Folder Include="express\" />
     <Folder Include="child_process\" />
     <Folder Include="mongodb\" />
+    <Folder Include="setImmediate与process.nextTick\" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />

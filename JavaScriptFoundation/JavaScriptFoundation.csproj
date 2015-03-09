@@ -65,6 +65,7 @@
     <Content Include="揭秘命名函数表达式\调试器中的函数名_3.html" />
     <Content Include="揭秘命名函数表达式\调试器中的函数名_4.html" />
     <Content Include="揭秘命名函数表达式\调试器中的函数名_5.html" />
+    <Content Include="滚动悬浮层\index.html" />
     <Content Include="编写高质量JavaScript代码的基本要点\1.html" />
   </ItemGroup>
   <ItemGroup>

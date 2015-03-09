@@ -8,7 +8,10 @@
     "email": ""
   },
   "dependencies": {
+    "cheerio": "^0.18.0",
+    "iconv-lite": "^0.4.7",
     "mongodb": "^1.4.33",
-    "node-uuid": "^1.4.2"
+    "node-uuid": "^1.4.2",
+    "request": "^2.53.0"
   }
 }
