@@ -52,6 +52,11 @@
     <Compile Include="node_promise_async.js" />
     <Compile Include="path_demo.js" />
     <Compile Include="Promise.js" />
+    <Compile Include="request\loop.js" />
+    <Compile Include="request\r03.js" />
+    <Compile Include="request\request01.js" />
+    <Compile Include="request\request02.js" />
+    <Compile Include="request\RequestFile.js" />
     <Compile Include="setImmediate与process.nextTick\nexttick.js" />
     <Compile Include="setImmediate与process.nextTick\setImmediate.js" />
     <Compile Include="setTimeoutdemo.js" />
@@ -68,6 +73,7 @@
     <Folder Include="express\" />
     <Folder Include="child_process\" />
     <Folder Include="mongodb\" />
+    <Folder Include="request\" />
     <Folder Include="setImmediate与process.nextTick\" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->

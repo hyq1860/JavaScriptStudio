@@ -61,10 +61,6 @@
     <Compile Include="ps.js" />
     <Compile Include="pserver.js" />
     <Compile Include="qdemo.js" />
-    <Compile Include="requestdemo\r03.js" />
-    <Compile Include="requestdemo\request01.js" />
-    <Compile Include="requestdemo\request02.js" />
-    <Compile Include="RequestFile.js" />
     <Compile Include="savehtml.js" />
     <Compile Include="sqliteuuid.js" />
     <Compile Include="test.js" />
@@ -81,7 +77,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="asyncdemo\" />
-    <Folder Include="requestdemo\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
 </Project>
