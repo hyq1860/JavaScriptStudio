@@ -1,21 +1,29 @@
 ﻿//spider先关路由
 //http://melon.github.io/blog/2014/12/08/nodejs-agent-and-size-limit-of-get-method/
 var request = require('request');
+var debug = require('debug')('spider');
 module.exports = function(app) {
     app.get('/spider/', function(req, res) {
-            //res.send('spider');
+        //res.send('spider');
+            debug("spider:get");
             var r = null;
             if (req.method === 'POST') {
                 r = request.post({ uri: url, json: req.body });
             } else {
-                r = request(url);
+                r = request("http://182.92.167.82:5001/api/data");
             }
 
             req.pipe(r).pipe(res);
-            req.pipe(request('http://127.0.0.1:8081/api/data')).pipe(res);
+            //req.pipe(request('http://127.0.0.1:8081/api/data')).pipe(res);
         })
         .post('/spider/', function(req, res) {
-            req.pipe(request.post('http://127.0.0.1:8081/api/data', { form: req.body })).pipe(res);
+        req.pipe(
+            request.post('http://182.92.167.82:50011/api/data/', { form: req.body }, function (err, httpResponse, body) {
+                if (err) {
+                    debug("错误信息：" + err);
+                }
+            }))
+            .pipe(res);
             //req.pipe(request('http://127.0.0.1:8081/api/data')).pipe(res);
             //res.json(JSON.stringify(req.body));
         });
@@ -41,3 +49,18 @@ app.post('/server1', function (req, res, next) {
   });
 });
  * */
+/*
+app.all( '/proxy/*', function( req, res ){
+  req.pipe( request({
+      url: config.backendUrl + req.params[0],
+      qs: req.query,
+      method: req.method
+  }, function(error, response, body){
+    if (error.code === 'ECONNREFUSED'){
+      console.error('Refused connection');
+    } else { 
+      throw error; 
+    }
+  })).pipe( res );
+});
+ */

@@ -13,7 +13,7 @@ var port = process.env.PORT || 8080;
 var app = express();                 // define our app using express
 
 var bodyParser = require('body-parser');
-var multer = require('multer');
+//var multer = require('multer');
 var path = require('path');
 var request = require('request');
 
@@ -45,7 +45,7 @@ app.set('view engine', '.html');
 app.set('views', __dirname + '\\views-hbs');
 
 //静态文件
-app.use(express.static(path.join(__dirname, 'public')));
+//app.use(express.static(path.join(__dirname, 'public')));
 //统一加上前缀
 //app.use("/static", express.static(path.join(__dirname, 'public')));  
 
@@ -59,7 +59,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 //multipart/form-data
-app.use(multer);
+//注意此中间件加了 会有一些问题 空闲在追究
+//app.use(multer);
      
 
 // ROUTES FOR OUR API
@@ -125,8 +126,8 @@ app.get('/listb/', function (req, res) {
     });
 });
 
-app.get('/api/',function(req,res) {
-    request('http://127.0.0.1:8081/api/data', function (error, response, body) {
+app.get('/api/', function (req, res) {
+    request('http://182.92.167.82:5001/api/data', function (error, response, body) {
         var data = JSON.parse(body);
         res.json(data);
     });
