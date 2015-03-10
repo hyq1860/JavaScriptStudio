@@ -20,6 +20,9 @@ module.exports = function(app) {
             //res.json(JSON.stringify(req.body));
         });
 };
+
+//request pipe异常处理
+//http://stackoverflow.com/questions/20196223/error-handling-on-request-piping
 /*
 app.post('/server1', function (req, res, next) {
     var request = require('request');
