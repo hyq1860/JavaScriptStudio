@@ -12,7 +12,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>4663690e-aa7e-46fb-a910-3df883da7db6</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>jicheng.js</StartupFile>
+    <StartupFile>closure\9.js</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
@@ -34,6 +34,15 @@
     <Compile Include="arguments.js" />
     <Compile Include="child_process\child.js" />
     <Compile Include="child_process\main.js" />
+    <Compile Include="closure\1.js" />
+    <Compile Include="closure\2.js" />
+    <Compile Include="closure\3.js" />
+    <Compile Include="closure\4.js" />
+    <Compile Include="closure\5.js" />
+    <Compile Include="closure\6.js" />
+    <Compile Include="closure\7.js" />
+    <Compile Include="closure\8.js" />
+    <Compile Include="closure\9.js" />
     <Compile Include="debugdemo.js" />
     <Compile Include="digui.js" />
     <Compile Include="forkdemo.js" />
@@ -52,6 +61,8 @@
     <Compile Include="node_promise_async.js" />
     <Compile Include="path_demo.js" />
     <Compile Include="Promise.js" />
+    <Compile Include="q\mysqldb.js" />
+    <Compile Include="q\qmysql.js" />
     <Compile Include="request\loop.js" />
     <Compile Include="request\r03.js" />
     <Compile Include="request\request01.js" />
@@ -64,6 +75,9 @@
     <Compile Include="spawndemo.js" />
     <Compile Include="test.js" />
     <Compile Include="uuiddemo.js" />
+    <Content Include="closure\11.html" />
+    <Content Include="closure\10.html" />
+    <Content Include="closure\readme.txt" />
     <Content Include="express\获取express的最新版本号.txt" />
     <Content Include="package.json" />
     <Content Include="README.md" />
@@ -73,6 +87,8 @@
     <Folder Include="express\" />
     <Folder Include="child_process\" />
     <Folder Include="mongodb\" />
+    <Folder Include="closure\" />
+    <Folder Include="q\" />
     <Folder Include="request\" />
     <Folder Include="setImmediate与process.nextTick\" />
   </ItemGroup>

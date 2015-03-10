@@ -60,6 +60,7 @@ function eachCallback(arr, func, callback) {
     }
     var s = arr.length;
     var resultArr = [];
+    //闭包
     function done(data) {
         var key = this.key;
         resultArr[key] = data;
@@ -75,7 +76,7 @@ function eachCallback(arr, func, callback) {
 eachCallback([1, 2, 3, 4,5,6], function(val, callback) {
     //这里就是循环体，模仿一下异步
     //callback需要在异步结束后调用，应保证每次循环都需要调用callback
-    var time = ~~(Math.random() * 2000);
+    var time = ~~(Math.random() * 2000);//取整
     setTimeout(function () {
         console.log(val);
         callback(time);

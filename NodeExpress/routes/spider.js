@@ -1,4 +1,5 @@
 ﻿//spider先关路由
+//http://melon.github.io/blog/2014/12/08/nodejs-agent-and-size-limit-of-get-method/
 var request = require('request');
 module.exports = function(app) {
     app.get('/spider/', function(req, res) {
@@ -19,3 +20,21 @@ module.exports = function(app) {
             //res.json(JSON.stringify(req.body));
         });
 };
+/*
+app.post('/server1', function (req, res, next) {
+    var request = require('request');
+    var pipe = req.pipe(request.post('/server2'));
+    var response = [];
+    
+    pipe.on('data', function (chunk) {
+        response.push(chunk);
+    });
+    
+    pipe.on('end', function () {
+        var res2 = Buffer.concat(response);
+        console.log(res2);
+    // don't forget to end the 'res' response after this!
+
+  });
+});
+ * */
