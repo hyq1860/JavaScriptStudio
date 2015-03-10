@@ -12,7 +12,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>c8020a45-ba0c-46ca-978c-d9bb3c31b763</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>dao\mysqlhelper.js</StartupFile>
+    <StartupFile>app.js</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>

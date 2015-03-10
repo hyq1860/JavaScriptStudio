@@ -49,6 +49,8 @@
     <Compile Include="generate_random_value.js" />
     <Compile Include="httpheader.js" />
     <Compile Include="jicheng.js" />
+    <Compile Include="json生成类\jsbeautify.js" />
+    <Compile Include="json生成类\prettify.js" />
     <Compile Include="js_call_apply_bind.js" />
     <Compile Include="log4js.js" />
     <Compile Include="logdemo.js" />
@@ -79,6 +81,8 @@
     <Content Include="closure\10.html" />
     <Content Include="closure\readme.txt" />
     <Content Include="express\获取express的最新版本号.txt" />
+    <Content Include="json生成类\json2csharp.html" />
+    <Content Include="json生成类\prettify.css" />
     <Content Include="package.json" />
     <Content Include="README.md" />
     <Content Include="vsmd.md" />
@@ -88,6 +92,7 @@
     <Folder Include="child_process\" />
     <Folder Include="mongodb\" />
     <Folder Include="closure\" />
+    <Folder Include="json生成类\" />
     <Folder Include="q\" />
     <Folder Include="request\" />
     <Folder Include="setImmediate与process.nextTick\" />
