@@ -12,7 +12,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>4663690e-aa7e-46fb-a910-3df883da7db6</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>closure\9.js</StartupFile>
+    <StartupFile>request\yahoo.js</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
@@ -32,6 +32,7 @@
   <ItemGroup>
     <Compile Include="app.js" />
     <Compile Include="arguments.js" />
+    <Compile Include="async\each.js" />
     <Compile Include="child_process\child.js" />
     <Compile Include="child_process\main.js" />
     <Compile Include="closure\1.js" />
@@ -70,6 +71,7 @@
     <Compile Include="request\request01.js" />
     <Compile Include="request\request02.js" />
     <Compile Include="request\RequestFile.js" />
+    <Compile Include="request\yahoo.js" />
     <Compile Include="setImmediate与process.nextTick\nexttick.js" />
     <Compile Include="setImmediate与process.nextTick\setImmediate.js" />
     <Compile Include="setTimeoutdemo.js" />
@@ -93,6 +95,7 @@
     <Folder Include="mongodb\" />
     <Folder Include="closure\" />
     <Folder Include="json生成类\" />
+    <Folder Include="async\" />
     <Folder Include="q\" />
     <Folder Include="request\" />
     <Folder Include="setImmediate与process.nextTick\" />

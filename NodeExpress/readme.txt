@@ -62,3 +62,11 @@ lru-cache
 
 cnode源码
 https://github.com/cnodejs/nodeclub/
+
+nodejs的最佳实践
+https://github.com/alanjames1987/Node.js-Best-Practices/
+
+
+https://www.npmjs.com/package/forever
+
+https://www.npmjs.com/package/pm2
