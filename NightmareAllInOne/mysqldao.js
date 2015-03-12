@@ -39,7 +39,7 @@ module.exports.addProducts = function (products) {
 
     mysql.exec("insert INTO product(LogicId,Sku,Source,Name,Price,InDate,ListImage,Category) VALUES ? ON DUPLICATE KEY UPDATE Price = VALUES(Price), Name = VALUES(Name)", [products], function(e2, r) {
         if (e2) {
-            logger.error(e2);
+            logger.error(JSON.stringify(products));
             debug(e2);
         }
     });
@@ -51,12 +51,25 @@ module.exports.addProducts = function (products) {
 module.exports.updateJDCategory = function (id, spiderPageIndex) {
     mysql.exec("update JDCategory set SpiderPageIndex=? where Id=?", [spiderPageIndex, id], function(err, r) {
         if (err) {
-            logger.error(err);
+            //logger.error(err);
             debug(err);
         }
     });
 }
-
+module.exports.updateJDCategoryTask = function () {
+    mysql.exec("select Id from jdcategory where SpiderFlag=0 and channel!='图书|音像|电子书刊' limit 1", [], function (err, r) {
+        if (err) {
+            //logger.error(err);
+            debug(err);
+        } else {
+            mysql.exec("update JDCategory set SpiderPageIndex=0,SpiderFlag=1 where Id=?", [r[0].Id], function(e1, r1) {
+                if (r1) {
+                    console.log(r1);
+                }
+            });
+        }
+    });
+}
 
 
 /*

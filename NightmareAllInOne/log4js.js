@@ -2,9 +2,11 @@
 log4js.configure({
     appenders: [
         {
-            type: 'dateFile',
-            filename: 'log.txt',
+            type: 'file',
+            filename: 'logs/log.txt',
             pattern: '-yyyy-MM-dd',
+            maxLogSize: 10240,
+            //backups:5,
             alwaysIncludePattern: false
         }
     ]
@@ -14,6 +16,6 @@ log4js.configure({
 
 exports.logger=function(name) {
     var logger = log4js.getLogger(name);
-    logger.setLevel('ERROR');
+    logger.setLevel('INFO');
     return logger;
 }

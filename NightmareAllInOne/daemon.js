@@ -190,7 +190,7 @@ Deamon.prototype= {
         }
         
         //20秒检查一次
-        deamon._heartbeat = setInterval(checkDeamon, 1000);
+        deamon._heartbeat = setInterval(checkDeamon, 4000);
     },
     //停止心跳
     stopHeartbeat:function() {

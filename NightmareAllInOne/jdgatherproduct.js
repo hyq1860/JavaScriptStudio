@@ -18,8 +18,8 @@ var myScrape = new Nightmare(
     {
         loadImages: false,
         weak: false,
-        timeout: 10000,
-        phantomPath: 'D:\\Sync\\Node\\phantomjs-1.9.7-windows\\'
+        timeout: 1000,
+        //phantomPath: 'D:\\Sync\\Node\\phantomjs-1.9.7-windows\\'
     }
 );
 myScrape.useragent('Mozilla/5.0 (Windows; U; Windows NT 5.2) AppleWebKit/525.13 (KHTML, like Gecko) Chrome/0.2.149.27 Safari/525.13');
@@ -60,7 +60,7 @@ dao.getCategory().then(function (data) {
                     //图片
                     var ahref = self.find('.p-img').find('a');
                     //名称
-                    var name = self.find('.p-name').find('a').find('em');
+                    var name = self.find('.p-name').eq(0).find('a').find('em');
                     //价格
                     var priceDom = self.find('.p-price');
                     //sku
@@ -68,7 +68,7 @@ dao.getCategory().then(function (data) {
                     var url = ahref.attr('href');
                     productName = name.text();
                     
-                    price = priceDom.find('strong').text().replace('￥', '');
+                    price = priceDom.find('strong').eq(0).text().replace('￥', '');
                     //imageUrl = self.find('.p-img').find('a').find('img')[0].outerHTML;
                     //严重注意 延迟加载 尽然没有获取到src
                     imageUrl = self.find('.p-img').find('a').find('img').attr("data-lazy-img");
@@ -87,15 +87,30 @@ dao.getCategory().then(function (data) {
                 return { parent: params, pageIndex: pageIndex, data: data };
             }, function (result) {
                 //console.log(result.parent);
-                console.log(result.pageIndex);
+                //console.log(result.pageIndex + "数据");
+                if (result != null && result.data != null && result.data.length > 0) {
+                    //logger.info("url:"+ result.data[0].url+"\n"+"数据length："+ result.data.length);
+                }
+
                 //发送心跳
-                process.send({ Timestamp: new Date() });
+                
+                try {
+                    process.send({ Timestamp: new Date() });
+                } catch (e) {
+                    logger.error(e);
+                } 
+                
                 var products = [];
+                
                 for (var i = 0; i < result.data.length; i++) {
                     var item = result.data[i];
+                    
                     //console.log(item.price);
                     try {
-                        if (isNaN(parseFloat(item.price))) {
+                        if (item.price.indexOf('￥') > 0) {
+                            logger.error(item);
+                        }
+                        if (isNaN(parseFloat(item.price,10))) {
                             item.price = 0;
                         }
                     } catch (e) {
@@ -120,6 +135,7 @@ dao.getCategory().then(function (data) {
             logger.info(err);
             debug(err);
         }
+        dao.updateJDCategoryTask();
         debug('Done!');
     });
 
