@@ -6,6 +6,7 @@
  * 3：监听关闭事件，关闭主服务并退出
  * 示例：node bootstarp.js -m testapp.js
  * node bootstarp.js -m loopparams.js
+ * node bootstarp.js -m jdgatherproduct.js
  */
 //日志
 var debug = require("debug")("bootstrap");

@@ -38,7 +38,8 @@ function Deamon(modulePath, args, options) {
     
     //子进程发送的时间戳
     this._timestamp = null;
-
+    //检查心跳失败次数
+    this._fail = 0;
     this.init();
 }
 
@@ -50,7 +51,7 @@ Deamon.prototype= {
             return;
         }
         self._kill = false;
-
+        self._fail = 0;
         var timeout = self._option.timeout;
         var start = new Date().getTime;
         
@@ -123,6 +124,7 @@ Deamon.prototype= {
     forceStop:function() {
         if (this._cp) {
             debug("deamon force stop");
+            this._cp.kill('SIGKILL');
             this._kill = true;
             child_process.exec("kill -9" + this._cpid);
             this._cp = null;
@@ -162,12 +164,19 @@ Deamon.prototype= {
         
         debug("检查心跳:" + deamon._cpid);
             var flag = deamon._timestamp != null && deamon._timestamp.dateDiff('s', new Date()) > 30;
+            if (deamon._timestamp == null) {
+                deamon._fail++;
+                if (deamon._fail > 5) {
+                    flag = true;
+                }
+            }
             if (flag) {
                 console.log("子程序心跳异常");
                 
                 deamon.stopHeartbeat();
                 deamon.forceStop();
                 setTimeout(function () {
+                    console.log("deamon.init()");
                     deamon.init();
                 }, 2000);
                  
@@ -175,13 +184,13 @@ Deamon.prototype= {
                 if (deamon._timestamp != null) {
                     debug("时间间隔：" + deamon._timestamp.dateDiff('s', new Date()));
                 }
-                
-                debug("检查心跳deamon._timestamp：" + deamon._timestamp);
+                debug("心跳检查失败次数："+ deamon._fail);
+                //debug("检查心跳deamon._timestamp：" + deamon._timestamp);
             }
         }
         
         //20秒检查一次
-        deamon._heartbeat = setInterval(checkDeamon, 10000);
+        deamon._heartbeat = setInterval(checkDeamon, 1000);
     },
     //停止心跳
     stopHeartbeat:function() {

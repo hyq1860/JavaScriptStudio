@@ -1,7 +1,6 @@
 ﻿var log4js = require('log4js');
 log4js.configure({
     appenders: [
-        { type: 'console' },
         {
             type: 'dateFile',
             filename: 'blah.log',
@@ -16,6 +15,6 @@ log4js.configure({
 
 exports.logger=function(name) {
     var logger = log4js.getLogger(name);
-    logger.setLevel('INFO');
+    logger.setLevel('ERROR');
     return logger;
 }

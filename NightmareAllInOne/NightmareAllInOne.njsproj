@@ -52,6 +52,7 @@
     <Compile Include="app3.js" />
     <Compile Include="jdlogin.js" />
     <Compile Include="jicheng.js" />
+    <Compile Include="log4js.js" />
     <Compile Include="loop.js" />
     <Compile Include="jdgatherproduct.js" />
     <Compile Include="loopparams.js" />

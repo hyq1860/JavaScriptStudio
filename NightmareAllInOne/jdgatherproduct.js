@@ -6,8 +6,9 @@
 //nodejs爬虫
 //http://git.oschina.net/dreamidea/neocrawler
 var dao = require('./mysqldao');
+var logger = require('./log4js').logger('jdgather');
 
-
+var moment = require('moment');
 var debug = require('debug')('spider');
 var Nightmare = require('nightmare');
 
@@ -17,8 +18,8 @@ var myScrape = new Nightmare(
     {
         loadImages: false,
         weak: false,
-        timeout: 1000,
-        //phantomPath: 'D:\\Sync\\Node\\phantomjs-1.9.7-windows\\'
+        timeout: 10000,
+        phantomPath: 'D:\\Sync\\Node\\phantomjs-1.9.7-windows\\'
     }
 );
 myScrape.useragent('Mozilla/5.0 (Windows; U; Windows NT 5.2) AppleWebKit/525.13 (KHTML, like Gecko) Chrome/0.2.149.27 Safari/525.13');
@@ -37,7 +38,7 @@ dao.getCategory().then(function (data) {
         for (var i = startPageIndex; i <= item.PageInfo; i++) {
             myScrape
                 .goto(item.ItemUrl + "?page=" + i)
-                .wait(16)
+                .wait(Math.random()*2000)
                 .evaluate(function (params, pageIndex) {
                 var flag = false;
                 var items = $('.gl-item');
@@ -87,18 +88,28 @@ dao.getCategory().then(function (data) {
             }, function (result) {
                 //console.log(result.parent);
                 console.log(result.pageIndex);
-                //process.send({ Timestamp: new Date() });
+                //发送心跳
+                process.send({ Timestamp: new Date() });
+                var products = [];
                 for (var i = 0; i < result.data.length; i++) {
                     var item = result.data[i];
                     //console.log(item.price);
-                    if (isNaN(parseFloat(item.price))) {
+                    try {
+                        if (isNaN(parseFloat(item.price))) {
+                            item.price = 0;
+                        }
+                    } catch (e) {
+                        logger.error(e);
                         item.price = 0;
-                    }
+                    } 
+                    
                     //console.log(item.pageIndex);
                     //db.replaceIntoProductNew(db.guid(), item.sku, "jd", item.name, item.price, item.img, result.parent.Id, '', item.remark);
-                    dao.addProduct({ LogicId: uuid.v1(), Sku: item.sku, Source: 1, Name: item.name, Price: parseFloat(item.price), ListImage: item.img, Category: result.parent.LogicId });
+                    //dao.addProduct({ LogicId: uuid.v1(), Sku: item.sku, Source: 1, Name: item.name, Price: parseFloat(item.price), ListImage: item.img, Category: result.parent.LogicId });
                     //debug(item.sku+"\n"+ item.name);
+                    products.push([uuid.v1(), item.sku, 1, item.name, item.price, moment(new Date()).format("YYYY-MM-DD HH:mm:ss"), item.img, result.parent.LogicId]);
                 }
+                dao.addProducts(products);
                 dao.updateJDCategory(result.parent.Id, result.pageIndex);
                 
             }, item, i);
@@ -106,6 +117,7 @@ dao.getCategory().then(function (data) {
     });
     myScrape.run(function (err, nightmare) {
         if (err) {
+            logger.info(err);
             debug(err);
         }
         debug('Done!');
@@ -114,6 +126,7 @@ dao.getCategory().then(function (data) {
 }, function (err) {
     if (err) {
         debug(err);
+        logger.info(err);
     }
 });
 
