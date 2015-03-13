@@ -12,7 +12,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>4663690e-aa7e-46fb-a910-3df883da7db6</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>request\yahoo.js</StartupFile>
+    <StartupFile>jd-book\jdbook.js</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
@@ -49,6 +49,7 @@
     <Compile Include="forkdemo.js" />
     <Compile Include="generate_random_value.js" />
     <Compile Include="httpheader.js" />
+    <Compile Include="jd-book\jdbook.js" />
     <Compile Include="jicheng.js" />
     <Compile Include="json生成类\jsbeautify.js" />
     <Compile Include="json生成类\prettify.js" />
@@ -83,6 +84,9 @@
     <Content Include="closure\10.html" />
     <Content Include="closure\readme.txt" />
     <Content Include="express\获取express的最新版本号.txt" />
+    <Content Include="jd-book\jdapi.txt" />
+    <Content Include="jd-book\jddesc.html" />
+    <Content Include="jd-book\jdfood.html" />
     <Content Include="json生成类\json2csharp.html" />
     <Content Include="json生成类\prettify.css" />
     <Content Include="package.json" />
@@ -96,6 +100,7 @@
     <Folder Include="closure\" />
     <Folder Include="json生成类\" />
     <Folder Include="async\" />
+    <Folder Include="jd-book\" />
     <Folder Include="q\" />
     <Folder Include="request\" />
     <Folder Include="setImmediate与process.nextTick\" />
