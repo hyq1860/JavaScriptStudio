@@ -42,9 +42,18 @@ frog.say.call(rabbit);
 
 frog.say.call(frog);
 
+frog.say.call({ name: "王五" });
+
+frog.say.apply(rabbit,[rabbit]);
+
+frog.say.apply(frog,[frog]);
+
+frog.say.apply({ name: "王五" },[{ name: "王五" }]);
+
 
 //把参数转化成真正的数组对象
 function test02() {
+    //把函数参数转换为数组对象
     var arr = [].slice.call(arguments);
     console.log(arguments.slice, arr.slice);
     //  undefined function slice() { [native code] }

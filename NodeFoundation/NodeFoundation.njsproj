@@ -12,7 +12,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>4663690e-aa7e-46fb-a910-3df883da7db6</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>jd-book\jdbook.js</StartupFile>
+    <StartupFile>js_call_apply_bind.js</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
@@ -34,6 +34,7 @@
     <Compile Include="arguments.js" />
     <Compile Include="async\each.js" />
     <Compile Include="child_process\child.js" />
+    <Compile Include="child_process\kill.js" />
     <Compile Include="child_process\main.js" />
     <Compile Include="closure\1.js" />
     <Compile Include="closure\2.js" />
@@ -101,6 +102,7 @@
     <Folder Include="json生成类\" />
     <Folder Include="async\" />
     <Folder Include="jd-book\" />
+    <Folder Include="once\" />
     <Folder Include="q\" />
     <Folder Include="request\" />
     <Folder Include="setImmediate与process.nextTick\" />

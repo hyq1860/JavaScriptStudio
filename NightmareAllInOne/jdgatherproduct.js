@@ -7,7 +7,7 @@
 //http://git.oschina.net/dreamidea/neocrawler
 var dao = require('./mysqldao');
 var logger = require('./log4js').logger('jdgather');
-
+var statrDate = new Date();
 var moment = require('moment');
 var debug = require('debug')('spider');
 var Nightmare = require('nightmare');
@@ -27,7 +27,7 @@ var underscore = require("underscore")._;
 
 dao.getCategory().then(function (data) {
     debug("data.length:"+ data.length);
-    underscore.each(data, function (item, index) {
+    underscore.each(data, function(item, index) {
         debug("item:" + item);
         //console.log(index + ":" + item);
         //var total = parseInt(item.PageInfo);
@@ -38,95 +38,99 @@ dao.getCategory().then(function (data) {
         for (var i = startPageIndex; i <= item.PageInfo; i++) {
             myScrape
                 .goto(item.ItemUrl + "?page=" + i)
-                .wait(Math.random()*2000)
-                .evaluate(function (params, pageIndex) {
-                var flag = false;
-                var items = $('.gl-item');
-                if (items.length == 0) {
-                    items = $('.list-h > li'); //http://list.jd.com/list.html?cat=737,1277,3979 普通的
-                }
-                if (items.length == 0) {
-                    items = $('#plist > .item'); //http://list.jd.com/1713-3295-6954.html 书籍的
-                    flag = true;
-                }
-                var data = [];
-                items.each(function (index, object) {
-                    var imageUrl = "";
-                    var productName = "";
-                    var price = "";
-                    var remark = "";
-                    var sku = "";
-                    var self = $(object);
-                    //图片
-                    var ahref = self.find('.p-img').find('a');
-                    //名称
-                    var name = self.find('.p-name').eq(0).find('a').find('em');
-                    //价格
-                    var priceDom = self.find('.p-price');
-                    //sku
-                    sku = priceDom.attr("data-sku");
-                    var url = ahref.attr('href');
-                    productName = name.text();
-                    
-                    price = priceDom.find('strong').eq(0).text().replace('￥', '');
-                    //imageUrl = self.find('.p-img').find('a').find('img')[0].outerHTML;
-                    //严重注意 延迟加载 尽然没有获取到src
-                    imageUrl = self.find('.p-img').find('a').find('img').attr("data-lazy-img");
-                    if (flag) {
-                        remark = self.find('.summary-grade').find('a').text().replace('(已有', '').replace('评价)', '');
-                    } else {
-                        remark = self.find('.extra').find('a').text().replace('(已有', '').replace('评价)', '');
+                .wait(Math.random() * 3000)
+                .evaluate(function(params, pageIndex) {
+                    var flag = false;
+                    var items = $('.gl-item');
+                    if (items.length == 0) {
+                        items = $('.list-h > li'); //http://list.jd.com/list.html?cat=737,1277,3979 普通的
                     }
-                    if (remark == "") {
-                        remark = self.find(".p-commit").find('a').text();
+                    if (items.length == 0) {
+                        items = $('#plist > .item'); //http://list.jd.com/1713-3295-6954.html 书籍的
+                        flag = true;
                     }
-                    
-                    data.push({ name: productName, price: price, remark: remark, sku: sku, img: imageUrl, url: url });
-                });
-                
-                return { parent: params, pageIndex: pageIndex, data: data };
-            }, function (result) {
-                //console.log(result.parent);
-                //console.log(result.pageIndex + "数据");
-                if (result != null && result.data != null && result.data.length > 0) {
-                    //logger.info("url:"+ result.data[0].url+"\n"+"数据length："+ result.data.length);
-                }
+                    var data = [];
+                    items.each(function(index, object) {
+                        var imageUrl = "";
+                        var productName = "";
+                        var price = "";
+                        var remark = "";
+                        var sku = "";
+                        var self = $(object);
+                        //图片
+                        var ahref = self.find('.p-img').find('a');
+                        //名称
+                        var name = self.find('.p-name').eq(0).find('a').find('em');
+                        //价格
+                        var priceDom = self.find('.p-price');
+                        //sku
+                        sku = priceDom.attr("data-sku");
+                        var url = ahref.attr('href');
+                        productName = name.text();
 
-                //发送心跳
-                
-                try {
-                    process.send({ Timestamp: new Date() });
-                } catch (e) {
-                    logger.error(e);
-                } 
-                
-                var products = [];
-                
-                for (var i = 0; i < result.data.length; i++) {
-                    var item = result.data[i];
-                    
-                    //console.log(item.price);
+                        price = priceDom.find('strong').eq(0).text().replace('￥', '');
+                        //imageUrl = self.find('.p-img').find('a').find('img')[0].outerHTML;
+                        //严重注意 延迟加载 尽然没有获取到src
+                        imageUrl = self.find('.p-img').find('a').find('img').attr("data-lazy-img");
+                        if (flag) {
+                            remark = self.find('.summary-grade').find('a').text().replace('(已有', '').replace('评价)', '');
+                        } else {
+                            remark = self.find('.extra').find('a').text().replace('(已有', '').replace('评价)', '');
+                        }
+                        if (remark == "") {
+                            remark = self.find(".p-commit").find('a').text();
+                        }
+
+                        data.push({ name: productName, price: price, remark: remark, sku: sku, img: imageUrl, url: url });
+                    });
+
+                    return { parent: params, pageIndex: pageIndex,html: document.documentElement.innerHTML, data: data };
+                }, function(result) {
+                    //发送心跳
                     try {
-                        if (item.price.indexOf('￥') > 0) {
-                            logger.error(item);
-                        }
-                        if (isNaN(parseFloat(item.price,10))) {
-                            item.price = 0;
-                        }
+                        process.send({ Timestamp: new Date(), PhantomjdPid: myScrape.getPhantomjsPid() });
                     } catch (e) {
                         logger.error(e);
-                        item.price = 0;
-                    } 
-                    
-                    //console.log(item.pageIndex);
-                    //db.replaceIntoProductNew(db.guid(), item.sku, "jd", item.name, item.price, item.img, result.parent.Id, '', item.remark);
-                    //dao.addProduct({ LogicId: uuid.v1(), Sku: item.sku, Source: 1, Name: item.name, Price: parseFloat(item.price), ListImage: item.img, Category: result.parent.LogicId });
-                    //debug(item.sku+"\n"+ item.name);
-                    products.push([uuid.v1(), item.sku, 1, item.name, item.price, moment(new Date()).format("YYYY-MM-DD HH:mm:ss"), item.img, result.parent.LogicId]);
                 }
-                dao.addProducts(products);
-                dao.updateJDCategory(result.parent.Id, result.pageIndex);
-                
+                try {
+                    //console.log(result.parent);
+                    //console.log(result.pageIndex + "数据");
+                    //if (result != null && result.data != null && result.data.length > 0) {
+                        //logger.info("url:"+ result.data[0].url+"\n"+"数据length："+ result.data.length);
+                    //}
+
+                    dao.saveHtml({ Url: result.parent.ItemUrl+"?page="+ result.pageIndex, Source: 1, Type: 'list', Content: result.html, InDate: moment(new Date()).format("YYYY-MM-DD HH:mm:ss") });
+
+                    var products = [];
+
+                    for (var i = 0; i < result.data.length; i++) {
+                        var item = result.data[i];
+
+                        //console.log(item.price);
+                        try {
+                            if (item.price.indexOf('￥') > 0) {
+                                logger.error(item);
+                            }
+                            if (isNaN(parseFloat(item.price, 10))) {
+                                item.price = 0;
+                            }
+                        } catch (e) {
+                            logger.error(e);
+                            item.price = 0;
+                        }
+
+                        //console.log(item.pageIndex);
+                        //db.replaceIntoProductNew(db.guid(), item.sku, "jd", item.name, item.price, item.img, result.parent.Id, '', item.remark);
+                        //dao.addProduct({ LogicId: uuid.v1(), Sku: item.sku, Source: 1, Name: item.name, Price: parseFloat(item.price), ListImage: item.img, Category: result.parent.LogicId });
+                        //debug(item.sku+"\n"+ item.name);
+                        products.push([uuid.v1(), item.sku, 1, item.name, item.price, moment(new Date()).format("YYYY-MM-DD HH:mm:ss"), item.img, result.parent.LogicId]);
+                    }
+                    dao.addProducts(products);
+                    dao.updateJDCategory(result.parent.Id, result.pageIndex);
+                } catch (e) {
+                    logger.error("result:"+e);
+                    //process.send({ Timestamp: statrDate, PhantomjdPid: myScrape.getPhantomjsPid() });
+                }
             }, item, i);
         }
     });

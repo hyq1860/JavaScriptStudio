@@ -71,6 +71,27 @@ module.exports.updateJDCategoryTask = function () {
     });
 }
 
+module.exports.saveHtml=function(html) {
+    mysql.exec("insert into html(Url,Source,Type,Content,InDate) values(?,?,?,?,?) ON DUPLICATE KEY UPDATE Content = VALUES(Content)", [html.Url, html.Source,html.Type, html.Content,html.InDate], function(err,result) {
+        if (err) {
+            logger.error(err);
+        }
+    });
+}
+
+module.exports.getListHtml = function (url) {
+    var deferred = Q.defer();
+    mysql.exec("select * from html where url=?", [url], function(err, r) {
+        if (err) {
+            logger.error(err);
+            deferred.reject(err);
+        } else {
+            deferred.resolve(r);
+        }
+    }, true);
+    return deferred.promise;
+}
+
 
 /*
 mysql.exec("select * from ec where id=?", ['3'], function(err,r) {
