@@ -32,11 +32,16 @@
   <ItemGroup>
     <Compile Include="app.js" />
     <Compile Include="blog.js" />
+    <Compile Include="dao\mysqldao.js" />
+    <Compile Include="dao\mysqldb.js" />
     <Compile Include="dao\mysqlhelper.js" />
+    <Compile Include="common\log4js.js" />
     <Compile Include="middlewares\uselessMiddleware.js" />
     <Compile Include="requestwithcookie.js" />
     <Compile Include="routes\about.js" />
+    <Compile Include="routes\spiderold.js" />
     <Compile Include="routes\spider.js" />
+    <Content Include="logs\log.txt" />
     <Content Include="package.json" />
     <Content Include="README.md" />
     <Content Include="readme.txt" />
@@ -60,6 +65,8 @@
   <ItemGroup>
     <Folder Include="middlewares\" />
     <Folder Include="dao\" />
+    <Folder Include="common\" />
+    <Folder Include="logs\" />
     <Folder Include="routes\" />
     <Folder Include="views-hbs\" />
     <Folder Include="public\" />

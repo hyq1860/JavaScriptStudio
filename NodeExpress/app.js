@@ -9,7 +9,7 @@ process.env.NODE_ENV = "development";//"production";
 // call the packages we need
 var express = require('express');        // call express
 // set our port
-var port = process.env.PORT || 8080;   
+var port = process.env.PORT || 80;   
 var app = express();                 // define our app using express
 
 var bodyParser = require('body-parser');
@@ -146,6 +146,9 @@ if ('development' === app.get('env')) {
 
 // START THE SERVER
 // =============================================================================
-app.listen(port,function() {
+app.listen(port, function (err) {
+    if (err) {
+        console.log('express listen on port ' + err);
+    }
     console.log('express listen on port ' + port);
 });

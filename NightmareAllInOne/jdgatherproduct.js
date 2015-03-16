@@ -11,7 +11,7 @@ var statrDate = new Date();
 var moment = require('moment');
 var debug = require('debug')('spider');
 var Nightmare = require('nightmare');
-
+var request = require('request');
 var uuid = require('node-uuid');
 
 var myScrape = new Nightmare(
@@ -125,8 +125,16 @@ dao.getCategory().then(function (data) {
                         //debug(item.sku+"\n"+ item.name);
                         products.push([uuid.v1(), item.sku, 1, item.name, item.price, moment(new Date()).format("YYYY-MM-DD HH:mm:ss"), item.img, result.parent.LogicId]);
                     }
-                    dao.addProducts(products);
-                    dao.updateJDCategory(result.parent.Id, result.pageIndex);
+                    request.post({ url: 'http://127.0.0.1:8080/spider', form: { products: products,categoryId: result.parent.Id,pageIndex: result.pageIndex } }, function(err, httpResponse, body) {
+                        if (err) {
+                            debug("request spider:" + err);
+                        } else {
+                            debug(body);
+                        }
+                    });
+                    //request.post('http://127.0.0.1:8080/spider').form({ products: products });
+                    //dao.addProducts(products);
+                    //dao.updateJDCategory(result.parent.Id, result.pageIndex);
                 } catch (e) {
                     logger.error("result:"+e);
                     //process.send({ Timestamp: statrDate, PhantomjdPid: myScrape.getPhantomjsPid() });

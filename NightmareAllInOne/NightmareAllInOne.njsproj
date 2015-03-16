@@ -12,7 +12,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>505f1567-3092-4dba-bebd-8880128e289c</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>jdlistinfo.js</StartupFile>
+    <StartupFile>jdgatherproduct-server.js</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
@@ -50,6 +50,7 @@
     <Compile Include="jdd.js" />
     <Compile Include="jdc.js" />
     <Compile Include="app3.js" />
+    <Compile Include="jdgatherproduct-server.js" />
     <Compile Include="jdlistinfo.js" />
     <Compile Include="jdlogin.js" />
     <Compile Include="jicheng.js" />

@@ -214,7 +214,7 @@ Deamon.prototype= {
             }
             if (flag) {
                 debug("子程序心跳异常");
-                
+                deamon._timestamp = null;
                 deamon.stopHeartbeat();
                 //deamon.stop();
                 deamon.forceStop();
@@ -225,7 +225,11 @@ Deamon.prototype= {
                  
             } else {
                 if (deamon._timestamp != null) {
-                    //debug("时间间隔：" + deamon._timestamp.dateDiff('s', new Date()));
+                    if (deamon._fail >= 1) {
+                        deamon._fail--;
+                    }
+                    
+                    debug("时间间隔：" + deamon._timestamp.dateDiff('s', new Date())+"心跳检查失败次数："+ deamon._fail);
                 }
                 //debug("心跳检查失败次数："+ deamon._fail);
                 //debug("检查心跳deamon._timestamp：" + deamon._timestamp);
@@ -233,7 +237,7 @@ Deamon.prototype= {
         }
         
         //20秒检查一次
-        deamon._heartbeat = setInterval(checkDeamon, 10000);
+        deamon._heartbeat = setInterval(checkDeamon, 5000);
     },
     //停止心跳
     stopHeartbeat:function() {
