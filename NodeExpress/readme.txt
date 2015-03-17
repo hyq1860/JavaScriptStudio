@@ -70,3 +70,16 @@ https://github.com/alanjames1987/Node.js-Best-Practices/
 https://www.npmjs.com/package/forever
 
 https://www.npmjs.com/package/pm2
+
+
+
+http://stackoverflow.com/questions/14217710/posting-data-to-asp-net-web-api-service-from-node-js
+
+nodejs通过代理(proxy)发送http请求(request)
+https://cnodejs.org/topic/50d41da5637ffa4155f63179
+
+node proxy 代替 nginx
+http://lostjs.com/2014/04/23/replace-nginx-by-node/
+
+
+http://lostjs.com
