@@ -6,7 +6,7 @@
   "node-remote": "http://localhost:7777,localhost,https://im.dingtalk.com,https://dingtalk.laiwang.com, http://page.com,http://10.101.111.31",
   "user-agent": "Mozilla/5.0 (%osinfo) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/%webkit_ver Safari/537.36 nw",
   "window": {
-    "toolbar": false,
+    "toolbar": true,
     "width": 850,
     "height": 600,
     "icon": "res/logo.png",
@@ -21,7 +21,8 @@
         "nightmare": "^1.7.0",
         "node-webkit-updater": "~0.2.3",
         "request": "~2.36.0",
-        "winreg": "0.0.12"
+        "winreg": "0.0.12",
+		"sqlite3":"3.0.5"
     },
     "scripts": {
     "install": "node-gyp configure install"

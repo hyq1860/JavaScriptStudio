@@ -11,7 +11,7 @@
     <script>
         document.write(process.version);
         var sqlite3 = require('sqlite3').verbose();
-        var db = new sqlite3.Database('../../ecsentry.sqlite');
+        var db = new sqlite3.Database('./ecsentry.sqlite');
         var check;
 
         var html = "";
@@ -108,6 +108,29 @@
         */
     function alertNodeVersion() {
         alert(process.version);
+        //nw里面的用法
+        //var sqlite = require('sqlite3');
+        var sqlite3 = require('sqlite3').verbose();
+        var db = new sqlite3.Database('./ecsentry.sqlite');
+        //document.write(sqlite.VERSION);
+        //var db = new sqlite.Database('ecsentry.sqlite');
+
+        //var html = "";
+        
+        db.all("SELECT * FROM user_info", function (err, rows) {
+            if (err) {
+                console.log(err);
+            }
+            
+            for (var i = 0; i < rows.length; i++) {
+                html += "<li>";
+                html += rows[i].id + ":" + rows[i].value;
+                html += "</li>";
+            }
+            alert(html);
+            //$("#jdproduct").html(html);
+            //console.log(row.id + ": " + row.value);
+        });
     }
     </script>
     <a onclick="alertNodeVersion()">启动jd</a>
