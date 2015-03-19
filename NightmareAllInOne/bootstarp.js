@@ -7,6 +7,7 @@
  * 示例：node bootstarp.js -m testapp.js
  * node bootstarp.js -m loopparams.js
  * node bootstarp.js -m jdgatherproduct.js
+ * node bootstarp.js -m jdgatherproduct-server.js
  */
 //日志
 var debug = require("debug")("bootstrap");
@@ -52,14 +53,22 @@ modulesNames.forEach(function (moduleName) {
 process.on("exit", function () {
     console.log("parent exit");
     deamons.forEach(function (deamon) {
-        deamon.stop();
+        try {
+            deamon.stop();
+        } catch (e) {
+            debug(e);
+        }
     });
 });
 
 process.on("SIGQUIT", function () {
     console.log("request for exit");
     deamons.forEach(function (deamon) {
-        deamon.stop();
+        try {
+            deamon.stop();
+        } catch (e) {
+            debug(e);
+        }
     });
     process.exit(0);
 });

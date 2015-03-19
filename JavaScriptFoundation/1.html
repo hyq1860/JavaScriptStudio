@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="http://common.cnblogs.com/script/jquery.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        //$.get("http://app.data.qq.com/?umod=astro&act=astro&a=aries&t=19", function(res) {
+        //    console.log(res);
+        //});
+        $.ajax({
+            url: "http://app.data.qq.com/?umod=astro&act=astro&a=aries&t=19",
+            type: "get",
+            dataType: 'jsonp',
+            async: true,
+            jsonp: "callback", //传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+            jsonpCallback: "?", //自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名，也可以写"?"，jQuery会自动为你处理数据
+            success: function (body) {
+                alert("哈哈");
+                //var data = JSON.parse(body);
+                //data.forEach(function (key) {
+                //    console.log(key.astro);
+                //});
+            }
+        });
+    </script>
+</head>
+<body>
+
+</body>
+</html>

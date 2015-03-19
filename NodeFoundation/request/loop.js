@@ -18,3 +18,13 @@ data.forEach(function (key) {
     });
      
 });
+
+request.get("http://app.data.qq.com/?umod=astro&act=astro&a=aries&t=19&jsonp=0&func=aa", function (err, res, body) {
+        if (!err) {
+var data=JSON.parse(body);
+            data.forEach(function(key){
+console.log(key.astro);
+});
+            //console.log(body);
+        }
+    });
