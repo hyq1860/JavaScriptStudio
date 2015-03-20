@@ -72,3 +72,8 @@ process.on("SIGQUIT", function () {
     });
     process.exit(0);
 });
+
+
+process.on("uncaughtException", function (error) {
+    debug("bootstarp.js:"+error);
+}); 

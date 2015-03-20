@@ -60,6 +60,7 @@
     <Compile Include="loopparams.js" />
     <Compile Include="mysqldao.js" />
     <Compile Include="mysqldb.js" />
+    <Compile Include="nightmareplus.js" />
     <Compile Include="nightmarepplus.js" />
     <Compile Include="nodehttp.js" />
     <Compile Include="ps.js" />

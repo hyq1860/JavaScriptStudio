@@ -8,7 +8,7 @@ var logger = require('../common/log4js').logger('jdgather');
 module.exports.getCategory = function () {
     var deferred = Q.defer();
     // and PageInfo!=SpiderPageIndex
-    mysql.exec("SELECT * FROM JDCategory where pageInfo!='' and SpiderFlag=1 and PageInfo!=SpiderPageIndex", [], function(err, data) {
+    mysql.exec("SELECT * FROM JDCategory where pageInfo!='' and SpiderFlag=1 and PageInfo!=SpiderPageIndex and skip!=1 limit 1", [], function(err, data) {
         if (err) {
             debug(err);
             logger.error(err);
@@ -57,7 +57,7 @@ module.exports.updateJDCategory = function (id, spiderPageIndex) {
     });
 }
 module.exports.updateJDCategoryTask = function () {
-    mysql.exec("select Id from jdcategory where SpiderFlag=0 and channel!='图书|音像|电子书刊' limit 1", [], function (err, r) {
+    mysql.exec("select Id from jdcategory where SpiderFlag=0 and skip!=1 and channel!='图书|音像|电子书刊' limit 1", [], function (err, r) {
         if (err) {
             //logger.error(err);
             debug(err);
@@ -92,6 +92,19 @@ module.exports.getListHtml = function (url) {
     return deferred.promise;
 }
 
+//连续失败的 跳过
+module.exports.skipJdCategory=function(id) {
+    var deferred = Q.defer();
+    mysql.exec("update JDCategory set skip=? where Id=?", [id], function (err, r) {
+        if (err) {
+            logger.error(err);
+            deferred.reject(err);
+        } else {
+            deferred.resolve(r);
+        }
+    }, true);
+    return deferred.promise;
+}
 
 /*
 mysql.exec("select * from ec where id=?", ['3'], function(err,r) {
