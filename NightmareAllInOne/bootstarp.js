@@ -11,12 +11,14 @@
  */
 //日志
 var debug = require("debug")("bootstrap");
-console.log("start bootstrap");
+debug("start bootstrap");
 
 var path = require("path");
 var addDeamon = require("./daemon.js").addDeamon;
 
-var file = require.main.filename, path = path.dirname(file);
+var file = require.main.filename;
+path = path.dirname(file);
+
 process.chdir(path);
 
 var modulesNames = [], args = [], deamons = [];
@@ -39,19 +41,19 @@ if (process.argv && process.argv.length) {
 }
 // 可以在此处设置默认载入默认模块
 if (modulesNames.length == 0) {
-    console.log('please defined the modules like: node bootstrap.js -m main1.js -m main2.js');
+    debug('please defined the modules like: node bootstrap.js -m main1.js -m main2.js');
     return;
     // modulesNames.push('main');
 }
 
-console.log(modulesNames);
+debug("modulesNames:"+modulesNames);
 
 modulesNames.forEach(function (moduleName) {
     deamons.push(addDeamon(moduleName, args));
 });
 
 process.on("exit", function () {
-    console.log("parent exit");
+    debug("parent exit");
     deamons.forEach(function (deamon) {
         try {
             deamon.stop();
@@ -62,7 +64,7 @@ process.on("exit", function () {
 });
 
 process.on("SIGQUIT", function () {
-    console.log("request for exit");
+    debug("request for exit");
     deamons.forEach(function (deamon) {
         try {
             deamon.stop();
@@ -72,7 +74,6 @@ process.on("SIGQUIT", function () {
     });
     process.exit(0);
 });
-
 
 process.on("uncaughtException", function (error) {
     debug("bootstarp.js:"+error);

@@ -8,7 +8,12 @@ module.exports = function(app) {
             dao.getCategory().then(function(data) {
                 res.json(data);
             });
-        }).
+    }).
+        get('/spider/getproduct', function (req, res) {
+        dao.getProducts().then(function (data) {
+            res.json(data);
+        });
+    }).
         get('/spider/skipJdCategory', function(req, res) {
             dao.skipJdCategory(req.params.id).then(function(data) {
                 res.json({ success: true });

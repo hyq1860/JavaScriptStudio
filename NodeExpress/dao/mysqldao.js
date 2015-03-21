@@ -20,6 +20,22 @@ module.exports.getCategory = function () {
     return deferred.promise;
 }
 
+//获取要新采集的商品
+module.exports.getProducts = function () {
+    var deferred = Q.defer();
+    // and PageInfo!=SpiderPageIndex
+    mysql.exec("select * from product order by indate desc limit 10", [], function (err, data) {
+        if (err) {
+            debug(err);
+            logger.error(err);
+            deferred.reject(err);
+        } else {
+            deferred.resolve(data);
+        }
+    }, true);
+    return deferred.promise;
+}
+
 //sku不存在就新增
 module.exports.addProduct = function (product) {
     mysql.exec("select count(1) as total from product where Sku=?", [product.thirdPartySku], function(e1,row) {
