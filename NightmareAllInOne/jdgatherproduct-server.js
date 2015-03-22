@@ -27,12 +27,19 @@ var myScrape = new Nightmare(
     {
         loadImages: false,
         weak: false,
-        timeout: 1000,
-        //phantomPath: 'D:\\Sync\\Node\\phantomjs-1.9.7-windows\\'
+        timeout: 50000,
+        phantomPath:"D:\\Sync\\Node\\phantomjs-2.0.0-windows\\"
     }
 );
 myScrape.useragent('Mozilla/5.0 (Windows; U; Windows NT 5.2) AppleWebKit/525.13 (KHTML, like Gecko) Chrome/0.2.149.27 Safari/525.13');
-
+myScrape.on('timeout', function(msg) {
+    debug("页面超时:"+msg);
+})
+.on('resourceRequestStarted', function (requestData, networkRequest) {
+    if (requestData.url.indexOf('google') > 0|| requestData.url.indexOf('.css') > 0) {
+        networkRequest.abort();
+    }
+});
 var baseUrl = 'http://182.92.167.82:5001';
 //var baseUrl = 'http://127.0.0.1:8080';
 var taskUrl = baseUrl+"/spider/gettask";
@@ -50,7 +57,9 @@ request(taskUrl, function(error, response, body) {
                 startPageIndex = 1;
             }
             for (var i = startPageIndex; i <= item.PageInfo; i++) {
-                myScrape
+                myScrape.on('timeout', function (msg) {
+                    debug("页面超时:" + msg);
+                })
                 .goto(item.ItemUrl + "?page=" + i)
                 .wait(Math.random() * 1000)
                 .evaluate(function (params, pageIndex) {
@@ -97,12 +106,16 @@ request(taskUrl, function(error, response, body) {
                         
                         data.push({ name: productName, price: price, remark: remark, sku: sku, img: imageUrl, url: url });
                     });
-                    
-                    return { parent: params, pageIndex: pageIndex, html: document.documentElement.innerHTML, data: data };
+                    return { parent: params, pageIndex: pageIndex, data: data };
+                    //return { parent: params, pageIndex: pageIndex, html: document.documentElement.innerHTML, data: data };
                 }, function (result) {
                     //发送心跳
                     try {
-                        process.send({ Timestamp: new Date(), PhantomjdPid: myScrape.getPhantomjsPid(),Id: data[0].Id });
+                        process.send({
+                            Timestamp: new Date(), 
+                            PhantomjdPid: 0, 
+                            Id: data[0].Id
+                        });
                     } catch (e) {
                         logger.error(e);
                     }
@@ -128,16 +141,20 @@ request(taskUrl, function(error, response, body) {
                                 if (isNaN(parseFloat(item.price, 10))) {
                                     item.price = 0;
                                 }
+                                if (isNaN(parseInt(item.remark))) {
+                                    item.remark = 0;
+                                }
                             } catch (e) {
                                 logger.error(e);
                                 item.price = 0;
+                                item.remark = 0;
                             }
                             
                             //console.log(item.pageIndex);
                             //db.replaceIntoProductNew(db.guid(), item.sku, "jd", item.name, item.price, item.img, result.parent.Id, '', item.remark);
                             //dao.addProduct({ LogicId: uuid.v1(), Sku: item.sku, Source: 1, Name: item.name, Price: parseFloat(item.price), ListImage: item.img, Category: result.parent.LogicId });
                             //debug(item.sku+"\n"+ item.name);
-                            products.push([uuid.v1(), item.sku, 1, item.name, item.price, moment(new Date()).format("YYYY-MM-DD HH:mm:ss"), item.img, result.parent.LogicId]);
+                            products.push([uuid.v1(), item.sku, 1, item.name, item.price, item.remark, moment(new Date()).format("YYYY-MM-DD HH:mm:ss"), item.img, result.parent.LogicId]);
                         }
                         request.post({ url: baseUrl+'/spider', form: { products: products, categoryId: result.parent.Id, pageIndex: result.pageIndex } }, function (err, httpResponse, body) {
                             if (err) {

@@ -53,6 +53,7 @@
     <Compile Include="jdgatherproduct-server.js" />
     <Compile Include="jdlistinfo.js" />
     <Compile Include="jdlogin.js" />
+    <Compile Include="jdtest.js" />
     <Compile Include="jicheng.js" />
     <Compile Include="log4js.js" />
     <Compile Include="loop.js" />

@@ -53,7 +53,7 @@ module.exports.addProduct = function (product) {
 //sku不存在就新增
 module.exports.addProducts = function (products) {
 
-    mysql.exec("insert INTO product(LogicId,Sku,Source,Name,Price,InDate,ListImage,Category) VALUES ? ON DUPLICATE KEY UPDATE Price = VALUES(Price), Name = VALUES(Name)", [products], function(e2, r) {
+    mysql.exec("insert INTO product(LogicId,Sku,Source,Name,Price,Remark,InDate,ListImage,Category) VALUES ? ON DUPLICATE KEY UPDATE Price = VALUES(Price), Name = VALUES(Name)", [products], function(e2, r) {
         if (e2) {
             logger.error(JSON.stringify(products));
             debug(e2);

@@ -202,10 +202,10 @@ Deamon.prototype= {
         */
         
         //debug("检查心跳:" + deamon._cpid);
-            var flag = deamon._timestamp != null && deamon._timestamp.dateDiff('s', new Date()) > 20;
+            var flag = deamon._timestamp != null && deamon._timestamp.dateDiff('s', new Date()) > 50;
             if (deamon._timestamp == null) {
                 deamon._fail++;
-                if (deamon._fail > 4) {
+                if (deamon._fail > 8) {
                     flag = true;
                 }
             }
@@ -224,7 +224,7 @@ Deamon.prototype= {
             } else {
                 if (deamon._timestamp != null) {
                     if (deamon._fail >= 1) {
-                        deamon._fail--;
+                        --deamon._fail;
                     }
                     
                     debug("时间间隔：" + deamon._timestamp.dateDiff('s', new Date())+"心跳检查失败次数："+ deamon._fail+ "检查心跳deamon._timestamp：" + deamon._timestamp);
@@ -233,7 +233,7 @@ Deamon.prototype= {
         }
         
         //设置检查频率
-        deamon._heartbeat = setInterval(checkDeamon, 5000);
+        deamon._heartbeat = setInterval(checkDeamon, 10000);
     },
     //停止心跳
     stopHeartbeat:function() {
