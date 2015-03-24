@@ -12,7 +12,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>4663690e-aa7e-46fb-a910-3df883da7db6</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>js_call_apply_bind.js</StartupFile>
+    <StartupFile>proxy\gatherproxy.js</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
@@ -46,11 +46,13 @@
     <Compile Include="closure\8.js" />
     <Compile Include="closure\9.js" />
     <Compile Include="debugdemo.js" />
+    <Compile Include="decode.js" />
     <Compile Include="digui.js" />
     <Compile Include="forkdemo.js" />
     <Compile Include="generate_random_value.js" />
     <Compile Include="httpheader.js" />
     <Compile Include="jd-book\jdbook.js" />
+    <Compile Include="jddetail\jddetail.js" />
     <Compile Include="jicheng.js" />
     <Compile Include="json生成类\jsbeautify.js" />
     <Compile Include="json生成类\prettify.js" />
@@ -61,11 +63,14 @@
     <Compile Include="momentdemo.js" />
     <Compile Include="mongodb\mongodb.js" />
     <Compile Include="mongodb\mongoose.js" />
+    <Compile Include="node-schedule\schedule.js" />
     <Compile Include="nodelater.js" />
     <Compile Include="nodeschedule.js" />
     <Compile Include="node_promise_async.js" />
     <Compile Include="path_demo.js" />
     <Compile Include="Promise.js" />
+    <Compile Include="proxy\checkproxy.js" />
+    <Compile Include="proxy\gatherproxy.js" />
     <Compile Include="q\mysqldb.js" />
     <Compile Include="q\qmysql.js" />
     <Compile Include="request\loop.js" />
@@ -102,6 +107,9 @@
     <Folder Include="json生成类\" />
     <Folder Include="async\" />
     <Folder Include="jd-book\" />
+    <Folder Include="jddetail\" />
+    <Folder Include="proxy\" />
+    <Folder Include="node-schedule\" />
     <Folder Include="once\" />
     <Folder Include="q\" />
     <Folder Include="request\" />

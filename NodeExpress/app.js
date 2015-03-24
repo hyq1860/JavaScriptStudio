@@ -9,7 +9,7 @@ process.env.NODE_ENV = "development";//"production";
 // call the packages we need
 var express = require('express');        // call express
 // set our port
-var port = process.env.PORT || 80;   
+var port = process.env.PORT || 5001;   
 var app = express();                 // define our app using express
 
 var bodyParser = require('body-parser');
@@ -93,6 +93,7 @@ app.use('/', router);
 
 //自定义路由 外部
 require('./routes/spider')(app);
+require('./routes/proxy')(app);
 require('./routes/about')(app);
 
 //测试中间件

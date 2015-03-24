@@ -121,6 +121,34 @@ module.exports.skipJdCategory=function(id) {
     }, true);
     return deferred.promise;
 }
+//代理
+module.exports.addProxys=function(proxys,callback) {
+    mysql.exec("insert INTO proxy(IP,Port,Anonymous,Type,Speed,Flag,InDate,EditDate) VALUES ? ON DUPLICATE KEY UPDATE EditDate = VALUES(InDate)", [proxys], function (e2, r) {
+        if (e2) {
+            logger.error(JSON.stringify(proxys));
+            debug(e2);
+            callback(e2);
+        } else {
+            callback();
+        }
+    });
+}
+
+//获取要采集的分类
+module.exports.getProxys = function () {
+    var deferred = Q.defer();
+    // and PageInfo!=SpiderPageIndex
+    mysql.exec("SELECT * FROM proxy", [], function (err, data) {
+        if (err) {
+            debug(err);
+            logger.error(err);
+            deferred.reject(err);
+        } else {
+            deferred.resolve(data);
+        }
+    }, true);
+    return deferred.promise;
+}
 
 /*
 mysql.exec("select * from ec where id=?", ['3'], function(err,r) {

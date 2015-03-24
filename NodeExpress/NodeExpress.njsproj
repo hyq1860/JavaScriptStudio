@@ -39,6 +39,7 @@
     <Compile Include="middlewares\uselessMiddleware.js" />
     <Compile Include="requestwithcookie.js" />
     <Compile Include="routes\about.js" />
+    <Compile Include="routes\proxy.js" />
     <Compile Include="routes\spiderold.js" />
     <Compile Include="routes\spider.js" />
     <Content Include="logs\log.txt" />

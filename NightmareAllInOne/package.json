@@ -16,6 +16,7 @@
     "moment": "^2.9.0",
     "mysql": "^2.5.5",
     "nightmare": "^1.7.0",
+    "node-schedule": "^0.2.6",
     "node-uuid": "^1.4.3",
     "q": "^1.2.0",
     "request": "^2.53.0",
