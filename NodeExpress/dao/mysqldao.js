@@ -138,7 +138,7 @@ module.exports.addProxys=function(proxys,callback) {
 module.exports.getProxys = function () {
     var deferred = Q.defer();
     // and PageInfo!=SpiderPageIndex
-    mysql.exec("SELECT * FROM proxy order by indate desc", [], function (err, data) {
+    mysql.exec("SELECT * FROM proxy where flag=1 order by indate asc", [], function (err, data) {
         if (err) {
             debug(err);
             logger.error(err);
@@ -147,6 +147,21 @@ module.exports.getProxys = function () {
             deferred.resolve(data);
         }
     }, true);
+    return deferred.promise;
+}
+
+//修改失效的代理
+module.exports.updateProxy = function (params) {
+    var deferred = Q.defer();
+    mysql.exec("update proxy set flag=? where ip=? and port=? and type=?", [params.flag, params.ip, params.port, params.type],function(err,data) {
+        if (err) {
+            debug(err);
+            logger.error(err);
+            deferred.reject(err);
+        } else {
+            deferred.resolve(data);
+        }
+    },true);
     return deferred.promise;
 }
 

@@ -18,6 +18,16 @@ module.exports = function(app) {
                 }
             });
 
+        })
+        .post('/proxy/update', function(req, res) {
+            dao.updateProxy(req.body.params, function(error) {
+                if (error) {
+                    res.end(error);
+                } else {
+                    res.json({ success: true });
+                }
+            });
+
         });
 };
 
