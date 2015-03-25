@@ -234,3 +234,5 @@ FakesAssemblies/
 *.plg
 # Visual Studio 6 workspace options file
 *.opt
+NightmareAllInOne/jdcategory.sql
+PhantomjsExamples/test/phantomjs.exe

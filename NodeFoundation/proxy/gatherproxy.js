@@ -11,77 +11,77 @@ var jschardet = require("jschardet");
 var Nightmare = require('nightmare');
 var moment = require('moment');
 var debug = require('debug')('proxy');
+var common = require('../common.js');
 var myScrape = new Nightmare(
     {
         loadImages: false,
         weak: false,
-        timeout: 50000,
-        phantomPath:"D:\\GitHub\\JavaScriptStudio\\PhantomjsExamples\\"
+        timeout: 5000,
+        //phantomPath:"D:\\GitHub\\JavaScriptStudio\\PhantomjsExamples\\"
         //phantomPath: "D:\\Sync\\Node\\phantomjs-2.0.0-windows\\"
     }
 );
-myScrape.useragent('Mozilla/5.0 (Windows; U; Windows NT 5.2) AppleWebKit/525.13 (KHTML, like Gecko) Chrome/0.2.149.27 Safari/525.13');
 
-var config = {
-    startStr: 'document.write(',
-    endStr: ');'
-}
-//var baseUrl = 'http://127.0.0.1:1337';
-var baseUrl = 'http://182.92.167.82:5001';
-myScrape.goto('http://proxy.goubanjia.com/index1.shtml')
+module.exports.gatherProxy=function() {
+    //var baseUrl = 'http://127.0.0.1:1337';
+    var baseUrl = 'http://182.92.167.82:5001';
+    myScrape
+.useragent('Mozilla/5.0 (Windows; U; Windows NT 5.2) AppleWebKit/525.13 (KHTML, like Gecko) Chrome/0.2.149.27 Safari/525.13')
+.goto('http://proxy.goubanjia.com/index1.shtml')
 .wait(2000)
-    .evaluate(function () {
-    return document.documentElement.outerHTML;
-}, function (html) {
-    //var temphtml = html.replace("<!--<![endif]-->","");
-    //fs.writeFileSync('./baidu.html', temphtml, 'UTF-8');
-    var $ = cheerio.load(html);
-    var proxys = [];
-    $('#list > table > tbody > tr').each(function (index, item) {
-        var proxy = { IP: "",Port:null,Anonymous:null,Type:null,Speed:null,Flag:null,InDate:null,EditDate:null };
-        $(item).find('td').each(function (i, e) {
-            switch(i) {
-                case 0:
-                    $(e).children().each(function (i1, e1) {
-                        //console.log($(e1).attr('style'));
-                        if ($(e1).attr('style') !== undefined && $(e1).attr('style').indexOf('none') == -1 || $(e1).attr('style') === undefined) {
-                            proxy.IP += $(e1).text();
-                        }
-                    });
-                    break;
-                case 1:
-                    proxy.Port = $(e).text().split(';')[1];
-                    break;
-                case 2:
-                    proxy.Anonymous = $(e).text();
-                    break;
-                case 3:
-                    proxy.Type = $(e).text();
-                    break;
-                case 4:
-                    break;
-                case 5:
-                    break;
-            }
+.evaluate(function () {
+        return document.documentElement.outerHTML;
+    }, function (html) {
+        //var temphtml = html.replace("<!--<![endif]-->","");
+        //fs.writeFileSync('./baidu.html', temphtml, 'UTF-8');
+        var $ = cheerio.load(html);
+        var proxys = [];
+        $('#list > table > tbody > tr').each(function (index, item) {
+            var proxy = { IP: "", Port: null, Anonymous: null, Type: null, Speed: null, Flag: null, InDate: null, EditDate: null };
+            $(item).find('td').each(function (i, e) {
+                switch (i) {
+                    case 0:
+                        $(e).children().each(function (i1, e1) {
+                            if ($(e1).attr('style') !== undefined && $(e1).attr('style').indexOf('none') == -1 || $(e1).attr('style') === undefined) {
+                                proxy.IP += $(e1).text();
+                            }
+                        });
+                        break;
+                    case 1:
+                        proxy.Port = $(e).text().split(';')[1];
+                        break;
+                    case 2:
+                        proxy.Anonymous = $(e).text();
+                        break;
+                    case 3:
+                        proxy.Type = $(e).text();
+                        break;
+                    case 4:
+                        break;
+                    case 5:
+                        break;
+                }
             
 
+            });
+            proxy.InDate = moment(new Date()).format("YYYY-MM-DD HH:mm:ss");
+            proxy.EditDate = proxy.InDate;
+            proxy.Speed = 0, proxy.Flag = 1;
+            proxys.push([proxy.IP, proxy.Port, proxy.Anonymous, proxy.Type, proxy.Speed, proxy.Flag, proxy.InDate, proxy.EditDate]);
         });
-        proxy.InDate = moment(new Date()).format("YYYY-MM-DD HH:mm:ss");
-        proxy.EditDate = proxy.InDate;
-        proxy.Speed = 0, proxy.Flag = 1;
-        proxys.push([proxy.IP, proxy.Port, proxy.Anonymous, proxy.Type, proxy.Speed, proxy.Flag, proxy.InDate, proxy.EditDate]);
-    });
-    request.post({ url: baseUrl + '/proxy', form: { proxys: proxys } }, function (err, httpResponse, body) {
-        if (err) {
-            debug("request spider:" + err);
-        } else {
-            debug(body);
-        }
-    });
-    console.log(proxys);
+        request.post({ url: baseUrl + '/proxy', form: { proxys: proxys } }, function (err, httpResponse, body) {
+            if (err) {
+                debug("request spider:" + err);
+            } else {
+                debug(body);
+            }
+        });
+    //console.log(proxys);
     //console.log(temp);
-});
-myScrape.run();
+    });
+    myScrape.run();
+}
+
 /*
 request('http://proxy.goubanjia.com/index1.shtml', { encoding : null }, function (error, response, body) {
     if (!error && response.statusCode == 200) {

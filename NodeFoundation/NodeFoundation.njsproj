@@ -12,7 +12,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>4663690e-aa7e-46fb-a910-3df883da7db6</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>proxy\gatherproxy.js</StartupFile>
+    <StartupFile>proxy\validateproxy.js</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
@@ -45,6 +45,7 @@
     <Compile Include="closure\7.js" />
     <Compile Include="closure\8.js" />
     <Compile Include="closure\9.js" />
+    <Compile Include="common.js" />
     <Compile Include="debugdemo.js" />
     <Compile Include="decode.js" />
     <Compile Include="digui.js" />
@@ -71,6 +72,8 @@
     <Compile Include="Promise.js" />
     <Compile Include="proxy\checkproxy.js" />
     <Compile Include="proxy\gatherproxy.js" />
+    <Compile Include="proxy\proxytask.js" />
+    <Compile Include="proxy\validateproxy.js" />
     <Compile Include="q\mysqldb.js" />
     <Compile Include="q\qmysql.js" />
     <Compile Include="request\loop.js" />
