@@ -18,18 +18,19 @@ var path = require('path');
 var request = require('request');
 
 //template engine
-/*
+
 var ejs = require('ejs');
-ejs.open = '{{';
-ejs.close = '}}';
+//ejs.open = '{{';
+//ejs.close = '}}';
 
 //注册ejs模板为html页。简单的讲，就是原来以.ejs为后缀的模板页，现在的后缀名可以//是.html了
 app.engine('.html', require('ejs').__express);
 //设置视图模板的默认后缀名为.html,避免了每次res.Render("xx.html")的尴尬
 app.set('view engine', 'html');
-*/
+
 
 /*handlebars engine*/
+/*
 var exphbs = require('express-handlebars');
 var hbs = exphbs.create({
     layoutsDir: "views-hbs/layouts/",
@@ -39,15 +40,20 @@ var hbs = exphbs.create({
 });
 app.engine('.html', hbs.engine);
 app.set('view engine', '.html');
+*/
 
 /**/
 //设置模板文件文件夹,__dirname为全局变量,表示网站根目录
-app.set('views', __dirname + '\\views-hbs');
+//app.set('views', __dirname + '\\views-hbs');
+app.set('views', __dirname + '\\views-ejs');
 
 //静态文件
 //app.use(express.static(path.join(__dirname, 'public')));
 //统一加上前缀
 //app.use("/static", express.static(path.join(__dirname, 'public')));  
+// 静态文件目录
+var staticDir = path.join(__dirname, 'public');
+app.use('/public', express.static(staticDir));
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
@@ -68,6 +74,7 @@ app.use(bodyParser.json());
 var router = express.Router();              // get an instance of the express Router
 
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
+/*
 router.get('/', function (req, res) {
     //向页面模板传递参数，可以传递字符串和对象，注意格式
     res.render('index', {
@@ -75,6 +82,7 @@ router.get('/', function (req, res) {
         header: "Some users"
     });
 });
+ */
 //https://scotch.io/tutorials/build-a-restful-api-using-node-and-express-4
 router.route('/bears')
     // create a bear (accessed at POST http://localhost:8080/api/bears)
@@ -95,6 +103,7 @@ app.use('/', router);
 require('./routes/spider')(app);
 require('./routes/proxy')(app);
 require('./routes/about')(app);
+require('./routes/index')(app);
 
 //测试中间件
 //var uselessMiddleware = require('./middlewares/uselessMiddleware');

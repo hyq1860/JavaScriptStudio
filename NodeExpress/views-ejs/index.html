@@ -1,1 +1,63 @@
-﻿首页
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+    <!-- Loading Bootstrap -->
+    <link href="public/Flat-UI/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+    <!-- Loading Flat UI -->
+    <link href="public/Flat-UI/dist/css/flat-ui.css" rel="stylesheet">
+    <link href="public/Flat-UI/docs/assets/css/demo.css" rel="stylesheet">
+</head>
+    <body>
+        <!--<input type="button" value="ceshi" onclick="test()" />-->
+        <!-- ko foreach: products -->
+        <li><a><!--ko text:Name--><!--/ko--></a></li>
+        <!--/ko-->  
+        <div class="pagination">
+            <ul>
+                <li class="previous"><a href="#fakelink" class="fui-arrow-left"></a></li>
+                <li class="active"><a href="#fakelink">1</a></li>
+                <li><a href="#fakelink">2</a></li>
+                <li><a href="#fakelink">3</a></li>
+                <li><a href="#fakelink">4</a></li>
+                <li><a href="#fakelink">5</a></li>
+                <li><a href="#fakelink">6</a></li>
+                <li><a href="#fakelink">7</a></li>
+                <li><a href="#fakelink">8</a></li>
+                <li class="next"><a href="#fakelink" class="fui-arrow-right"></a></li>
+            </ul>
+        </div>
+        
+        <script src="public/Flat-UI/dist/js/vendor/jquery.min.js"></script>
+        <script src="public/Flat-UI/dist/js/flat-ui.min.js"></script>
+        
+        <script type="text/javascript" src="public/scripts/knockout-3.3.0.js"></script>
+
+        <script type="text/javascript">
+            var viewModel=function() {
+                this.products = ko.observableArray();
+            }
+            var rows =<%-JSON.stringify(datas)%>;
+            var model = new viewModel();
+            $(function () {
+
+                model.products(rows);
+                ko.applyBindings(model);
+                //$.get("/product/getproduct", function (data) {
+
+                //});
+            });
+            function test() {
+                $.get("/product/getproduct", function (data) {
+                    for (var i = 0; i < data.length; i++) {
+                        model.products.push(data[i]);
+                    }
+                });
+            }
+
+        </script>
+    </body>
+</html>

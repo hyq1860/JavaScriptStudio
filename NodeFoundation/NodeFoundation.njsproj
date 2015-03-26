@@ -58,6 +58,7 @@
     <Compile Include="json生成类\jsbeautify.js" />
     <Compile Include="json生成类\prettify.js" />
     <Compile Include="js_call_apply_bind.js" />
+    <Compile Include="kue\kue1.js" />
     <Compile Include="log4js.js" />
     <Compile Include="logdemo.js" />
     <Compile Include="measure.js" />
@@ -76,6 +77,7 @@
     <Compile Include="proxy\validateproxy.js" />
     <Compile Include="q\mysqldb.js" />
     <Compile Include="q\qmysql.js" />
+    <Compile Include="redis\redisdemo.js" />
     <Compile Include="request\loop.js" />
     <Compile Include="request\r03.js" />
     <Compile Include="request\request01.js" />
@@ -111,6 +113,8 @@
     <Folder Include="async\" />
     <Folder Include="jd-book\" />
     <Folder Include="jddetail\" />
+    <Folder Include="kue\" />
+    <Folder Include="redis\" />
     <Folder Include="proxy\" />
     <Folder Include="node-schedule\" />
     <Folder Include="once\" />

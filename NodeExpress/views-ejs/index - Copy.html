@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="http://common.cnblogs.com/script/jquery.js" type="text/javascript"></script>
+    <script type="text/javascript" src="public/scripts/knockout-3.3.0.js"></script>
+    <script type="text/javascript">
+        var viewModel=function() {
+            this.products = ko.observableArray();
+        }
+        $(function () {
+            $.get("/product/getproduct", function (data) {
+                var model = new viewModel();
+                model.products(data);
+                //ko.applyBindings(model);
+            });
+        });
+        function test() {
+            $.get("/product/getproduct", function (data) {
+                var model = new viewModel();
+                model.products(data);
+                ko.applyBindings(model);
+            });
+        }
+    </script>
+</head>
+    <body>
+        <input type="button" value="ceshi" onclick="test()" />
+        <!-- ko foreach: products -->
+        <% datas.forEach(function(item){ %>
+        <li><a href="<%= item.LogicId %>"><%= item.Name %><!--ko text:Name--><!--/ko--></a></li>
+        <% }) %>
+        <!--/ko-->  
+    </body>
+</html>
