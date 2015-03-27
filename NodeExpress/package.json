@@ -12,12 +12,12 @@
     "debug": "^2.1.2",
     "express": "^4.12.2",
     "express-handlebars": "^1.2.1",
+    "log4js": "^0.6.22",
     "moment": "^2.9.0",
     "multer": "^0.1.8",
     "mysql": "^2.5.5",
+    "node-uuid": "^1.4.3",
     "q": "^1.2.0",
-    "request": "^2.53.0",
-	"log4js": "^0.6.22",
-	"node-uuid": "^1.4.3"
+    "request": "^2.53.0"
   }
 }

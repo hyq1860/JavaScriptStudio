@@ -84,8 +84,10 @@
     <Compile Include="request\request02.js" />
     <Compile Include="request\RequestFile.js" />
     <Compile Include="request\yahoo.js" />
+    <Compile Include="selfrun.js" />
     <Compile Include="setImmediate与process.nextTick\nexttick.js" />
     <Compile Include="setImmediate与process.nextTick\setImmediate.js" />
+    <Compile Include="setImmediate与process.nextTick\settimeout.js" />
     <Compile Include="setTimeoutdemo.js" />
     <Compile Include="singlethread.js" />
     <Compile Include="spawndemo.js" />
@@ -114,6 +116,7 @@
     <Folder Include="jd-book\" />
     <Folder Include="jddetail\" />
     <Folder Include="kue\" />
+    <Folder Include="pm2\" />
     <Folder Include="redis\" />
     <Folder Include="proxy\" />
     <Folder Include="node-schedule\" />
