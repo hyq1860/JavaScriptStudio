@@ -49,6 +49,7 @@
     <Compile Include="debugdemo.js" />
     <Compile Include="decode.js" />
     <Compile Include="digui.js" />
+    <Compile Include="forever-monitor\fm.js" />
     <Compile Include="forkdemo.js" />
     <Compile Include="generate_random_value.js" />
     <Compile Include="httpheader.js" />
@@ -72,6 +73,7 @@
     <Compile Include="path_demo.js" />
     <Compile Include="Promise.js" />
     <Compile Include="proxy\checkproxy.js" />
+    <Compile Include="proxy\fm.js" />
     <Compile Include="proxy\gatherproxy.js" />
     <Compile Include="proxy\proxytask.js" />
     <Compile Include="proxy\validateproxy.js" />
@@ -116,6 +118,7 @@
     <Folder Include="jd-book\" />
     <Folder Include="jddetail\" />
     <Folder Include="kue\" />
+    <Folder Include="forever-monitor\" />
     <Folder Include="pm2\" />
     <Folder Include="redis\" />
     <Folder Include="proxy\" />

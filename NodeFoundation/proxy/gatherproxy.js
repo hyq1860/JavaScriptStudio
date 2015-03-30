@@ -28,7 +28,7 @@ module.exports.gatherProxy=function() {
     myScrape
 .useragent('Mozilla/5.0 (Windows; U; Windows NT 5.2) AppleWebKit/525.13 (KHTML, like Gecko) Chrome/0.2.149.27 Safari/525.13')
 .goto('http://proxy.goubanjia.com/index1.shtml')
-.wait(2000)
+.wait(1000)
 .evaluate(function () {
         return document.documentElement.outerHTML;
     }, function (html) {

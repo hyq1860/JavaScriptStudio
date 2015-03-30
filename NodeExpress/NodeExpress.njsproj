@@ -36,6 +36,7 @@
     <Compile Include="dao\mysqldb.js" />
     <Compile Include="dao\mysqlhelper.js" />
     <Compile Include="common\log4js.js" />
+    <Compile Include="dao\proxydao.js" />
     <Compile Include="middlewares\uselessMiddleware.js" />
     <Compile Include="public\Flat-UI\dist\js\flat-ui.js" />
     <Compile Include="public\Flat-UI\dist\js\flat-ui.min.js" />
