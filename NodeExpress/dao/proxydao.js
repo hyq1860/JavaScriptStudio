@@ -22,10 +22,12 @@ module.exports.getProxySites=function() {
 }
 
 //存在即更新 不存在添加
-module.exports.saveProxySource = function (proxysource) {
+module.exports.saveProxySource = function (proxysource,callback) {
     mysql.exec("insert into proxysource(ProxySiteId,Url,Html,InDate,EditDate) values(?,?,?,?,?) ON DUPLICATE KEY UPDATE Html = VALUES(Html)", [proxysource.ProxySiteId, proxysource.Url, proxysource.Html, proxysource.InDate, proxysource.EditDate], function (err, result) {
         if (err) {
-            logger.error(err);
+            callback(err);
+        } else {
+            callback(null, result);
         }
     });
 }

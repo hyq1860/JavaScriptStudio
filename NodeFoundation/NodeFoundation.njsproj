@@ -12,7 +12,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>4663690e-aa7e-46fb-a910-3df883da7db6</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>proxy\validateproxy.js</StartupFile>
+    <StartupFile>proxy\gather.js</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
@@ -74,6 +74,7 @@
     <Compile Include="Promise.js" />
     <Compile Include="proxy\checkproxy.js" />
     <Compile Include="proxy\fm.js" />
+    <Compile Include="proxy\gather.js" />
     <Compile Include="proxy\gatherproxy.js" />
     <Compile Include="proxy\proxytask.js" />
     <Compile Include="proxy\validateproxy.js" />

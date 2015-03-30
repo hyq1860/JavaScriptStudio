@@ -10,9 +10,19 @@ module.exports = function(app) {
             });
         })
         .get('/proxy/getproxysites', function(req, res) {
-            dao.getProxySites.then(function(data) {
+            dao.getProxySites().then(function(data) {
                 res.json(data);
             });
+        })
+        .post('/proxy/saveProxySource', function(req, res) {
+            dao.saveProxySource(req.body.ProxySource, function(error) {
+                if (error) {
+                    res.end(error);
+                } else {
+                    res.json({ success: true });
+                }
+            });
+
         })
         .post('/proxy/', function(req, res) {
             dao.addProxys(req.body.proxys, function(error) {
