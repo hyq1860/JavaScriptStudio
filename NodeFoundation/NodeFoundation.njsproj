@@ -76,6 +76,8 @@
     <Compile Include="proxy\fm.js" />
     <Compile Include="proxy\gather.js" />
     <Compile Include="proxy\gatherproxy.js" />
+    <Compile Include="proxy\parseconfig.js" />
+    <Compile Include="proxy\parseproxy.js" />
     <Compile Include="proxy\proxytask.js" />
     <Compile Include="proxy\validateproxy.js" />
     <Compile Include="q\mysqldb.js" />

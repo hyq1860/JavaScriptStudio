@@ -12,6 +12,8 @@ var Nightmare = require('nightmare');
 var moment = require('moment');
 var debug = require('debug')('proxy');
 var common = require('../common.js');
+
+var parseProxyExecutor = require('./parseproxy.js');
 var myScrape = new Nightmare(
     {
         loadImages: false,
@@ -25,36 +27,41 @@ myScrape
     .useragent('Mozilla/5.0 (Windows; U; Windows NT 5.2) AppleWebKit/525.13 (KHTML, like Gecko) Chrome/0.2.149.27 Safari/525.13');
 //var baseUrl = 'http://182.92.167.82:5001';
 var baseUrl = 'http://127.0.0.1:5001';
-request(baseUrl + "/proxy/getproxysites", function (err, response, body) {
-    if (!err && response.statusCode == 200) {
-        var data = JSON.parse(body);
-        data.forEach(function(item, i) {
-            myScrape
-                .goto(item.Site)
-                .wait(1000)
-                .evaluate(function(item) {
-                return { item: item, html: document.documentElement.outerHTML };
-            }, function(data) {
 
-                var proxySource = {ProxySiteId: data.item.Id, Url: data.item.Site, Html: data.html, InDate: moment(new Date()).format("YYYY-MM-DD HH:mm:ss"), EditDate: moment(new Date()).format("YYYY-MM-DD HH:mm:ss")};
-                request.post({ url: baseUrl + "/proxy/saveProxySource", form: { ProxySource: proxySource } }, function(err, response, body) {
-                    if (!err) {
-                        debug(body);
-                    } else {
-                        debug(err);
-                    }
-                });
-
-            },item);
-        });
-        myScrape.run();
-    } else {
-            
-    }
-});
 
 module.exports.gatherProxy = function () {
+    request(baseUrl + "/proxy/getproxysites", function (err, response, body) {
+        if (!err && response.statusCode == 200) {
+            var data = JSON.parse(body);
+            data.forEach(function (item, i) {
+                myScrape
+                .goto(item.Site)
+                .wait(1000)
+                .evaluate(function (item) {
+                    return { item: item, html: document.documentElement.outerHTML };
+                }, function (data) {
+                    
+                    var proxySource = { ProxySiteId: data.item.Id, Url: data.item.Site, Html: data.html, InDate: moment(new Date()).format("YYYY-MM-DD HH:mm:ss"), EditDate: moment(new Date()).format("YYYY-MM-DD HH:mm:ss") };
+                    request.post({ url: baseUrl + "/proxy/saveProxySource", form: { ProxySource: proxySource } }, function (err, response, body) {
+                        if (!err) {
+                            debug(body);
+                            parseProxyExecutor.parseProxy();
+                        } else {
+                            debug(err);
+                        }
+                    });
 
+                }, item).wait(5000);
+            });
+            myScrape.run(function (err, nightmare) {
+                if (err) return console.log(err);
+                //parseProxyExecutor.parseProxy();
+            });
+        } else {
+            
+        }
+    });
+    /*
     request(baseUrl+"/proxy/getproxysites", function(err,response,body) {
         if (!err&& response.statusCode == 200) {
             debug(body);
@@ -62,7 +69,7 @@ module.exports.gatherProxy = function () {
             
         }
     });
-
+    */
     //var baseUrl = 'http://127.0.0.1:1337';
     /*
     myScrape

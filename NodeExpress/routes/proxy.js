@@ -24,6 +24,13 @@ module.exports = function(app) {
             });
 
         })
+        .get('/proxy/getProxySiteHtml', function(req, res) {
+            dao.getProxySiteHtml().then(function(data) {
+                res.json(data);
+            }, function(error) {
+                res.end(error);
+            });
+        })
         .post('/proxy/', function(req, res) {
             dao.addProxys(req.body.proxys, function(error) {
                 if (error) {

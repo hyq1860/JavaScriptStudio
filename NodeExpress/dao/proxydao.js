@@ -21,6 +21,25 @@ module.exports.getProxySites=function() {
     return deferred.promise;
 }
 
+
+//获取代理站点网页信息
+module.exports.getProxySiteHtml = function () {
+    var deferred = Q.defer();
+    // and PageInfo!=SpiderPageIndex
+    mysql.exec("select Id,Site,Url,Html from proxysite t1 left JOIN proxysource t2 on t1.Id=t2.ProxySiteId where t1.CanUse=1", [], function (err, data) {
+        if (err) {
+            debug(err);
+            logger.error(err);
+            deferred.reject(err);
+        } else {
+            deferred.resolve(data);
+        }
+    }, true);
+    return deferred.promise;
+}
+
+
+
 //存在即更新 不存在添加
 module.exports.saveProxySource = function (proxysource,callback) {
     mysql.exec("insert into proxysource(ProxySiteId,Url,Html,InDate,EditDate) values(?,?,?,?,?) ON DUPLICATE KEY UPDATE Html = VALUES(Html)", [proxysource.ProxySiteId, proxysource.Url, proxysource.Html, proxysource.InDate, proxysource.EditDate], function (err, result) {
