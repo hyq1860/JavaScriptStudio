@@ -69,6 +69,7 @@
     <Compile Include="pserver.js" />
     <Compile Include="qdemo.js" />
     <Compile Include="savehtml.js" />
+    <Compile Include="screenshot.js" />
     <Compile Include="sqliteuuid.js" />
     <Compile Include="test.js" />
     <Compile Include="testapp.js" />

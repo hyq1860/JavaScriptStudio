@@ -14,6 +14,9 @@ module.exports.checkProxy = function(type,ip,port,callback) {
     if (type == 'qq') {
         callback();
     }
+    if (type == '' || type == null || type == undefined) {
+        type = 'http';
+    }
     var proxy = '{0}://{1}:{2}'.format(type, ip, port);
     request('http://1111.ip138.com/ic.asp', { method: 'GET',encoding : null, 'proxy': proxy}, function (error, response, body) {
         if (!error && response.statusCode == 200) {

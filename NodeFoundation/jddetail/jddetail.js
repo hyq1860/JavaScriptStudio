@@ -1,8 +1,8 @@
 ﻿var request = require('request');
 var cheerio = require("cheerio");
 var underscore = require("underscore")._;
-
-request("http://182.92.167.82:5001/spider/getproduct", function(error, response,body) {
+var baseUrl = "http://182.92.167.82:5001/";
+request(baseUrl+"spider/getproduct", function(error, response,body) {
     var result = {
         error: null,
         Data: {}

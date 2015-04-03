@@ -7,6 +7,6 @@ schedule.scheduleJob('0 */1 * * * *', function () {
     proxy.gatherProxy();
 });
 schedule.scheduleJob('0 */1 * * * *', function () {
-    //validateProxy.validateProxyTask(url);
+    validateProxy.validateProxyTask(url);
 });
 
