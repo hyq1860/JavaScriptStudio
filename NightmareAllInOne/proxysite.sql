@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50542
 File Encoding         : 65001
 
-Date: 2015-03-30 18:27:15
+Date: 2015-04-05 09:57:53
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -29,5 +29,5 @@ CREATE TABLE `proxysite` (
 -- ----------------------------
 -- Records of proxysite
 -- ----------------------------
-INSERT INTO `proxysite` VALUES ('1', 'http://proxy.goubanjia.com', '1');
+INSERT INTO `proxysite` VALUES ('1', 'http://proxy.goubanjia.com', '0');
 INSERT INTO `proxysite` VALUES ('2', 'http://cn-proxy.com/', '1');

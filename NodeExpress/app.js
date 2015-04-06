@@ -39,7 +39,7 @@ var exphbs = require('express-handlebars');
 var hbs = exphbs.create({
     layoutsDir: "views-hbs/layouts/",
     partialsDir: ['views-hbs/partials/'],
-    defaultLayout:'main',
+    defaultLayout:'main-jqm',
     extname: '.html',
     helpers: {
         json:function (context){ return JSON.stringify(context);}
@@ -59,7 +59,17 @@ app.set('views', __dirname + '\\views-hbs');
 //app.use("/static", express.static(path.join(__dirname, 'public')));  
 // 静态文件目录
 var staticDir = path.join(__dirname, 'public');
-app.use('/public', express.static(staticDir));
+app.use('/public', express.static(staticDir, { maxAge: 31557600000 }));
+
+
+//http://stackoverflow.com/questions/9092253/how-to-cache-with-manifest-node-js-site
+//http://alistapart.com/article/application-cache-is-a-douchebag 
+//chrome://appcache-internals/ 可以在chrome中查看缓存的东西
+app.get("/manifest.appcache", function(req, res){
+  res.header("Content-Type", "text/cache-manifest");
+  res.end("CACHE MANIFEST");
+});
+
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
@@ -114,6 +124,8 @@ require('./routes/about')(app);
 require('./routes/index')(app);
 //hbs路由示例
 require('./routes/hbs')(app);
+//后台管理
+require('./routes/admin')(app);
 
 //测试中间件
 //var uselessMiddleware = require('./middlewares/uselessMiddleware');
@@ -136,7 +148,7 @@ app.get('/item/:id', function (req, res) {
 });
 
 app.get('/list/', function (req, res) {
-    res.render('list', { title: "最近文章", entries: blogEngine.getBlogEntries() });
+    res.render('list', { layout: false,title: "最近文章", entries: blogEngine.getBlogEntries() });
 });
 
 app.get('/listb/', function (req, res) {

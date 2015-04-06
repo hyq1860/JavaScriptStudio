@@ -10,7 +10,7 @@ module.exports = function (app) {
             //向页面模板传递参数，可以传递字符串和对象，注意格式
             //var products = JSON.stringify(data);
             //res.render('index', { datas: data });
-            res.render('hbs', { datas: data });
+            res.render('hbs', { layout: false,datas: data });
         });
     });
 };

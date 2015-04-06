@@ -1,0 +1,48 @@
+﻿<div data-role="page" data-title="商品" id="productContainer">
+
+    <div data-role="header" data-position="fixed">
+        <h1>商品管理</h1>
+        <a href="#" data-bind="click:prev" class="ui-btn ui-btn-inline ui-icon-arrow-l ui-btn-icon-left">上一页</a>
+        <a href="#" data-bind="click:next" class="ui-btn ui-btn-inline ui-icon-arrow-r ui-btn-icon-right">下一页</a>
+    </div>
+
+        <ul data-role="listview">
+            <!-- ko foreach: products -->
+            <li class="ui-btn ui-btn-icon-right ui-icon-carat-r ui-li-has-thumb ui-first-child">
+                <a class="ui-btn ui-btn-icon-right ui-icon-carat-r" href="#"><img data-bind="attr:{src:ListImage}"><!--ko text:Name--><!--/ko--></a>
+            </li>
+            <!--/ko-->
+        </ul>
+
+    <script>
+        var data={{{json datas}}};
+        function ProductList() {
+            var self = this;
+            self.products = ko.observableArray();
+            self.pageIndex = ko.observable(1);
+            //上一页
+            self.prev = function() {
+                
+                $.get("/admin/productpaging/"+self.pageIndex(),function(datas) {
+                    self.products(datas);
+                });
+            };
+            //下一页
+            self.next = function() {
+                $.get("/admin/productpaging/"+self.pageIndex()+1,function(datas) {
+                    self.products(datas);
+                    self.pageIndex(self.pageIndex()+1);
+                });
+            };
+        }
+        var model = new ProductList();
+        $(function () {
+
+            model.products(data);
+            ko.applyBindings(model,document.getElementById('productContainer'));
+            //$.get("/product/getproduct", function (data) {
+
+            //});
+        });
+    </script>
+</div>

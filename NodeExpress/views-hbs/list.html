@@ -1,8 +1,19 @@
-﻿<h1>文章列表</h1>
+﻿
+<div data-role="page" data-title="商品">
+    <script>
+        
+    </script>
+    <!--{{#each entries}}
+    <p>
+        <a href="/item/{{id}}">{{title}}</a><br />
+        Published: {{published}}
+    </p>
+    {{/each}}-->
 
-{{#each entries}}
-<p>
-    <a href="/item/{{id}}">{{title}}</a><br />
-    Published: {{published}}
-</p>
-{{/each}}
+    <ul data-role="listview">
+        <!-- ko foreach: products -->
+        <li><a href="#"><img data-bind="attr:{src:ListImage}"><!--ko text:Name--><!--/ko--></a></li>
+        <!--/ko-->
+    </ul>
+
+</div>

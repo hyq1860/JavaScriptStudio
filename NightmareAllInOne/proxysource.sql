@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50542
 File Encoding         : 65001
 
-Date: 2015-03-30 18:27:21
+Date: 2015-04-05 09:58:13
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -31,3 +31,4 @@ CREATE TABLE `proxysource` (
 -- ----------------------------
 -- Records of proxysource
 -- ----------------------------
+INSERT INTO `proxysource` VALUES ('2', 'http://cn-proxy.com/', '<html><head></head><body></body></html>', '2015-04-01 22:49:47', '2015-04-01 22:49:47');

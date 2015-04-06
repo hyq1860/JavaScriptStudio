@@ -1,28 +1,29 @@
-﻿
-
+﻿<div data-role="page" data-title="抓取">
     {{#each datas}}
     <p>
         <a href="/item/{{Id}}">{{Site}}</a>
         Published: {{CanUse}}
     </p>
-{{/each}}
-<ul>
-    <!-- ko foreach: products -->
-    <li><a><!--ko text:Site--><!--/ko--></a></li>
-    <!--/ko-->
-</ul>
+    {{/each}}
+    <ul>
+        <!-- ko foreach: products -->
+        <li><a><!--ko text:Site--><!--/ko--></a></li>
+        <!--/ko-->
+    </ul>
+</div>
+
 <script>
-    var data={{{json datas}}};
-    var viewModel=function() {
-        this.products = ko.observableArray();
-    }
-    var model = new viewModel();
-    $(function () {
+    //var data={{{json datas}}};
+    //var viewModel=function() {
+    //    this.products = ko.observableArray();
+    //}
+    //var model = new viewModel();
+    //$(function () {
 
-        model.products(data);
-        ko.applyBindings(model);
-        //$.get("/product/getproduct", function (data) {
+    //    model.products(data);
+    //    ko.applyBindings(model);
+    //    //$.get("/product/getproduct", function (data) {
 
-        //});
-    });
+    //    //});
+    //});
 </script>

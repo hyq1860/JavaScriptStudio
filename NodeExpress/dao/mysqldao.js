@@ -21,10 +21,11 @@ module.exports.getCategory = function () {
 }
 
 //获取要新采集的商品
-module.exports.getProducts = function () {
+module.exports.getProducts = function (pageIndex,pageSize) {
     var deferred = Q.defer();
     // and PageInfo!=SpiderPageIndex
-    mysql.exec("select * from product order by indate desc limit 10", [], function (err, data) {
+    var sql = "select * from product order by indate desc limit {0},{1}".replace("{0}",(pageIndex-1)*pageSize).replace("{1}",pageSize);
+    mysql.exec(sql, [], function (err, data) {
         if (err) {
             debug(err);
             logger.error(err);
