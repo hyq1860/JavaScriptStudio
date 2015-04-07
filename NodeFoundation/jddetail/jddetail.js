@@ -2,7 +2,7 @@
 var cheerio = require("cheerio");
 var underscore = require("underscore")._;
 var baseUrl = "http://182.92.167.82:5001/";
-request(baseUrl+"spider/getproduct", function(error, response,body) {
+request(baseUrl+"spider/getfocusproductsbyuserid/1", function(error, response,body) {
     var result = {
         error: null,
         Data: {}

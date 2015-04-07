@@ -16,7 +16,7 @@ var cheerio = require('cheerio');
 var moment = require('moment');
 var request = require('request');
 var debug = require('debug')('jdlogin');
-var db = require('./db');
+//var db = require('./db');
 var webdriver = new Nightmare(
     {
         loadImages: false,
@@ -26,15 +26,15 @@ var webdriver = new Nightmare(
         cookiesFile:'D:\\github\\JavaScriptStudio\\NightmareAllInOne\\jdcookie.txt'
     }
 );
-var baseUrl = 'http://127.0.0.1:5001';
-//var baseUrl = 'http://182.92.167.82:5001';
+//var baseUrl = 'http://127.0.0.1:5001';
+var baseUrl = 'http://182.92.167.82:5001';
 webdriver
     .on('timeout', console.log)
     .on('resourceRequestStarted', function(requestData, networkRequest) {
         //console.log('requested: ' + JSON.stringify(requestData, undefined, 4));
         var url = requestData.url;
         if (url.indexOf('.css') > 0) {
-            console.log("css abort");
+            //console.log("css abort");
             return;
         }
     })
@@ -76,7 +76,7 @@ urls.forEach(function(url, index) {
             });
             request.post({ url: baseUrl + '/spider/focusproduct', form: { focusproducts: focusproducts } }, function(err, httpResponse, body) {
                 if (err) {
-                    debug("request spider:" + err);
+                    debug("request jdlogin:" + err);
                 } else {
                     debug(body);
                 }

@@ -11,7 +11,7 @@ module.exports = function(app) {
             });
         }).
         get('/spider/getproduct', function(req, res) {
-            dao.getProducts().then(function(data) {
+            dao.getProducts(1,10).then(function(data) {
                 res.json(data);
             });
         }).
@@ -38,6 +38,16 @@ module.exports = function(app) {
                     msg: error
                 });
             });
+    })
+    .get('/spider/getfocusproductsbyuserid/:userId', function (req, res) {
+        focusProductDao.getFocusProductsByUserId(req.params.userId).then(function (data) {
+            res.json(data);
+        }, function (error) {
+            res.json({
+                success: false,
+                msg: error
+            });
         });
+    });
 };
 
