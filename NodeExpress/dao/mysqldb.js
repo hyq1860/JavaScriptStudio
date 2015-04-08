@@ -1,8 +1,8 @@
 ﻿var mysql = require('mysql');
 var debug = require('debug')('mysaldb');
 var username = 'root';
-var password = '5mckMf09MD4n';//'123qwe';//5mckMf09MD4n
-//var password = '123qwe';//'123qwe';//5mckMf09MD4n
+//var password = '5mckMf09MD4n';//'123qwe';//5mckMf09MD4n
+var password = '123qwe';//'123qwe';//5mckMf09MD4n
 var db_host = '127.0.0.1';
 var db_port = 3306;
 var db_name = 'huigou';
@@ -65,7 +65,7 @@ function _exec(sqls, values,after,usePool) {
                         pool.releaseConnection(conn);
                         //conn.release();
                         //事件驱动回调  
-                        after(null, r);
+                        after(err1, r);
                     });
                 }
                 

@@ -1,8 +1,11 @@
 ﻿var request = require('request');
 var cheerio = require("cheerio");
+var moment = require('moment');
+var debug = require('debug')('jddetail');
 var underscore = require("underscore")._;
-var baseUrl = "http://182.92.167.82:5001/";
-request(baseUrl+"spider/getfocusproductsbyuserid/1", function(error, response,body) {
+//var baseUrl = "http://182.92.167.82:5001/";
+var baseUrl = "http://127.0.0.1:5001";
+request(baseUrl+"/spider/getfocusproductsbyuserid/1", function(error, response,body) {
     var result = {
         error: null,
         Data: {}
@@ -25,7 +28,25 @@ request(baseUrl+"spider/getfocusproductsbyuserid/1", function(error, response,bo
     });
     request(url, function(error, response, body) {
         var data = JSON.parse(body);
-        console.log(data);
+        //console.log(data);
+        var pricehistories = [];
+        underscore.each(jsonData, function(item,index) {
+            underscore.each(data, function (tempItem, tempIndex) {
+                if ("J_" + item.Sku == tempItem.id) {
+                    pricehistories.push({LogicId: item.LogicId,Sku: item.Sku,Price: tempItem.p,InDate: moment(new Date()).format("YYYY-MM-DD HH:mm:ss")});
+                }
+            });
+        });
+        //console.log(pricehistories);
+        
+        request.post({ url: baseUrl + "/spider/addpricehistory", form: { pricehistories: pricehistories } }, function (err, httpResponse, body) {
+            if (err) {
+                debug("request spider:" + err);
+            } else {
+                debug(body);
+            }
+        });
+        
     });
     console.log(url);
     //http://p.3.cn/prices/mgets?skuids=J_1028448,J_1278686,J_1278664,J_1134530,J_1183079,J_998692,J_816753,J_1134535,J_1344955256,J_1088101993,J_1183905131,J_1112961977,J_1217534295,J_1060249604,J_1089931791,J_1078998177,J_1107529743,J_1076270968,J_1176640790,J_1426161568,J_1376517526,J_1457138750,J_1090590901,J_1409635524,J_1038469616,J_1176666585,J_1335976198,J_1434288351,J_1183645917,J_1038558157&area=1_72_2799_0&type=1

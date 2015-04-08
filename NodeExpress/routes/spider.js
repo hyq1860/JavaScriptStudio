@@ -39,6 +39,16 @@ module.exports = function(app) {
                 });
             });
     })
+    .post('/spider/addpricehistory', function (req, res) {
+        focusProductDao.addPriceHistory(req.body.pricehistories).then(function () {
+            res.json({ success: true });
+        }, function (error) {
+            res.json({
+                success: false,
+                msg: error
+            });
+        });
+    })
     .get('/spider/getfocusproductsbyuserid/:userId', function (req, res) {
         focusProductDao.getFocusProductsByUserId(req.params.userId).then(function (data) {
             res.json(data);

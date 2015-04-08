@@ -59,6 +59,7 @@
   <ItemGroup>
     <Content Include="1.html" />
     <Content Include="director\director_01.html" />
+    <Content Include="echarts\start.html" />
     <Content Include="Web.config" />
     <Content Include="全面解析Module模式\全面解析Module模式_基本用法.html" />
     <Content Include="揭秘命名函数表达式.html" />
@@ -81,6 +82,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

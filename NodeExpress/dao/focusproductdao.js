@@ -31,4 +31,28 @@ module.exports.getFocusProductsByUserId = function (userId) {
     return deferred.promise;
 }
 
-//
+//更新商品价格
+module.exports.addPriceHistory=function(pricehistories) {
+    var deferred = Q.defer();
+    var sql = "";
+    if (pricehistories == null || pricehistories == undefined || pricehistories.length==0) {
+        deferred.reject("参数pricehistories有误");
+    } else {
+        for (var i = 0; i < pricehistories.length; i++) {
+   
+                sql += "INSERT INTO pricehistory(logicid, sku, price) SELECT '" + pricehistories[i].LogicId + "', '" + pricehistories[i].Sku + "', " + pricehistories[i].Price + " FROM DUAL WHERE NOT EXISTS(SELECT logicid FROM pricehistory WHERE logicid = '" + pricehistories[i].LogicId + "' and Price=" + pricehistories[i].Price + ");\n";
+            
+        }
+
+        mysql.exec(sql, [], function (error, result) {
+            if (error) {
+                deferred.reject(error);
+            } else {
+                deferred.resolve(result);
+            }
+        }, true);
+    }
+
+    
+    return deferred.promise;
+}
