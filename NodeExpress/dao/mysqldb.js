@@ -11,7 +11,8 @@ var option = {
     port: db_port,
     user: username,
     password: password,
-    database: db_name
+    database: db_name,
+    multipleStatements: true//允许多行执行
 };
 
 /*连接池*/
@@ -21,7 +22,8 @@ var pool = mysql.createPool({
     user: username,  
     password: password,  
     database: db_name,  
-    port: db_port
+    port: db_port,
+    multipleStatements: true//允许多行执行
 }); 
 /*连接池*/
 

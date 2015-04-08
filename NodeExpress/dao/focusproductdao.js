@@ -32,19 +32,17 @@ module.exports.getFocusProductsByUserId = function (userId) {
 }
 
 //更新商品价格
-module.exports.addPriceHistory=function(pricehistories) {
+module.exports.addPriceHistory = function(pricehistories) {
     var deferred = Q.defer();
     var sql = "";
-    if (pricehistories == null || pricehistories == undefined || pricehistories.length==0) {
+    if (pricehistories == null || pricehistories == undefined || pricehistories.length == 0) {
         deferred.reject("参数pricehistories有误");
     } else {
         for (var i = 0; i < pricehistories.length; i++) {
-   
-                sql += "INSERT INTO pricehistory(logicid, sku, price) SELECT '" + pricehistories[i].LogicId + "', '" + pricehistories[i].Sku + "', " + pricehistories[i].Price + " FROM DUAL WHERE NOT EXISTS(SELECT logicid FROM pricehistory WHERE logicid = '" + pricehistories[i].LogicId + "' and Price=" + pricehistories[i].Price + ");\n";
-            
+            sql += "INSERT INTO pricehistory(logicid, sku, price) SELECT '" + pricehistories[i].LogicId + "', '" + pricehistories[i].Sku + "', " + pricehistories[i].Price + " FROM DUAL WHERE NOT EXISTS(SELECT logicid FROM pricehistory WHERE logicid = '" + pricehistories[i].LogicId + "' and Price=" + pricehistories[i].Price + ");";
         }
 
-        mysql.exec(sql, [], function (error, result) {
+        mysql.exec(sql, [], function(error, result) {
             if (error) {
                 deferred.reject(error);
             } else {
@@ -53,6 +51,6 @@ module.exports.addPriceHistory=function(pricehistories) {
         }, true);
     }
 
-    
+
     return deferred.promise;
-}
+};
