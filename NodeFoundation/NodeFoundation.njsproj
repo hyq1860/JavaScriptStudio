@@ -12,7 +12,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>4663690e-aa7e-46fb-a910-3df883da7db6</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>jddetail\jddetail.js</StartupFile>
+    <StartupFile>proxy\proxytask.js</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
@@ -66,6 +66,7 @@
     <Compile Include="momentdemo.js" />
     <Compile Include="mongodb\mongodb.js" />
     <Compile Include="mongodb\mongoose.js" />
+    <Compile Include="node-schedule\s.js" />
     <Compile Include="node-schedule\schedule.js" />
     <Compile Include="nodelater.js" />
     <Compile Include="nodeschedule.js" />

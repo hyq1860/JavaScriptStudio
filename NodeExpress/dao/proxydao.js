@@ -53,15 +53,22 @@ module.exports.saveProxySource = function (proxysource,callback) {
 
 //代理
 module.exports.addProxys = function (proxys, callback) {
-    mysql.exec("insert INTO proxy(IP,Port,Anonymous,Type,Speed,Flag,InDate,EditDate) VALUES ? ON DUPLICATE KEY UPDATE EditDate = VALUES(InDate)", [proxys], function (e2, r) {
-        if (e2) {
-            logger.error(JSON.stringify(proxys));
-            debug(e2);
-            callback(e2);
-        } else {
-            callback();
-        }
-    });
+    if (proxys === undefined) {
+        var error = 'proxys undefined';
+        debug(error);
+        callback(error);
+    } else {
+        mysql.exec("insert INTO proxy(IP,Port,Anonymous,Type,Speed,Flag,InDate,EditDate) VALUES ? ON DUPLICATE KEY UPDATE EditDate = VALUES(InDate)", [proxys], function (e2, r) {
+            if (e2) {
+                logger.error(JSON.stringify(proxys));
+                debug(e2);
+                callback(e2);
+            } else {
+                callback();
+            }
+        });
+    }
+    
 }
 
 //获取要采集的分类
@@ -83,7 +90,7 @@ module.exports.getProxys = function () {
 //修改失效的代理
 module.exports.updateProxy = function (params) {
     var deferred = Q.defer();
-    mysql.exec("update proxy set flag=? where ip=? and port=? and type=?", [params.flag, params.ip, params.port, params.type], function (err, data) {
+    mysql.exec("update proxy set flag=? where ip=? and port=?", [params.flag, params.ip, params.port, params.type], function (err, data) {
         if (err) {
             debug(err);
             logger.error(err);

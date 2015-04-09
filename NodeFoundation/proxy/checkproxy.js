@@ -7,8 +7,8 @@ var cheerio = require('cheerio');
 var debug = require('debug')('checkproxy');
 var common = require('../common.js');
 //console.log("{0}test".format(1));
-var baseUrl = "http://182.92.167.82:5001";
-//var baseUrl = "http://127.0.0.1:1337";
+//var baseUrl = "http://182.92.167.82:5001";
+var baseUrl = "http://127.0.0.1:5001";
 module.exports.checkProxy = function(type,ip,port,callback) {
     //var jschardet = require("jschardet");
     if (type == 'qq') {
@@ -18,7 +18,7 @@ module.exports.checkProxy = function(type,ip,port,callback) {
         type = 'http';
     }
     var proxy = '{0}://{1}:{2}'.format(type, ip, port);
-    request('http://1111.ip138.com/ic.asp', { method: 'GET',encoding : null, 'proxy': proxy}, function (error, response, body) {
+    request('http://1111.ip138.com/ic.asp', { method: 'GET',encoding : null, pool: { maxSockets: 10 }, proxy: proxy}, function (error, response, body) {
         if (!error && response.statusCode == 200) {
             var html = iconv.decode(body, 'gb2312');//将GBK编码的字符转换成utf8的
             var $ = cheerio.load(html);
@@ -29,7 +29,9 @@ module.exports.checkProxy = function(type,ip,port,callback) {
             //console.log(ip);
             //return ip;
             debug("proxy:{0} is ok".format(proxy));
-            callback();
+            setTimeout(function() {
+                callback();
+            }, 1500);
             //console.log(ip);
         } else {
             //if (error) {
@@ -38,20 +40,24 @@ module.exports.checkProxy = function(type,ip,port,callback) {
             //} else {
             //    callback(response.statusCode);
             //}
-            request.post({ url: baseUrl + "/proxy/update", form: { params: {flag:0, ip: ip, port:port, type: type} } }, function (err, httpResponse, body) {
+            request.post({ url: baseUrl + "/proxy/update", pool: { maxSockets: 10 }, form: { params: {flag:0, ip: ip, port:port, type: type} } }, function (err, httpResponse, body) {
                 if (err) {
-                    debug("request spider:" + err);
+                    debug("request /proxy/update:" + err);
                 } else {
                     debug(body);
                 }
             });
-            callback();
+            setTimeout(function () {
+                callback();
+            }, 1500);
         }
     }).on('error', function (err) {
         debug("checkProxy request error:" + err);
         if (err.message.code === 'ETIMEDOUT') {
             debug("err.message.code:ETIMEDOUT");
-            callback();
+            setTimeout(function () {
+                callback();
+            }, 1500);
         }
     });
     //callback();
