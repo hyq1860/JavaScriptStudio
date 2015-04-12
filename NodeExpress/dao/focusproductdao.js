@@ -21,7 +21,7 @@ module.exports.addFocusProducts = function (focusproducts) {
 //获取用户关注商品
 module.exports.getFocusProductsByUserId = function (userId) {
     var deferred = Q.defer();
-    mysql.exec("select * from focusproduct fp INNER JOIN product p on fp.Sku=p.Sku where fp.UserId=?", [userId], function (error, result) {
+    mysql.exec("select p.Sku,p.Name,p.Source,p.ListImage from focusproduct fp INNER JOIN product p on fp.Sku=p.Sku where fp.UserId=?", [userId], function (error, result) {
         if (error) {
             deferred.reject(error);
         } else {

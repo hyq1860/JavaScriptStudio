@@ -12,7 +12,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>4663690e-aa7e-46fb-a910-3df883da7db6</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>proxy\proxytask.js</StartupFile>
+    <StartupFile>solr_client\quickstart.js</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
@@ -96,6 +96,7 @@
     <Compile Include="setImmediate与process.nextTick\settimeout.js" />
     <Compile Include="setTimeoutdemo.js" />
     <Compile Include="singlethread.js" />
+    <Compile Include="solr_client\quickstart.js" />
     <Compile Include="spawndemo.js" />
     <Compile Include="test.js" />
     <Compile Include="uuiddemo.js" />
@@ -123,6 +124,7 @@
     <Folder Include="jddetail\" />
     <Folder Include="kue\" />
     <Folder Include="forever-monitor\" />
+    <Folder Include="solr_client\" />
     <Folder Include="pm2\" />
     <Folder Include="redis\" />
     <Folder Include="proxy\" />
