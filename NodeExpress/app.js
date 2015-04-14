@@ -17,6 +17,13 @@ var bodyParser = require('body-parser');
 var path = require('path');
 var request = require('request');
 
+//socket-io 开始
+//app.get('/chat/', function (req, res) {
+//    res.render('chat', { layout: false });
+//});
+//socket-io 结束
+
+
 //template engine
 /*
 var ejs = require('ejs');

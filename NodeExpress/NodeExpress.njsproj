@@ -540,6 +540,7 @@
     <Content Include="views-ejs\error.html" />
     <Content Include="views-ejs\index - Copy.html" />
     <Content Include="views-hbs\about.html" />
+    <Content Include="views-hbs\chat.html" />
     <Content Include="views-hbs\index - Copy.html" />
     <Content Include="views-hbs\product.html" />
     <Content Include="views-hbs\error.html" />
