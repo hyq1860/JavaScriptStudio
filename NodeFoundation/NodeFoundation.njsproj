@@ -12,7 +12,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>4663690e-aa7e-46fb-a910-3df883da7db6</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>solr_client\quickstart.js</StartupFile>
+    <StartupFile>request\yahoo.js</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
@@ -84,6 +84,7 @@
     <Compile Include="q\mysqldb.js" />
     <Compile Include="q\qmysql.js" />
     <Compile Include="redis\redisdemo.js" />
+    <Compile Include="request\liner.js" />
     <Compile Include="request\loop.js" />
     <Compile Include="request\r03.js" />
     <Compile Include="request\request01.js" />

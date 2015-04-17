@@ -133,6 +133,8 @@ require('./routes/index')(app);
 require('./routes/hbs')(app);
 //后台管理
 require('./routes/admin')(app);
+//股票
+require('./routes/stock')(app);
 
 //测试中间件
 //var uselessMiddleware = require('./middlewares/uselessMiddleware');

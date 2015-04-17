@@ -38,6 +38,7 @@
     <Compile Include="dao\mysqlhelper.js" />
     <Compile Include="common\log4js.js" />
     <Compile Include="dao\proxydao.js" />
+    <Compile Include="dao\stockdao.js" />
     <Compile Include="middlewares\uselessMiddleware.js" />
     <Compile Include="public\Flat-UI\dist\js\flat-ui.js" />
     <Compile Include="public\Flat-UI\dist\js\flat-ui.min.js" />
@@ -61,6 +62,7 @@
     <Compile Include="routes\proxy.js" />
     <Compile Include="routes\spiderold.js" />
     <Compile Include="routes\spider.js" />
+    <Compile Include="routes\stock.js" />
     <Content Include="Flat-UI-master.zip" />
     <Content Include="logs\log.txt" />
     <Content Include="manifest.appcache" />
