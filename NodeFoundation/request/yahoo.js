@@ -8,7 +8,7 @@ var iconv = require('iconv-lite');
 var cheerio = require('cheerio');
 
 //Date,Open,High,Low,Close,Volume,Adj Close
-
+//上海 ss  深证sz
 
 request.get({
     url: "http://table.finance.yahoo.com/table.csv?s=000100.sz",

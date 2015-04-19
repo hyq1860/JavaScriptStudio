@@ -561,6 +561,7 @@
     <Content Include="views-ejs\share\header.html" />
     <Content Include="views-hbs\partials\page\t1.html" />
     <Content Include="views-hbs\partials\t2.html" />
+    <Content Include="views-hbs\stock.html" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="middlewares\" />

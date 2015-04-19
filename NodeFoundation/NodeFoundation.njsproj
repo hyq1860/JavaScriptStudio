@@ -12,7 +12,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>4663690e-aa7e-46fb-a910-3df883da7db6</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>request\yahoo.js</StartupFile>
+    <StartupFile>request\sz.js</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
@@ -90,6 +90,8 @@
     <Compile Include="request\request01.js" />
     <Compile Include="request\request02.js" />
     <Compile Include="request\RequestFile.js" />
+    <Compile Include="request\ss.js" />
+    <Compile Include="request\sz.js" />
     <Compile Include="request\yahoo.js" />
     <Compile Include="selfrun.js" />
     <Compile Include="setImmediate与process.nextTick\nexttick.js" />
@@ -112,6 +114,7 @@
     <Content Include="json生成类\prettify.css" />
     <Content Include="package.json" />
     <Content Include="README.md" />
+    <Content Include="request\A.xls" />
     <Content Include="vsmd.md" />
   </ItemGroup>
   <ItemGroup>
