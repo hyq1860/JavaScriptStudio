@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <ol id="list"></ol>
+    编号唯一;<input id="Text1" type="text" value="1546" />
+结束时间:<input id="Text3" type="text" value="2012-07-28 23:58:00"/>
+<div id="div_1546"></div>
+    <input id="Button1" type="button" value="设定/重新设定(当编号相同时)" onclick="countdown.add($tab('Text1').value,$tab('Text3').value,'div_1546')" />
+    <script type="text/javascript">
+
+    $tab = function (x) {
+        return document.getElementById(x);
+    }
+
+    countdown = {
+
+        init: function () {
+            var $ = this;
+            $.list = [];
+            $.timer = setInterval(function () { $.update(); }, 1000);
+        },
+
+        add: function (id, end,container) {
+            for (var i = 0; i < this.list.length; i++) {
+                var $ = this.list[i];
+                if ($.id == id) {
+                    $.end = end;
+                    $.container = container;
+                    return;
+                };
+            }
+            this.list.push({ 'id': id, 'end': end, "container": container });
+        },
+
+        update: function () {
+            for (var i = 0; i < this.list.length; i++) {
+                var $ = this.list[i];
+                var time = parseInt((new Date($.end.replace(/-/g, '/')) - new Date()) / 1000) || '无效时间';
+                var timeHtml = '<li>编号<b style="color:#06C">:' + $.id + '</b> , 剩余时间:<b style="color:red">' + parseInt(time / (3600 * 24)) + '天' + parseInt(time % (3600 * 24) / 3600) + '時' + parseInt(time % (3600 * 24) % 3600 / 60) + '分' + parseInt(time % (3600 * 24) % 3600 % 60) + '秒' + '</b></li>';
+                document.getElementById($.container).innerHTML = timeHtml;
+                //html.push('<li>编号<b style="color:#06C">:' + $.id + '</b> , 剩余时间:<b style="color:red">' + parseInt(time / (3600 * 24)) + '天' + parseInt(time % (3600 * 24) / 3600) + '時' + parseInt(time % (3600 * 24) % 3600 / 60) + '分' + parseInt(time % (3600 * 24) % 3600 % 60) + '秒' + '</b></li>');
+            }
+            //if (html.length) this.win.innerHTML = html.join('');
+        }
+    };
+
+    countdown.init();
+
+    </script>
+</body>
+
+</html>

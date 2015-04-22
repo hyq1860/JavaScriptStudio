@@ -63,7 +63,7 @@
     <Compile Include="log4js.js" />
     <Compile Include="logdemo.js" />
     <Compile Include="measure.js" />
-    <Compile Include="momentdemo.js" />
+    <Compile Include="moment\momentdemo.js" />
     <Compile Include="mongodb\mongodb.js" />
     <Compile Include="mongodb\mongoose.js" />
     <Compile Include="node-schedule\s.js" />
@@ -128,6 +128,7 @@
     <Folder Include="jddetail\" />
     <Folder Include="kue\" />
     <Folder Include="forever-monitor\" />
+    <Folder Include="moment\" />
     <Folder Include="solr_client\" />
     <Folder Include="pm2\" />
     <Folder Include="redis\" />

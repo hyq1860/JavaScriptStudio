@@ -61,6 +61,7 @@
     <Content Include="director\director_01.html" />
     <Content Include="echarts\start.html" />
     <Content Include="Web.config" />
+    <Content Include="倒计时.html" />
     <Content Include="全面解析Module模式\全面解析Module模式_基本用法.html" />
     <Content Include="揭秘命名函数表达式.html" />
     <Content Include="揭秘命名函数表达式\调试器中的函数名_1.html" />
