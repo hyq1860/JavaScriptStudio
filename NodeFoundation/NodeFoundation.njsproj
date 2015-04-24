@@ -12,7 +12,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>4663690e-aa7e-46fb-a910-3df883da7db6</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>request\sz.js</StartupFile>
+    <StartupFile>proxy\votetask.js</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
@@ -81,6 +81,8 @@
     <Compile Include="proxy\parseproxy.js" />
     <Compile Include="proxy\proxytask.js" />
     <Compile Include="proxy\validateproxy.js" />
+    <Compile Include="proxy\vote.js" />
+    <Compile Include="proxy\votetask.js" />
     <Compile Include="q\mysqldb.js" />
     <Compile Include="q\qmysql.js" />
     <Compile Include="redis\redisdemo.js" />

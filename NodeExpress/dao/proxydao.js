@@ -75,7 +75,7 @@ module.exports.addProxys = function (proxys, callback) {
 module.exports.getProxys = function () {
     var deferred = Q.defer();
     // and PageInfo!=SpiderPageIndex
-    mysql.exec("SELECT * FROM proxy where flag=1 order by indate asc", [], function (err, data) {
+    mysql.exec("SELECT * FROM proxy where flag=1 ORDER BY rand() LIMIT 50", [], function (err, data) {
         if (err) {
             debug(err);
             logger.error(err);
