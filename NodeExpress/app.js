@@ -80,9 +80,9 @@ app.get("/manifest.appcache", function(req, res){
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
-
+app.use(bodyParser({ limit: '5mb' }));
 //for parsing application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true  }));
 
 //for parsing application/json
 app.use(bodyParser.json());

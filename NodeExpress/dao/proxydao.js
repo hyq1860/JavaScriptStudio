@@ -26,7 +26,7 @@ module.exports.getProxySites=function() {
 module.exports.getProxySiteHtml = function () {
     var deferred = Q.defer();
     // and PageInfo!=SpiderPageIndex
-    mysql.exec("select Id,Site,Url,Html from proxysite t1 left JOIN proxysource t2 on t1.Id=t2.ProxySiteId where t1.CanUse=1", [], function (err, data) {
+    mysql.exec("select t1.Id,t1.Site,Url,Html from proxysite t1 left JOIN proxysource t2 on t1.Id=t2.ProxySiteId where t1.CanUse=1", [], function (err, data) {
         if (err) {
             debug(err);
             logger.error(err);
@@ -42,7 +42,7 @@ module.exports.getProxySiteHtml = function () {
 
 //存在即更新 不存在添加
 module.exports.saveProxySource = function (proxysource,callback) {
-    mysql.exec("insert into proxysource(ProxySiteId,Url,Html,InDate,EditDate) values(?,?,?,?,?) ON DUPLICATE KEY UPDATE Html = VALUES(Html)", [proxysource.ProxySiteId, proxysource.Url, proxysource.Html, proxysource.InDate, proxysource.EditDate], function (err, result) {
+    mysql.exec("insert into proxysource(Id,ProxySiteId,Url,Html,InDate,EditDate) values(?,?,?,?,?,?) ON DUPLICATE KEY UPDATE Html = VALUES(Html)", [proxysource.Id,proxysource.ProxySiteId, proxysource.Url, proxysource.Html, proxysource.InDate, proxysource.EditDate], function (err, result) {
         if (err) {
             callback(err);
         } else {
@@ -75,7 +75,7 @@ module.exports.addProxys = function (proxys, callback) {
 module.exports.getProxys = function () {
     var deferred = Q.defer();
     // and PageInfo!=SpiderPageIndex
-    mysql.exec("SELECT * FROM proxy where flag=1 ORDER BY rand() LIMIT 50", [], function (err, data) {
+    mysql.exec("SELECT * FROM proxy where flag=1 ORDER BY editdate desc", [], function (err, data) {
         if (err) {
             debug(err);
             logger.error(err);

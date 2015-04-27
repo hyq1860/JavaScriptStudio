@@ -9,7 +9,7 @@ var Nightmare = require('nightmare');
 var moment = require('moment');
 var debug = require('debug')('proxy');
 
-//var baseUrl = "http://127.0.0.1:5001/";
+//var baseUrl = "http://182.92.167.82:5001";
 var baseUrl = "http://127.0.0.1:5001";
 module.exports.parseProxy=function() {
     request(baseUrl + '/proxy/getProxySiteHtml', { encoding : null }, function (error, response, body) {

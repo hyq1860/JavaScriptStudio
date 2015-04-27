@@ -34,6 +34,7 @@ module.exports.gatherProxy = function () {
         if (!err && response.statusCode == 200) {
             var data = JSON.parse(body);
             data.forEach(function (item, i) {
+
                 myScrape
                 .goto(item.Site)
                 .wait(1000)
@@ -41,7 +42,7 @@ module.exports.gatherProxy = function () {
                     return { item: item, html: document.documentElement.outerHTML };
                 }, function (data) {
                     
-                    var proxySource = { ProxySiteId: data.item.Id, Url: data.item.Site, Html: data.html, InDate: moment(new Date()).format("YYYY-MM-DD HH:mm:ss"), EditDate: moment(new Date()).format("YYYY-MM-DD HH:mm:ss") };
+                    var proxySource = {Id: data.item.PrimaryId, ProxySiteId: data.item.Id, Url: data.item.Site, Html: data.html, InDate: moment(new Date()).format("YYYY-MM-DD HH:mm:ss"), EditDate: moment(new Date()).format("YYYY-MM-DD HH:mm:ss") };
                     request.post({ url: baseUrl + "/proxy/saveProxySource", form: { ProxySource: proxySource } }, function (err, response, body) {
                         if (!err) {
                             debug(body);
@@ -52,6 +53,8 @@ module.exports.gatherProxy = function () {
                     });
 
                 }, item).wait(5000);
+
+
             });
             myScrape.run(function (err, nightmare) {
                 if (err) return console.log(err);

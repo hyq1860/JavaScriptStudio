@@ -8,7 +8,7 @@ var debug = require('debug')('checkproxy');
 var common = require('../common.js');
 //console.log("{0}test".format(1));
 //var baseUrl = "http://182.92.167.82:5001";
-var baseUrl = "http://127.0.0.1:5001";
+//var baseUrl = "http://127.0.0.1:5001";
 module.exports.vote = function (type, ip, port, callback) {
     //var jschardet = require("jschardet");
     if (type == 'qq') {
@@ -37,19 +37,19 @@ module.exports.vote = function (type, ip, port, callback) {
         }
     }, function(error, response, body) {
         if (!error && response.statusCode == 200) {
-            var html = iconv.decode(body, 'gb2312'); //将GBK编码的字符转换成utf8的
+            var html = iconv.decode(body, 'utf-8'); //将GBK编码的字符转换成utf8的
             //var $ = cheerio.load(html);
 
             debug(ip+" "+html);
             setTimeout(function() {
                 callback();
-            }, 2000);
+            }, 1000);
             //console.log(ip);
         } else {
             debug(ip+"error");
             setTimeout(function () {
                 callback();
-            }, 2000);
+            }, 1000);
         }
     });
     //.on('error', function (err) {

@@ -2,8 +2,8 @@
 var request = require('request');
 var proxy = require('./checkproxy.js');
 var debug = require('debug')('validateproxy');
-//var url = "http://182.92.167.82:5001/proxy/getproxy";
-var url = "http://127.0.0.1:5001/proxy/getproxy";
+var url = "http://182.92.167.82:5001/proxy/getproxy";
+//var url = "http://127.0.0.1:5001/proxy/getproxy";
 
 module.exports.validateProxyTask=function(url) {
     request(url, function (error, response, body) {

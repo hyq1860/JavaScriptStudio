@@ -73,4 +73,43 @@ config[2] = function (data) {
     return proxys;
 }
 
+config[3] = function (data) {
+    var $ = cheerio.load(data.Html);
+    var trs = $('table>tbody>tr');
+    var proxys = [];
+    trs.each(function (index, item) {
+        var proxy = {};
+        $(item).find('td').each(function (i, e) {
+            switch (i) {
+                case 0:
+                    
+                    break;
+                case 1:
+                    
+                    break;
+                case 2:
+                    proxy.IP = $(e).text();
+                    proxy.Anonymous = "";
+                    break;
+                case 3:
+                    proxy.Port = $(e).text();
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    proxy.Type = $(e).text();
+                    break;
+            }
+        });
+        proxy.InDate = moment(new Date()).format("YYYY-MM-DD HH:mm:ss");
+        proxy.EditDate = proxy.InDate;
+        proxy.Speed = 0, proxy.Flag = 1;
+        if (proxy.IP&& proxy.Port) {
+            proxys.push([proxy.IP, proxy.Port, proxy.Anonymous, proxy.Type, proxy.Speed, proxy.Flag, proxy.InDate, proxy.EditDate]);
+        }
+        
+    });
+    return proxys;
+}
+
 module.exports = config;
