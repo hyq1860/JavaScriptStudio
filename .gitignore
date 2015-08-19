@@ -236,3 +236,7 @@ FakesAssemblies/
 *.opt
 NightmareAllInOne/jdcategory.sql
 PhantomjsExamples/test/phantomjs.exe
+NWStudio/icudtl.dat
+NWStudio/locales/am.pak
+*.pak
+NWStudio/credits.html

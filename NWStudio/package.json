@@ -1,0 +1,10 @@
+{
+  "name": "NWStudio",
+  "version": "0.0.0",
+  "description": "NWStudio",
+  "main": "app.js",
+  "author": {
+    "name": "pcher_000",
+    "email": ""
+  }
+}
