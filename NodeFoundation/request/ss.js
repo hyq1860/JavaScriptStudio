@@ -27,7 +27,7 @@ var options = {
 function callback(error, response, body) {
     if (!error && response.statusCode == 200) {
         var info = JSON.parse(body);
-        //console.log(info.stargazers_count + " Stars");
+        console.log(info.pageHelp.data.length);
         //console.log(info.forks_count + " Forks");
     }
 }

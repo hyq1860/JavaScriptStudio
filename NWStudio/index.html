@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+<script>
+    /*
+    var markdown = require('markdown').markdown;
+    document.write(markdown.toHTML("Hello **World**!"));
+    document.write(markdown.toHTML("##World"));
+    */
+
+    /*
+    var Nightmare = require('nightmare');
+    var nightmare = new Nightmare({
+        loadImages: false,
+        timeout: 2000,
+        weak: false
+    });
+    debugger;
+    nightmare
+        .goto('http://www.cnblogs.com/')
+        .evaluate(function() {
+            var titles = [];
+            //var $titles = jQuery(".post_item_body");
+            //$titles.each(function() {
+            //    var item = $(this);
+            //    titles.push(item.find('a').text());
+            //});
+            return titles;
+        }, function(result) {
+            for (var i = 0; i < result.length; i++) {
+                document.write(result[i]);
+            }
+                
+        })
+        .run(function (err, nightmare) {
+            //debugger;
+            //document.write(err);
+        });
+        */
+    //https://github.com/electronicbits/scraper
+    //http://electronicbits.io/2015/04/08/scraping-the-web/
+    var phantom = require('phantom');
+
+    phantom.create(function(ph) {
+            ph.createPage(function(page) {
+                page.open("http://www.cnblogs.com", function(status) {
+                    console.log("opened google? ", status);
+                    page.evaluate(function() { return document.title; }, function(result) {
+                        document.write('Page title is ' + result);
+                        ph.exit();
+                    });
+                });
+            });
+        }, {
+            dnodeOpts: {
+                weak: false
+            }
+        }
+    );
+</script>
+</body>
+</html>

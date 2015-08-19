@@ -35,6 +35,7 @@
     <Content Include="d3dcompiler_47.dll" />
     <Content Include="ffmpegsumo.dll" />
     <Content Include="icudtl.dat" />
+    <Content Include="index.html" />
     <Content Include="libEGL.dll" />
     <Content Include="libGLESv2.dll" />
     <Content Include="locales\am.pak" />

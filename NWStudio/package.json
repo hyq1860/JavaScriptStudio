@@ -1,10 +1,20 @@
 {
-  "name": "NWStudio",
+  "name": "NWTools",
   "version": "0.0.0",
-  "description": "NWStudio",
-  "main": "app.js",
+  "description": "NWTools",
+  "main": "index.html",
+  "window": {
+    "toolbar": true,
+    "width": 800,
+    "height": 600
+  },
   "author": {
-    "name": "pcher_000",
+    "name": "heyongqiang",
     "email": ""
+  },
+  "dependencies": {
+    "markdown": "^0.5.0",
+    "nightmare": "^1.8.2",
+    "phantom": "^0.7.2"
   }
 }

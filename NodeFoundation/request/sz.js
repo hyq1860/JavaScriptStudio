@@ -27,7 +27,7 @@ request.post({
         var html = iconv.decode(body, 'gb2312');
             var $ = cheerio.load(html);
             var trs= $("#REPORTID_tab1").find('.cls-data-tr');
-            console.log(html);
+            console.log(trs.length);
             //console.log(info.stargazers_count + " Stars");
             //console.log(info.forks_count + " Forks");
         }
