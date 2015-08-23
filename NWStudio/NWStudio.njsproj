@@ -12,7 +12,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>7b2be448-4e2b-431c-9fa2-c0febc68daa2</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>app.js</StartupFile>
+    <StartupFile>node\ssmanagersb.js</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
@@ -31,6 +31,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.js" />
+    <Compile Include="node\log4js.js" />
+    <Compile Include="node\mysqldao.js" />
+    <Compile Include="node\mysqldb.js" />
+    <Compile Include="node\ss.js" />
+    <Compile Include="node\ssIndustry.js" />
+    <Compile Include="node\ssmanagersb.js" />
+    <Compile Include="node\sz.js" />
+    <Compile Include="node\szpe.js" />
+    <Compile Include="tools\json2csharp\jsbeautify.js" />
+    <Compile Include="tools\json2csharp\prettify.js" />
     <Content Include="credits.html" />
     <Content Include="d3dcompiler_47.dll" />
     <Content Include="ffmpegsumo.dll" />
@@ -94,12 +104,26 @@
     <Content Include="nw.exe" />
     <Content Include="nw.pak" />
     <Content Include="nwjc.exe" />
+    <Content Include="main.html" />
+    <Content Include="package - Copy.json" />
     <Content Include="package.json" />
     <Content Include="pdf.dll" />
     <Content Include="README.md" />
+    <Content Include="resources\tools_32.png" />
+    <Content Include="resources\tools_48.png" />
+    <Content Include="tools\json2csharp\json2csharp.html" />
+    <Content Include="tools\json2csharp\prettify.css" />
+    <Content Include="views\stock.html" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="locales\" />
+    <Folder Include="js\" />
+    <Folder Include="css\" />
+    <Folder Include="node\" />
+    <Folder Include="tools\" />
+    <Folder Include="tools\json2csharp\" />
+    <Folder Include="views\" />
+    <Folder Include="resources\" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />

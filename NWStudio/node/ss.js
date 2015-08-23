@@ -1,12 +1,13 @@
 ﻿
 //http://table.finance.yahoo.com/table.csv?a=0&b=1&c=2012&d=3&e=19&f=2012&s=600000.ss
 
-var async = require('async');
+//var async = require('async');
 var request = require('request');
-var qs = require('querystring');
-var iconv = require('iconv-lite');
-var cheerio = require('cheerio');
-
+//var qs = require('querystring');
+//var iconv = require('iconv-lite');
+//var cheerio = require('cheerio');
+var mysqldao = require('./mysqldao');
+var async = require('async');
 //Date,Open,High,Low,Close,Volume,Adj Close
 //上海 ss  深证sz
 
@@ -28,6 +29,25 @@ function callback(error, response, body) {
     if (!error && response.statusCode == 200) {
         var info = JSON.parse(body);
         console.log(info.pageHelp.data);
+        async.eachSeries(info.pageHelp.data, function (item, callback) {
+            var stock = {};
+            stock.Id = item.PRODUCTID;
+            stock.Name = item.PRODUCTNAME;
+            stock.FullName = item.FULLNAME;
+            stock.Industry = null;
+            stock.WebSite = null;
+
+            mysqldao.addStock(stock, "ss", callback);
+        }, function (err) {
+            if (err) {
+                console.log('上海交易所股票代码抓取错误：' + err);
+            }
+            console.log("上海交易所股票代码抓取完毕");
+        });
+        //for (var i = 0; i < info.pageHelp.data.length; i++) {
+        //    mysql.addStock(info.pageHelp.data[i],"ss");
+        //}
+        
         //console.log(info.forks_count + " Forks");
     }
 }

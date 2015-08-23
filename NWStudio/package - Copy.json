@@ -4,15 +4,20 @@
   "description": "NWTools",
   "user-agent": "Mozilla/5.0 (%osinfo) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/%webkit_ver Safari/537.36 nw",
   "main": "main.html",
+  //"node-main": "app.js",
   "window": {
     "title": "NodeJs",
     "icon": "resources/tools_32.png",
     "show": true,
-    "toolbar": true,
+    "toolbar": false,
     "resizable": true,
     "width": 960,
     "height": 640,
-    "position": "mouse"
+    "position": "mouse",
+    //"min_width": 400,
+    //"min_height": 200,
+    //"max_width": 960,
+    //"max_height": 640
   },
   "webkit": {
     "plugin": true
@@ -22,18 +27,12 @@
     "email": ""
   },
   "dependencies": {
-    "async": "^1.4.2",
     "bootstrap": "^3.3.5",
-    "cheerio": "^0.19.0",
-    "iconv-lite": "^0.4.11",
     "jquery": "^2.1.4",
-    "log4js": "^0.6.26",
     "markdown": "^0.5.0",
-    "mysql": "^2.9.0",
     "nightmare": "^1.8.2",
     "node-schedule": "^0.2.9",
     "phantom": "^0.7.2",
-    "querystring": "^0.2.0",
     "request": "^2.61.0"
   }
 }

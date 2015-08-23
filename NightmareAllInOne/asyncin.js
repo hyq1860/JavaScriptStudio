@@ -15,7 +15,7 @@ async.map(urls, function (url,callback) {
             loadImages: false,
             weak: false,
             timeout: 10000,
-            phantomPath: 'D:\\Sync\\Node\\phantomjs-1.9.8-windows\\'
+            phantomPath: 'D:\\GitHub\\phantomjs-1.9.8-windows\\'
         }
     )
         .goto(url)

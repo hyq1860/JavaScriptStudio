@@ -1,67 +1,85 @@
 ﻿<!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>个人工具箱</title>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link href="http://www.bootcss.com/p/metro-ui-css/css/modern.css" rel="stylesheet">
+    <!-- 可选的Bootstrap主题文件（一般不用引入） -->
+    <!--<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-theme.min.css">-->
 </head>
 <body>
-<script>
-    /*
-    var markdown = require('markdown').markdown;
-    document.write(markdown.toHTML("Hello **World**!"));
-    document.write(markdown.toHTML("##World"));
-    */
+    <script>
+        /*页面资源加载完毕后才显示程序窗口*/
+        //var gui = require('nw.gui');
 
-    /*
-    var Nightmare = require('nightmare');
-    var nightmare = new Nightmare({
-        loadImages: false,
-        timeout: 2000,
-        weak: false
-    });
-    debugger;
-    nightmare
-        .goto('http://www.cnblogs.com/')
-        .evaluate(function() {
-            var titles = [];
-            //var $titles = jQuery(".post_item_body");
-            //$titles.each(function() {
-            //    var item = $(this);
-            //    titles.push(item.find('a').text());
-            //});
-            return titles;
-        }, function(result) {
-            for (var i = 0; i < result.length; i++) {
-                document.write(result[i]);
-            }
-                
-        })
-        .run(function (err, nightmare) {
-            //debugger;
-            //document.write(err);
-        });
+        //onload = function () {
+        //    gui.Window.get().show();
+        //}
+        /*
+        var markdown = require('markdown').markdown;
+        document.write(markdown.toHTML("Hello **World**!"));
+        document.write(markdown.toHTML("##World"));
         */
-    //https://github.com/electronicbits/scraper
-    //http://electronicbits.io/2015/04/08/scraping-the-web/
-    var phantom = require('phantom');
 
-    phantom.create(function(ph) {
-            ph.createPage(function(page) {
-                page.open("http://www.cnblogs.com", function(status) {
-                    console.log("opened google? ", status);
-                    page.evaluate(function() { return document.title; }, function(result) {
-                        document.write('Page title is ' + result);
-                        ph.exit();
-                    });
+        /*
+        var Nightmare = require('nightmare');
+        debugger;
+        var nightmare = new Nightmare({
+            weak: false
+            //phantomPath: 'D:\\GitHub\\phantomjs-1.9.8-windows\\'
+        });
+
+        nightmare.goto('http://www.cnblogs.com/')
+            .evaluate(function() {
+                var titles = [];
+                var $titles = jQuery(".post_item_body");
+                $titles.each(function() {
+                    var item = $(this);
+                    titles.push(item.find('a').text());
                 });
+                return titles;
+            }, function(result) {
+                for (var i = 0; i < result.length; i++) {
+                    //document.write(result[i]);
+                }
+
+            })
+            .run(function(err, nightmare) {
+                //debugger;
+                //document.write(err);
             });
-        }, {
-            dnodeOpts: {
-                weak: false
-            }
-        }
-    );
-</script>
+            */
+        //https://github.com/electronicbits/scraper
+        //http://electronicbits.io/2015/04/08/scraping-the-web/
+        //https://github.com/rschmukler/agenda
+        //https://github.com/tejasmanohar/node-schedule
+    </script>
+
+    <button id="btn1" class="btn btn-primary" type="button">按钮</button>
+    <div id="task"></div>
+    <div id="main"></div>
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#btn1").on("click", function () {
+                $("#main").load('tools/json2csharp/json2csharp.html');
+            });
+
+            //process.mainModule.exports.callback0();
+        });
+        //http://my.oschina.net/robanlee/blog/120854
+        var schedule = require('node-schedule');
+        var i = 0;
+        schedule.scheduleJob('*/2 * * * * *', function () {
+            $("#task").html('每2秒跑一次' + i++);
+        });
+    </script>
 </body>
 </html>
