@@ -30,6 +30,20 @@ module.exports.addStocks = function (stocks, market, callback) {
     });
 }
 
+//高管买卖股票
+module.exports.addManagerSB = function (sb,callback) {
+    mysql.exec("insert into managersb VALUES ?", [sb], function (err, result) {
+        if (err) {
+            logger.error(err);
+            //console.log(err);
+            callback(err);
+        } else {
+            callback();
+        }
+    });
+}
+
+
 
 
 

@@ -12,7 +12,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>7b2be448-4e2b-431c-9fa2-c0febc68daa2</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>node\ssmanagersb.js</StartupFile>
+    <StartupFile>node\szpe.js</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>

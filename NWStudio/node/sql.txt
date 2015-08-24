@@ -1,0 +1,45 @@
+DROP TABLE IF EXISTS `managersb`;
+CREATE TABLE `managersb` (
+  `Id` int(8) NOT NULL AUTO_INCREMENT,
+  `Code` varchar(10) NOT NULL,
+  `CompanyName` varchar(50) DEFAULT NULL,
+  `Name` varchar(10) DEFAULT NULL,
+  `Duty` varchar(30) DEFAULT NULL,
+  `Stock_Type` varchar(10) DEFAULT NULL,
+  `Currency_Type` varchar(10) DEFAULT NULL,
+  `Current_Num` bigint(12) DEFAULT NULL,
+  `Change_Num` bigint(12) DEFAULT NULL,
+  `Current_Avg_Price` decimal(8,3) DEFAULT NULL,
+  `HoldStock_Num` bigint(12) DEFAULT NULL,
+  `Change_Reason` varchar(20) DEFAULT NULL,
+  `Change_Date` date DEFAULT NULL,
+  `Form_Date` date DEFAULT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=65176 DEFAULT CHARSET=utf8;
+
+
+
+DROP TABLE IF EXISTS `stock`;
+CREATE TABLE `stock` (
+  `Id` varchar(10) NOT NULL,
+  `Name` varchar(20) DEFAULT NULL,
+  `FullName` varchar(100) DEFAULT NULL,
+  `Market` char(2) DEFAULT NULL,
+  `Industry` varchar(50) DEFAULT NULL,
+  `WebSite` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+DROP TABLE IF EXISTS `stockspecific`;
+CREATE TABLE `stockspecific` (
+  `Id` int(4) unsigned NOT NULL AUTO_INCREMENT,
+  `Code` varchar(8) NOT NULL,
+  `Time` datetime NOT NULL,
+  `Price` decimal(6,2) NOT NULL,
+  `Volume` decimal(16,2) NOT NULL,
+  `Amount` decimal(16,2) NOT NULL,
+  `Type` tinyint(2) NOT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=71489 DEFAULT CHARSET=utf8;
