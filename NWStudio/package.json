@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "NWTools",
   "user-agent": "Mozilla/5.0 (%osinfo) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/%webkit_ver Safari/537.36 nw",
-  "main": "index.html",
+  "main": "main.html",
   "node-main": "app.js",
   "window": {
     "title": "NodeJs",
