@@ -71,14 +71,17 @@
             $("#btn1").on("click", function () {
                 $("#main").load('tools/json2csharp/json2csharp.html');
             });
-
+            debugger;
+            console.log(process.mainModule.exports.callback0());
             //process.mainModule.exports.callback0();
         });
         //http://my.oschina.net/robanlee/blog/120854
         var schedule = require('node-schedule');
         var i = 0;
-        schedule.scheduleJob('*/2 * * * * *', function () {
-            $("#task").html('每2秒跑一次' + i++);
+        
+        schedule.scheduleJob('*/5 * * * * *', function () {
+            //process.mainModule.exports.callback0();
+            //$("#task").html('每2秒跑一次' + process.mainModule.exports.callback0());
         });
     </script>
 </body>
