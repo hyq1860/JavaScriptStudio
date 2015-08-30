@@ -41,6 +41,10 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "PhantomjsExamples", "http:/
 EndProject
 Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "NWStudio", "NWStudio\NWStudio.njsproj", "{7B2BE448-4E2B-431C-9FA2-C0FEBC68DAA2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetBridgeNode", "DotNetBridgeNode\DotNetBridgeNode.csproj", "{97D898A5-FC8B-4CC6-9E56-833B79E36738}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhantomJsServerManager", "PhantomJsServerManager\PhantomJsServerManager.csproj", "{447A6155-976A-4FE6-8A3D-AFFD65A991A0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +87,14 @@ Global
 		{7B2BE448-4E2B-431C-9FA2-C0FEBC68DAA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B2BE448-4E2B-431C-9FA2-C0FEBC68DAA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B2BE448-4E2B-431C-9FA2-C0FEBC68DAA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97D898A5-FC8B-4CC6-9E56-833B79E36738}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97D898A5-FC8B-4CC6-9E56-833B79E36738}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97D898A5-FC8B-4CC6-9E56-833B79E36738}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97D898A5-FC8B-4CC6-9E56-833B79E36738}.Release|Any CPU.Build.0 = Release|Any CPU
+		{447A6155-976A-4FE6-8A3D-AFFD65A991A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{447A6155-976A-4FE6-8A3D-AFFD65A991A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{447A6155-976A-4FE6-8A3D-AFFD65A991A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{447A6155-976A-4FE6-8A3D-AFFD65A991A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

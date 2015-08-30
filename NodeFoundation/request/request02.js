@@ -8,8 +8,8 @@ var response = function (err, response, body) {
     //返回的body 直接就是buffer 了...
     var html = iconv.decode(body, 'utf-8');
     //console.log(buf);
-    $ = cheerio.load(html);
-    $("a")
+    var $ = cheerio.load(html);
+    $("")
 }
 
 request.get({

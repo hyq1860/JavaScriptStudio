@@ -34,6 +34,7 @@
     <Compile Include="node\log4js.js" />
     <Compile Include="node\mysqldao.js" />
     <Compile Include="node\mysqldb.js" />
+    <Compile Include="node\pe.js" />
     <Compile Include="node\ss.js" />
     <Compile Include="node\ssIndustry.js" />
     <Compile Include="node\ssmanagersb.js" />
