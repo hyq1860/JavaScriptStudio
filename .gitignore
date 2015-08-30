@@ -240,3 +240,6 @@ NWStudio/icudtl.dat
 NWStudio/locales/am.pak
 *.pak
 NWStudio/credits.html
+*.dll
+NWStudio/nw.exe
+*.exe

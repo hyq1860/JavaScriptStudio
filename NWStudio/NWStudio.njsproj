@@ -12,7 +12,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>7b2be448-4e2b-431c-9fa2-c0febc68daa2</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>node\szpe.js</StartupFile>
+    <StartupFile>node\td.js</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.js" />
+    <Compile Include="node\ah.js" />
     <Compile Include="node\log4js.js" />
     <Compile Include="node\mysqldao.js" />
     <Compile Include="node\mysqldb.js" />
@@ -40,6 +41,7 @@
     <Compile Include="node\ssmanagersb.js" />
     <Compile Include="node\sz.js" />
     <Compile Include="node\szpe.js" />
+    <Compile Include="node\td.js" />
     <Compile Include="tools\json2csharp\jsbeautify.js" />
     <Compile Include="tools\json2csharp\prettify.js" />
     <Content Include="credits.html" />
